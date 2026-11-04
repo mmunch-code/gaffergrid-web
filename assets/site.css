@@ -1,0 +1,140 @@
+/* Fælles stil for gaffergrid.com (forside, privacy, support) i appens nye look (gaffergrid-ft/docs/designsprog.md):
+   monokrom grafit, kun lyset gløder (varm hvid), præcise tal, én skrift, rolig bevægelse. Ingen orange.
+   Farverne er appens tokens (web/tokens.css). Mørk følger systemet; data-theme="light"/"dark" vælges med knappen i toppen. */
+:root {
+  --g0: #fbfbfc; --g1: #f3f3f5; --g2: #ffffff; --g3: #ebebee; --g4: #e2e2e6;
+  --t1: rgba(10, 11, 13, .92); --t2: rgba(10, 11, 13, .62); --t3: rgba(10, 11, 13, .46);
+  --hair: rgba(10, 11, 13, .08); --hair2: rgba(10, 11, 13, .14);
+  --hi: #17181b; --hi-fg: #ffffff;
+  --glass: rgba(251, 251, 252, .78);
+  --light: #b4a386; --glow: rgba(180, 163, 134, .22);
+  --ok: #2f7d4f; --warn: #a8801c; --bad: #c23a2b;
+  --sel: #2f6fd0; --focus: 0 0 0 3px rgba(47, 111, 208, .28);
+  --sh-float: 0 1px 0 rgba(255, 255, 255, .5) inset, 0 10px 30px rgba(0, 0, 0, .10), 0 1px 3px rgba(0, 0, 0, .08);
+  --sh-shot: 0 30px 80px -20px rgba(0, 0, 0, .28), 0 0 0 1px var(--hair2);
+  --body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
+  --display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI Variable Display", "Segoe UI", system-ui, sans-serif;
+  --ease: cubic-bezier(.2, .8, .2, 1);
+  --wrap: 1120px; --gut: max(16px, env(safe-area-inset-left, 0px));
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --g0: #0c0d0f; --g1: #141518; --g2: #1b1c20; --g3: #24262b; --g4: #2f3137;
+  --t1: rgba(255, 255, 255, .94); --t2: rgba(255, 255, 255, .64); --t3: rgba(255, 255, 255, .44);
+  --hair: rgba(255, 255, 255, .07); --hair2: rgba(255, 255, 255, .12);
+  --hi: #f4f5f7; --hi-fg: #0c0d0f;
+  --glass: rgba(20, 21, 24, .72);
+  --light: #f1d9a8; --glow: rgba(241, 217, 168, .12);
+  --ok: #6cc28c; --warn: #e2c25c; --bad: #ef6b5e; --sel: #8fb2ff; --focus: 0 0 0 3px rgba(143, 178, 255, .3);
+  --sh-float: 0 1px 0 rgba(255, 255, 255, .05) inset, 0 10px 30px rgba(0, 0, 0, .4), 0 1px 3px rgba(0, 0, 0, .45);
+  --sh-shot: 0 40px 100px -30px rgba(0, 0, 0, .9), 0 0 0 1px var(--hair2);
+  color-scheme: dark;
+} }
+:root[data-theme="dark"] {
+  --g0: #0c0d0f; --g1: #141518; --g2: #1b1c20; --g3: #24262b; --g4: #2f3137;
+  --t1: rgba(255, 255, 255, .94); --t2: rgba(255, 255, 255, .64); --t3: rgba(255, 255, 255, .44);
+  --hair: rgba(255, 255, 255, .07); --hair2: rgba(255, 255, 255, .12);
+  --hi: #f4f5f7; --hi-fg: #0c0d0f;
+  --glass: rgba(20, 21, 24, .72);
+  --light: #f1d9a8; --glow: rgba(241, 217, 168, .12);
+  --ok: #6cc28c; --warn: #e2c25c; --bad: #ef6b5e; --sel: #8fb2ff; --focus: 0 0 0 3px rgba(143, 178, 255, .3);
+  --sh-float: 0 1px 0 rgba(255, 255, 255, .05) inset, 0 10px 30px rgba(0, 0, 0, .4), 0 1px 3px rgba(0, 0, 0, .45);
+  --sh-shot: 0 40px 100px -30px rgba(0, 0, 0, .9), 0 0 0 1px var(--hair2);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 72px; }
+body { margin: 0; background: var(--g0); color: var(--t1); font: 400 16px/1.55 var(--body); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; overflow-x: hidden; }
+a { color: inherit; }
+img, svg { max-width: 100%; }
+:focus-visible { outline: 2px solid color-mix(in srgb, var(--sel) 70%, transparent); outline-offset: 2px; border-radius: 6px; }
+:focus:not(:focus-visible) { outline: none; }
+.wrap { width: 100%; max-width: calc(var(--wrap) + 2 * var(--gut)); margin: 0 auto; padding: 0 var(--gut); }
+.skip { position: absolute; left: -999px; top: 8px; z-index: 100; background: var(--hi); color: var(--hi-fg); padding: 8px 12px; border-radius: 8px; }
+.skip:focus { left: 8px; }
+
+/* Toppen: røget glas (det eneste, der svæver), logoet og to små knapper */
+.top { position: sticky; top: 0; z-index: 50; background: var(--glass); -webkit-backdrop-filter: blur(22px) saturate(150%); backdrop-filter: blur(22px) saturate(150%); border-bottom: 1px solid var(--hair); }
+.top .wrap { display: flex; align-items: center; gap: 8px; height: 56px; }
+.brand { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; font: 600 16px var(--display); letter-spacing: -.02em; padding: 6px 0; }
+.brand svg { width: 24px; height: 24px; flex: none; }
+.brand .gg-word { font-size: 10px; } /* navnetrækket i Geist-versaler (fonts.css), ca. 0,52× den gamle 17 px */
+.foot .brand .gg-word { font-size: 8.5px; }
+.tbtn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 36px; padding: 0 12px; border-radius: 999px; border: 1px solid transparent; background: transparent; color: var(--t2); font: 500 14px var(--body); text-decoration: none; cursor: pointer; transition: color .16s var(--ease), background .16s var(--ease); }
+.tbtn:hover { color: var(--t1); background: var(--g3); }
+.tbtn svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.tbtn.icon { width: 36px; padding: 0; }
+.tbtn.solid { white-space: nowrap; }
+@media (max-width: 440px) { .top .tbtn.solid { display: none; } }
+.tbtn.solid { background: var(--hi); color: var(--hi-fg); font-weight: 600; min-height: 32px; padding: 0 14px; font-size: 13.5px; margin-left: 4px; }
+.tnav { display: flex; gap: 2px; margin: 0 auto; }
+.tnav a { padding: 7px 12px; border-radius: 999px; color: var(--t2); font: 500 14px var(--body); text-decoration: none; transition: color .16s var(--ease), background .16s var(--ease); }
+.tnav a:hover { color: var(--t1); background: var(--g3); }
+.tbtn.lang { font-size: 12.5px; letter-spacing: .04em; min-width: 36px; padding: 0 8px; }
+@media (max-width: 820px) { .tnav { display: none; } .top .lang { margin-left: auto; } }
+.tbtn.solid:hover { background: color-mix(in srgb, var(--hi) 86%, var(--t3)); color: var(--hi-fg); }
+.theme-sun { display: none; } :root[data-theme-now="dark"] .theme-sun { display: block; } :root[data-theme-now="dark"] .theme-moon { display: none; }
+
+/* Knapper */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 22px; border-radius: 999px; border: 1px solid var(--hair2); background: transparent; color: var(--t1); font: 600 15px var(--body); text-decoration: none; cursor: pointer; transition: background .18s var(--ease), border-color .18s var(--ease), transform .18s var(--ease); }
+.btn:hover { background: var(--g3); }
+.btn.solid { background: var(--hi); color: var(--hi-fg); border-color: transparent; }
+.btn.solid:hover { background: color-mix(in srgb, var(--hi) 86%, var(--t3)); }
+.btn:active { transform: translateY(1px); }
+
+/* Bunden */
+.foot { border-top: 1px solid var(--hair); margin-top: 72px; color: var(--t3); font-size: 13.5px; }
+.foot .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; padding-top: 24px; padding-bottom: max(28px, env(safe-area-inset-bottom)); }
+.foot .brand { font-size: 14px; color: var(--t2); margin-right: 0; }
+.foot .brand svg { width: 18px; height: 18px; }
+.foot nav { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-left: auto; }
+.foot a { text-decoration: none; color: var(--t2); padding: 8px 0; }
+.foot a:hover { color: var(--t1); }
+
+/* Privacy og support: rolig læsetekst */
+.doc { max-width: 720px; padding-top: 48px; }
+.doc .meta { color: var(--t3); font-size: 13.5px; margin: 0 0 8px; }
+.doc h1 { font: 650 clamp(34px, 6vw, 48px)/1.05 var(--display); letter-spacing: -.035em; margin: 0 0 18px; }
+.doc .lead { font-size: 18px; color: var(--t2); margin: 0 0 8px; }
+.doc h2 { font: 600 20px/1.25 var(--display); letter-spacing: -.015em; margin: 44px 0 10px; padding-top: 22px; border-top: 1px solid var(--hair); }
+.doc p, .doc li { color: var(--t2); }
+.doc b, .doc strong { color: var(--t1); font-weight: 600; }
+.doc ul { padding-left: 20px; margin: 10px 0; } .doc li { margin: 10px 0; padding-left: 4px; }
+.doc a { color: var(--t1); text-decoration: underline; text-decoration-color: var(--hair2); text-underline-offset: 3px; }
+.doc a:hover { text-decoration-color: currentColor; }
+.doc .card { margin: 28px 0 8px; padding: 18px 20px; border-radius: 14px; background: var(--g1); border: 1px solid var(--hair); }
+.doc .card p { margin: 0; }
+@media (min-width: 720px) { .doc { padding-top: 72px; } }
+
+/* Toppen uden bjælke (Marcus 29. okt, inspireret af Cadrages rene top, ikke kopieret): logo til venstre, tre små tekstlinks
+   og sproget direkte på baggrunden, og én tydelig primær knap. Ingen baggrund, kant eller blur, og den ruller med siden væk;
+   den svævende pille (.float-cta i launch.css) tager over, når man er forbi hero. Mørk/lys ligger nu i bunden. */
+.top { position: absolute; left: 0; right: 0; background: none; -webkit-backdrop-filter: none; backdrop-filter: none; border-bottom: 0; }
+.top .wrap { height: 72px; gap: 4px; }
+.tnav { gap: 0; }
+.tnav a { padding: 8px 14px; font-size: 14px; color: var(--t2); }
+@media (min-width: 821px) { .top .wrap { position: relative; } .tnav { position: absolute; left: 50%; transform: translateX(-50%); margin: 0; } .top .lang { margin-left: auto; } } /* links midt på siden (Marcus 29. okt) */
+.tnav a:hover { background: none; color: var(--t1); }
+.tbtn.lang { color: var(--t3); }
+.tbtn.lang:hover { background: none; color: var(--t1); }
+.tbtn.solid { min-height: 38px; padding: 0 18px; font-size: 14px; margin-left: 8px; }
+@media (max-width: 440px) { .top .tbtn.solid { display: inline-flex; min-height: 34px; padding: 0 14px; font-size: 13px; margin-left: 2px; } }
+.foot [data-theme-toggle] { margin-left: -6px; color: var(--t3); }
+html { scroll-padding-top: 24px; }
+.doc { padding-top: 112px; } @media (min-width: 720px) { .doc { padding-top: 136px; } }
+
+/* Toppen som "liquid glass" (29. okt, site/clean): øverst på siden står den usynligt på baggrunden. Ruller man ned,
+   forsvinder den; ruller man op igen, glider en svævende pille af røget glas ned (blur + saturate, tynd lys kant).
+   Klassen .glass og .gone sættes af site.js. Med "reducér bevægelse" skifter den uden at glide. */
+.top { position: fixed; top: 0; transition: transform .38s var(--ease), opacity .3s var(--ease); }
+.top.gone { transform: translateY(-120%); opacity: 0; pointer-events: none; }
+.top .wrap { transition: background .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease), height .3s var(--ease), padding .3s var(--ease); border: 1px solid transparent; }
+.top.glass { top: 10px; }
+.top.glass .wrap { height: 54px; max-width: 1080px; padding: 0 8px 0 18px; border-radius: 999px;
+  background: color-mix(in srgb, var(--g0) 62%, transparent); -webkit-backdrop-filter: blur(22px) saturate(180%); backdrop-filter: blur(22px) saturate(180%);
+  border-color: color-mix(in srgb, var(--t1) 12%, transparent);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .14) inset, 0 12px 36px -14px rgba(0, 0, 0, .45); }
+@media (max-width: 1120px) { .top.glass .wrap { max-width: calc(100% - 24px); } }
+.top.glass .tbtn.solid { min-height: 38px; }
+@media (prefers-reduced-motion: reduce) { .top, .top .wrap { transition: none; } }

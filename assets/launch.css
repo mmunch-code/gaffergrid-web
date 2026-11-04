@@ -1,0 +1,1343 @@
+/* Forsiden: mobil først (390 px uden sidelæns rul), så tablet og desktop. Bygger på tokens i site.css.
+   Tegningerne (.stage) er altid mørke, som introen i appen ("som en biograf"): lyset på tegningen er det, der skal gløde. */
+.k { display: flex; align-items: center; gap: 8px; margin: 0 0 12px; color: var(--t3); font: 500 13.5px var(--body); }
+.k svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.badge { font-style: normal; font: 600 11.5px var(--body); padding: 3px 9px; border-radius: 999px; background: var(--hi); color: var(--hi-fg); white-space: nowrap; }
+.head { max-width: 620px; margin: 0 0 40px; }
+.head h2, .end h2 { font: 600 clamp(28px, 6.2vw, 40px)/1.1 var(--display); letter-spacing: -.03em; margin: 0 0 12px; text-wrap: balance; }
+.head > p:not(.k) { color: var(--t2); font-size: 17px; margin: 0; max-width: 54ch; }
+.fine { color: var(--t3); font-size: 13px; line-height: 1.5; }
+
+/* Hero */
+.hero { position: relative; padding: 72px 0 32px; text-align: center; }
+.hero-in { position: relative; display: grid; justify-items: center; }
+.app-icon { width: 84px; height: 84px; border-radius: 20px; display: grid; place-items: center; color: #f7f7f7; margin-bottom: 26px;
+  background: radial-gradient(100% 100% at 50% -10%, rgba(255, 255, 255, .14), transparent 55%), linear-gradient(#232427, #131417 50%, #08090a); box-shadow: 0 0 0 1px rgba(255, 255, 255, .16) inset, 0 24px 48px -12px rgba(0, 0, 0, .55); } /* børstet metal (28. okt aften) */
+.app-icon svg { width: 54px; height: 54px; filter: drop-shadow(0 1px 1.2px rgba(0, 0, 0, .7)); }
+.app-icon.sm { width: 64px; height: 64px; border-radius: 15px; margin: 0 auto 22px; } .app-icon.sm svg { width: 40px; height: 40px; }
+.eyebrow { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 22px; color: var(--t3); font-size: 13.5px; font-weight: 500; }
+.eyebrow i { width: 7px; height: 7px; border-radius: 50%; background: var(--light); box-shadow: 0 0 10px var(--light); }
+.hero h1 { font: 650 clamp(40px, 10.4vw, 68px)/1.04 var(--display); letter-spacing: -.042em; margin: 0 0 18px; max-width: 12ch; text-wrap: balance; }
+.hero .lead { color: var(--t2); font-size: 17.5px; margin: 0 0 28px; max-width: 54ch; }
+.note { list-style: none; padding: 0; margin: 18px 0 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; color: var(--t3); font-size: 13.5px; }
+.note li { display: inline-flex; align-items: center; gap: 7px; }
+.note li::before { content: ""; width: 12px; height: 7px; border-left: 1.5px solid var(--t2); border-bottom: 1.5px solid var(--t2); transform: rotate(-45deg) translateY(-2px); }
+
+/* App Store-knappen (29. okt, erstatter ventelisten): Apples badge-form gengivet enkelt og monokromt, ren tekst uden logo.
+   .is-soon = før STORE er sat i launch.js (ikke klikbar, omrids); som link er den massiv som .btn.solid. */
+.store-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; }
+.store { display: inline-grid; align-content: center; justify-items: start; min-height: 54px; padding: 7px 20px 8px; border-radius: 12px;
+  background: var(--hi); color: var(--hi-fg); border: 1px solid transparent; text-decoration: none; line-height: 1.1; transition: background .16s var(--ease); }
+.store small { font-size: 11px; font-weight: 500; letter-spacing: .01em; opacity: .82; }
+.store b { font: 600 20px/1.1 var(--display); letter-spacing: -.02em; white-space: nowrap; }
+.store em { font-style: normal; font-weight: 400; opacity: .6; }
+a.store:hover { background: color-mix(in srgb, var(--hi) 86%, var(--t3)); }
+a.store:active { transform: translateY(1px); }
+.store.is-soon { background: transparent; color: var(--t1); border-color: var(--hair2); cursor: default; }
+.store.is-soon small { color: var(--t2); opacity: 1; }
+.store-touch { color: var(--t2); font-size: 15px; text-decoration: underline; text-decoration-color: var(--hair2); text-underline-offset: 4px; }
+.store-touch:hover { color: var(--t1); text-decoration-color: currentColor; }
+.end .store-cta { justify-content: center; }
+@media (max-width: 380px) { .store b { font-size: 18px; } .store { padding: 7px 16px 8px; } }
+
+/* Segment (optikvalg o.l.) */
+.seg { display: inline-flex; gap: 2px; padding: 3px; border-radius: 999px; background: var(--g1); border: 1px solid var(--hair); max-width: 100%; overflow-x: auto; }
+.seg button { min-height: 36px; padding: 0 16px; border-radius: 999px; border: 0; background: transparent; color: var(--t2); font: 500 14px var(--body); cursor: pointer; white-space: nowrap; }
+.seg button[aria-pressed="true"] { background: var(--g2); color: var(--t1); box-shadow: 0 1px 2px rgba(0, 0, 0, .18), 0 0 0 1px var(--hair); }
+
+/* Sådan virker det: tekst og en tegning pr. ting */
+.hows { padding-top: 96px; }
+.how { display: grid; gap: 22px; padding: 40px 0; }
+.how h3 { font: 600 clamp(24px, 5.6vw, 32px)/1.12 var(--display); letter-spacing: -.025em; margin: 0 0 10px; text-wrap: balance; }
+.how-txt > p:not(.k):not(.fine) { color: var(--t2); font-size: 16.5px; margin: 0; max-width: 46ch; }
+.how .fine { margin: 14px 0 0; max-width: 52ch; }
+/* Tallene som mål på en tegning: målelinje med endestreger over (designsprog 2) */
+.facts { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, max-content)); gap: 0 24px; margin-top: 24px; padding-top: 14px; min-height: 66px; }
+.facts::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 7px; border-left: 1px solid var(--hair2); border-right: 1px solid var(--hair2); background: linear-gradient(var(--hair2), var(--hair2)) 0 3px / 100% 1px no-repeat; }
+.fact { display: grid; gap: 2px; min-width: 0; }
+.fact b { font: 600 24px/1.15 var(--display); letter-spacing: -.02em; white-space: nowrap; transition: color .2s var(--ease); }
+.fact b small { font-size: 13px; font-weight: 500; color: var(--t3); letter-spacing: 0; margin-left: 3px; }
+.fact > span { font-size: 12.5px; color: var(--t3); }
+.fact.ok b { color: var(--ok); } .fact.warn b { color: var(--warn); } .fact.bad b { color: var(--bad); }
+
+.stage { position: relative; margin: 0; border-radius: 16px; overflow: hidden; aspect-ratio: 480 / 330; color: rgba(255, 255, 255, .94);
+  background: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, .06) 1px, transparent 1.4px) 0 0 / 24px 24px, radial-gradient(120% 90% at 50% 0%, #15161a, #0b0c0e 70%);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .06) inset, 0 30px 70px -30px rgba(0, 0, 0, .6); touch-action: pan-y; }
+:root[data-theme-now="light"] .stage { box-shadow: 0 0 0 1px rgba(0, 0, 0, .06), 0 30px 70px -34px rgba(0, 0, 0, .45); }
+.stage svg.d { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.stage .hint { position: absolute; left: 12px; bottom: 12px; z-index: 2; display: inline-flex; align-items: center; gap: 7px; padding: 5px 10px; border-radius: 999px; font-size: 12px; color: rgba(255, 255, 255, .72);
+  background: rgba(20, 21, 24, .72); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, .1); pointer-events: none; transition: opacity .4s var(--ease); }
+.stage .hint::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #f1d9a8; box-shadow: 0 0 8px #f1d9a8; animation: pulse 1.8s ease-in-out infinite; }
+.stage.used .hint { opacity: 0; }
+@keyframes pulse { 50% { opacity: .35; } }
+/* Knapper inde i tegningerne (lamper, optik): røget glas, som det der svæver i appen */
+.ctl { position: absolute; z-index: 3; display: flex; flex-wrap: wrap; gap: 6px; }
+.ctl.tr { right: 10px; top: 10px; justify-content: flex-end; max-width: calc(100% - 20px); }
+.ctl.bl { left: 10px; right: 10px; bottom: 10px; }
+.chip { min-height: 32px; padding: 0 11px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .12); background: rgba(22, 23, 27, .78); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); color: rgba(255, 255, 255, .86); font: 500 12.5px var(--body); cursor: pointer; white-space: nowrap; transition: background .16s var(--ease), border-color .16s var(--ease), color .16s; }
+.chip:hover { background: rgba(40, 42, 48, .9); border-color: rgba(255, 255, 255, .22); }
+.chip[aria-pressed="true"] { background: #f4f5f7; color: #0c0d0f; border-color: transparent; }
+.chip:disabled { opacity: .4; cursor: default; }
+.scrub { position: absolute; z-index: 3; left: 12px; right: 12px; bottom: 12px; display: flex; align-items: center; gap: 10px; height: 40px; padding: 0 12px 0 4px; border-radius: 20px; background: rgba(22, 23, 27, .78); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, .1); }
+.scrub button { width: 32px; height: 32px; flex: none; border-radius: 50%; border: 0; background: #f4f5f7; color: #0c0d0f; display: grid; place-items: center; cursor: pointer; }
+.scrub button svg { width: 14px; height: 14px; fill: currentColor; }
+.scrub input { flex: 1; min-width: 0; accent-color: #f4f5f7; height: 28px; cursor: pointer; background: transparent; -webkit-appearance: none; appearance: none; }
+.scrub input::-webkit-slider-runnable-track { height: 4px; border-radius: 2px; background: linear-gradient(90deg, #3a4150, #9aa6bd 35%, #e8e2d6 50%, #9aa6bd 65%, #3a4150); }
+.scrub input::-moz-range-track { height: 4px; border-radius: 2px; background: linear-gradient(90deg, #3a4150, #9aa6bd 35%, #e8e2d6 50%, #9aa6bd 65%, #3a4150); }
+.scrub input::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; margin-top: -6px; border-radius: 50%; background: #fff; box-shadow: 0 1px 4px rgba(0, 0, 0, .6); }
+.scrub input::-moz-range-thumb { width: 16px; height: 16px; border: 0; border-radius: 50%; background: #fff; box-shadow: 0 1px 4px rgba(0, 0, 0, .6); }
+.scrub span { font-size: 12px; color: rgba(255, 255, 255, .6); min-width: 34px; text-align: right; }
+.stage:has(.scrub) .hint, .stage:has(.ctl.bl) .hint { bottom: auto; top: 12px; }
+.stage:has(.ctl.tr) .hint { top: auto; bottom: 12px; }
+
+/* Tegningernes streger (fra introens ii-*-klasser) */
+.d { font: 500 11px var(--body); }
+.d text { fill: rgba(255, 255, 255, .44); }
+.d .h { fill: rgba(255, 255, 255, .94); font-weight: 600; font-size: 12px; }
+.d .floor { fill: #111215; }
+.d .wall { fill: none; stroke: #e6e8ec; stroke-width: 4; stroke-linejoin: miter; }
+.d .thin { fill: none; stroke: rgba(255, 255, 255, .42); stroke-width: 1; } .d .gap { stroke: #111215; stroke-width: 6; }
+.d .win { fill: none; stroke: #c9ccd1; stroke-width: 1.2; }
+.d .dim path { fill: none; stroke: rgba(255, 255, 255, .3); stroke-width: 1; } .d .dim text { text-anchor: middle; fill: rgba(255, 255, 255, .64); }
+.d .ring { fill: none; stroke: rgba(255, 255, 255, .16); stroke-dasharray: 2 6; }
+.d .tape { fill: rgba(20, 21, 24, .9); stroke: rgba(255, 255, 255, .16); stroke-width: .8; } .d .tapet { fill: rgba(255, 255, 255, .9); text-anchor: middle; font-size: 10.5px; font-weight: 500; }
+.d .body { fill: #24262b; stroke: #c9ccd1; stroke-width: 1.4; } .d .head { fill: #34373d; stroke: #e9eaec; stroke-width: 1.4; } .d .nose { stroke: #e9eaec; stroke-width: 1.4; }
+.d .obj { fill: #1b1c20; stroke: #f4f5f7; stroke-width: 1.4; stroke-linejoin: round; }
+.d .box { fill: #1b1c20; stroke: #e9eaec; stroke-width: 1.4; }
+.d .cable { fill: none; stroke: #c9ccd1; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.d .track { fill: rgba(255, 255, 255, .07); } .d .l1 { fill: #b07a4a; } .d .l2 { fill: #e9ebee; } .d .l3 { fill: #8b949a; }
+.d .limit { stroke: rgba(255, 255, 255, .5); stroke-width: 1; stroke-dasharray: 2 2; }
+.d .over { fill: #ef6b5e !important; }
+.d .amp { text-anchor: end; font-size: 10.5px; fill: rgba(255, 255, 255, .64); }
+.d .okc { fill: none; stroke: #6cc28c; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.d .rail { stroke: rgba(255, 255, 255, .3); stroke-width: 1.5; } .d .keyf { fill: #e9eaec; }
+.d .fov { fill: rgba(241, 217, 168, .08); stroke: rgba(255, 255, 255, .3); stroke-width: 1; stroke-dasharray: 4 4; }
+.d .frame { fill: #0f1012; stroke: rgba(255, 255, 255, .22); stroke-width: 1; } .d .frame.on { stroke: rgba(255, 255, 255, .8); }
+.d .head2 { fill: #8a8e95; } .d .body2 { fill: #5c6067; }
+.d .lbls { text-anchor: start; font-size: 10.5px; fill: rgba(255, 255, 255, .5); }
+.d .sheet { fill: #15161a; stroke: rgba(255, 255, 255, .1); }
+.d .row text { fill: rgba(255, 255, 255, .7); } .d .row .qty { fill: rgba(255, 255, 255, .94); font-weight: 600; }
+.d .grab { cursor: grab; } .d .grab:active { cursor: grabbing; }
+.d .grab:focus { outline: none; } .d .grab:focus-visible .focusring { stroke: #8fb2ff; stroke-width: 2; opacity: 1; }
+.d .focusring { fill: none; stroke: rgba(255, 255, 255, .0); opacity: 0; }
+.d .handle { fill: none; stroke: rgba(255, 255, 255, .35); stroke-dasharray: 3 3; }
+.d .pop { animation: pop .5s var(--ease) both; } @keyframes pop { from { opacity: 0; transform: scale(.6); } }
+.d .draw { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1s var(--ease) forwards; } @keyframes draw { to { stroke-dashoffset: 0; } }
+.d .fade { animation: fd .6s var(--ease) both; } @keyframes fd { from { opacity: 0; } }
+
+.sec { padding-top: 112px; }
+
+/* Priser */
+.plans { display: grid; grid-template-columns: 1fr; gap: 0 28px; }
+.plan { position: relative; display: grid; align-content: start; gap: 4px; padding: 20px 0 22px; border-top: 1px solid var(--hair2); }
+.plan.hot { border-top-color: transparent; }
+.plan.hot::before { content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 4px; border-top: 1.5px solid var(--t1); border-bottom: 1.5px solid var(--t1); opacity: .8; }
+.plan-n { display: flex; align-items: center; justify-content: space-between; gap: 8px; } .plan-n b { font-size: 15px; font-weight: 600; }
+.price { margin: 8px 0 4px; display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
+.price strong { font: 650 30px/1.1 var(--display); letter-spacing: -.03em; } .price span { color: var(--t3); font-size: 13.5px; }
+.plan > span { color: var(--t2); font-size: 14px; }
+.found-cta { margin-top: 22px; display: grid; justify-items: start; gap: 6px; } .found-cta .fine { max-width: 70ch; margin: 6px 0 0; }
+
+/* FAQ */
+.faq { border-top: 1px solid var(--hair); max-width: 800px; }
+.faq details { border-bottom: 1px solid var(--hair); }
+.faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 0; font-weight: 600; font-size: 16px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: ""; width: 9px; height: 9px; flex: none; border-right: 1.5px solid var(--t3); border-bottom: 1.5px solid var(--t3); transform: rotate(45deg) translate(-2px, -2px); transition: transform .2s var(--ease); }
+.faq details[open] summary::after { transform: rotate(-135deg) translate(-2px, -2px); }
+.faq details p { margin: -4px 0 18px; color: var(--t2); max-width: 64ch; }
+
+/* Til sidst */
+.end { padding-top: 120px; text-align: center; display: grid; justify-items: center; }
+.end > p { color: var(--t2); margin: 0 0 24px; font-size: 17px; }
+
+/* Rolig fremtoning ved scroll (kun med JS og uden "reducér bevægelse") */
+.anim .how, .anim .sec .head, .anim .fgroup, .anim .plans { opacity: 0; transform: translateY(14px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+.anim .in { opacity: 1 !important; transform: none !important; }
+
+/* Tablet og op */
+@media (min-width: 700px) {
+  .hero { padding: 84px 0 64px; }
+  .app-icon { width: 96px; height: 96px; border-radius: 23px; } .app-icon svg { width: 62px; height: 62px; }
+  .plans { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 980px) {
+  .how { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 56px; align-items: center; padding: 56px 0; }
+
+  .plans { grid-template-columns: repeat(4, 1fr); }
+  .hero { padding: 104px 0 80px; }
+}
+@media (max-width: 420px) {
+  .facts { gap: 0 14px; } .fact b { font-size: 20px; } .fact > span { font-size: 11.5px; }
+  .chip { min-height: 30px; padding: 0 9px; font-size: 12px; }
+}
+@media (pointer: coarse) { .chip { min-height: 36px; } }
+@media (prefers-reduced-motion: reduce) {
+  .stage .hint::before { animation: none; }
+  .d .pop, .d .fade { animation: none; } .d .draw { animation: none; stroke-dashoffset: 0; }
+  .anim .how, .anim .sec .head, .anim .fgroup, .anim .plans { opacity: 1; transform: none; transition: none; }
+}
+
+/* Knapperne under en tegning (lamper og optik): i sidens eget tema */
+.tools { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.tools .chip { min-height: 36px; padding: 0 13px; background: var(--g1); color: var(--t1); border-color: var(--hair2); -webkit-backdrop-filter: none; backdrop-filter: none; font-size: 13px; }
+.tools .chip:hover { background: var(--g3); border-color: var(--hair2); }
+.tools .chip.ghost { background: transparent; border-color: transparent; color: var(--t2); }
+.tools .chip.ghost:hover { color: var(--t1); background: var(--g3); }
+.tools .seg { margin: 0; }
+.stage[data-demo="power"] .hint { left: auto; right: 12px; }
+.stage[data-demo="gear"] .hint { display: none; }
+.fact, .price, .plan, .facts, .d .tapet, .d .amp, .d .dim text { font-variant-numeric: tabular-nums; }
+@media (min-width: 980px) { .sec { padding-top: 80px; } }
+/* Tegningen tegnes op, først når den ses */
+.stage:not(.seen) .d .draw, .stage:not(.seen) .d .pop, .stage:not(.seen) .d .fade { animation-play-state: paused; }
+.how-txt { min-width: 0; } .how > figure, .how > .art { min-width: 0; }
+@media (min-width: 980px) { .how:nth-of-type(even) { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } .how:nth-of-type(even) .how-txt { order: 2; } }
+
+/* Gaff ved FAQ: lille og diskret, hoved og skuldre i en cirkel, med en kort replik */
+.gaff { display: flex; align-items: center; gap: 14px; max-width: 800px; margin-top: 32px; }
+.gaff img { width: 52px; height: 52px; flex: none; border-radius: 50%; object-fit: cover; object-position: 50% 8%; background: var(--g3); }
+.gaff p { margin: 0; color: var(--t2); font-size: 15px; line-height: 1.5; }
+.gaff b { display: none; }
+.gaff a { color: var(--t1); text-decoration: underline; text-decoration-color: var(--hair2); text-underline-offset: 3px; }
+
+/* Gitteret: appens tegning som gennemgående baggrund. Prikker hver 26 px og en svag hovedlinje hver 130 px, som i appen.
+   Lyset gløder i gitteret: en varm, blød plet, der følger musen roligt (og ligger øverst på touch), og som gør prikkerne
+   under sig lidt lysere. Gitteret glider en anelse langsommere end siden (parallax). Står stille med "reducér bevægelse". */
+.bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; --gx: 50vw; --gy: 22vh; --py: 0px; }
+.bg-grid { position: absolute; inset: -140px 0; background-position: 0 var(--py); }
+.bg-grid { background-image: radial-gradient(circle at 1px 1px, var(--dot) 1px, transparent 1.4px), linear-gradient(var(--major) 1px, transparent 1px), linear-gradient(90deg, var(--major) 1px, transparent 1px);
+  background-size: 26px 26px, 130px 130px, 130px 130px; background-repeat: repeat; }
+:root { --dot: rgba(10, 11, 13, .09); --dot-lit: rgba(120, 100, 70, .35); --major: rgba(10, 11, 13, .035); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --dot: rgba(255, 255, 255, .07); --dot-lit: rgba(241, 217, 168, .5); --major: rgba(255, 255, 255, .025); } }
+:root[data-theme="dark"] { --dot: rgba(255, 255, 255, .07); --dot-lit: rgba(241, 217, 168, .5); --major: rgba(255, 255, 255, .025); }
+body { background: var(--g0); }
+
+/* Funktionerne: grupperet, tynde ikoner, én linje hver */
+.fgrid { display: grid; grid-template-columns: 1fr; gap: 36px 40px; }
+.fgroup { padding: 0; }
+.fgroup h3 { display: flex; align-items: center; gap: 10px; margin: 0 0 8px; font: 600 15.5px var(--display); letter-spacing: -.01em; }
+.fgroup h3 svg { width: 20px; height: 20px; fill: none; stroke: var(--t2); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.fgroup ul { list-style: none; margin: 0; padding: 0; }
+.fgroup li { padding: 5px 0; color: var(--t2); font-size: 14.5px; line-height: 1.45; }
+
+.new { font-style: normal; display: inline-block; margin-left: 8px; padding: 1px 7px; border-radius: 999px; border: 1px solid var(--hair2); color: var(--t3); font-size: 11.5px; font-weight: 500; white-space: nowrap; vertical-align: 1px; }
+@media (min-width: 700px) { .fgrid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 980px) { .fgrid { grid-template-columns: repeat(3, 1fr); } }
+
+/* Åbningen første gang (assets/aabning.js): et lag ovenpå med gitterets prikker, der aldrig fanger klik. Bølgefronten
+   fra app-ikonet skærer et voksende hul i laget (masken), så siden under kommer frem. Fejler scriptet, fader laget selv væk. */
+.intro { display: none; }
+:root.gg-intro .intro { display: block; position: fixed; inset: 0; z-index: 80; pointer-events: none; animation: intro-safe .3s ease 1.9s forwards; }
+.intro canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.intro-cover { position: absolute; inset: 0; --cx: 50vw; --cy: 50vh; --r: -80px; background-color: var(--g0);
+  background-image: radial-gradient(circle at 1px 1px, var(--dot) 1px, transparent 1.4px), linear-gradient(var(--major) 1px, transparent 1px), linear-gradient(90deg, var(--major) 1px, transparent 1px);
+  background-size: 26px 26px, 130px 130px, 130px 130px; background-position: 0 -140px;
+  -webkit-mask-image: radial-gradient(circle at var(--cx) var(--cy), transparent var(--r), #000 calc(var(--r) + 280px));
+  mask-image: radial-gradient(circle at var(--cx) var(--cy), transparent var(--r), #000 calc(var(--r) + 280px)); }
+@keyframes intro-safe { to { opacity: 0; visibility: hidden; } }
+@media (prefers-reduced-motion: reduce) { .intro { display: none !important; } }
+
+/* Kamera: find framingen først (assets/kamera.js). Tegningen og billedet er mørke som de andre tegninger. */
+.camdemo { display: grid; gap: 20px; }
+.cam-plan { aspect-ratio: 6.2 / 5.9; touch-action: pan-y; }
+.cam-plan svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; font-family: var(--body); }
+.cam-plan .hint { left: 50%; transform: translateX(-50%); white-space: nowrap; }
+.pl text { font-family: var(--body); }
+.pl .p-grid line { stroke: rgba(255, 255, 255, .045); stroke-width: .01; }
+.pl .p-floor { fill: rgba(255, 255, 255, .015); }
+.pl .p-wall { fill: none; stroke: #e9ecf0; stroke-width: .07; stroke-linecap: square; }
+.pl .p-door { fill: none; stroke: rgba(255, 255, 255, .25); stroke-width: .015; }
+.pl .p-dim path { fill: none; stroke: rgba(255, 255, 255, .32); stroke-width: .012; }
+.pl .p-dim text { fill: rgba(255, 255, 255, .62); text-anchor: middle; font-variant-numeric: tabular-nums; }
+.pl .p-mask { fill: #111215; }
+.pl .p-furn { fill: rgba(255, 255, 255, .04); stroke: rgba(255, 255, 255, .38); stroke-width: .015; }
+.pl .p-flabel { fill: rgba(255, 255, 255, .4); text-anchor: middle; }
+.pl .p-fov { fill: rgba(255, 255, 255, .03); stroke: rgba(233, 236, 240, .42); stroke-width: .012; stroke-dasharray: .06 .05; cursor: pointer; }
+.pl .p-fov.on { fill: rgba(143, 178, 255, .11); stroke: #8fb2ff; stroke-dasharray: none; cursor: default; }
+.pl .p-axis { stroke: #8fb2ff; stroke-width: .01; stroke-dasharray: .03 .04; opacity: .7; }
+.pl .p-body { fill: #2a2d33; stroke: #c9cdd2; stroke-width: .02; stroke-linejoin: round; }
+.pl .p-cam { cursor: pointer; }
+.pl .p-cam.on { cursor: grab; } .pl .p-cam.on:active { cursor: grabbing; }
+.pl .p-cam.on .p-body { fill: #8fb2ff; stroke: #8fb2ff; }
+.pl .p-arm { stroke: #8fb2ff; stroke-width: .012; }
+.pl .p-rot { fill: #0b0c0e; stroke: #8fb2ff; stroke-width: .025; }
+.pl .p-hit { fill: transparent; touch-action: none; }
+.pl [data-rot] { cursor: alias; }
+.pl .p-cam:focus { outline: none; }
+.pl .p-focus { fill: none; stroke: #8fb2ff; stroke-width: .02; opacity: 0; }
+.pl .p-cam:focus-visible .p-focus { opacity: .8; }
+.pl .p-chip rect { fill: #0b0c0e; stroke: rgba(255, 255, 255, .18); stroke-width: .015; }
+.pl .p-chip text { fill: #d4d7dc; text-anchor: middle; font-weight: 600; }
+.pl .p-chip.on rect { fill: #8fb2ff; stroke: #8fb2ff; } .pl .p-chip.on text { fill: #0b0c0e; }
+.pl .p-chip.who text { fill: #f4f5f7; font-weight: 500; }
+.pl [data-pick] { cursor: pointer; }
+.pl .p-person { fill: #2a2d33; stroke: #e9ecf0; stroke-width: .02; } .pl .p-nose { stroke: #e9ecf0; stroke-width: .02; }
+.pl .p-seat { fill: #e9ecf0; opacity: .5; }
+
+.cam-view { display: grid; gap: 0; align-content: start; min-width: 0; }
+.cam-frame { position: relative; margin: 0; aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden; background: #202228; box-shadow: 0 0 0 1px rgba(255, 255, 255, .06) inset, 0 30px 70px -30px rgba(0, 0, 0, .6); }
+:root[data-theme-now="light"] .cam-frame { box-shadow: 0 0 0 1px rgba(0, 0, 0, .06), 0 30px 70px -34px rgba(0, 0, 0, .45); }
+.cam-frame svg, .cam-shot svg { display: block; width: 100%; height: 100%; }
+.cam-code { position: absolute; left: 10px; top: 10px; padding: 3px 9px; border-radius: 6px; background: rgba(11, 12, 14, .72); border: 1px solid rgba(255, 255, 255, .12); color: rgba(255, 255, 255, .86); font: 600 12px var(--body); font-variant-numeric: tabular-nums; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.f-ceil { fill: #1a1b20; } .f-wall { fill: #202228; } .f-floor { fill: #16171b; }
+.f-edge { stroke: rgba(255, 255, 255, .14); stroke-width: .6; } .f-edge2 { stroke: rgba(255, 255, 255, .08); stroke-width: .6; }
+.f-side { fill: #26282e; stroke: rgba(230, 232, 236, .55); stroke-width: .6; stroke-linejoin: round; }
+.f-top { fill: #2c2f35; stroke: rgba(230, 232, 236, .72); stroke-width: .6; stroke-linejoin: round; }
+.f-fig { fill: #2a2d33; stroke: #e6e8ec; stroke-width: 1; vector-effect: non-scaling-stroke; stroke-linejoin: round; }
+.f-name { fill: #9da3a9; text-anchor: middle; font-family: var(--body); font-weight: 500; opacity: .8; }
+.f-thirds line { stroke: rgba(255, 255, 255, .035); stroke-width: .4; }
+.cam-facts { margin-top: 22px; grid-template-columns: max-content max-content minmax(0, 1fr); }
+.fact.who b { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; min-height: 28px; white-space: normal; }
+.fact .tape { display: inline-block; padding: 2px 9px; border-radius: 3px; background: var(--g1); border: 1px solid var(--hair2); font: 500 13.5px/1.5 var(--body); letter-spacing: 0; color: var(--t1); }
+.fact .none { font: 500 14px var(--body); color: var(--t3); letter-spacing: 0; }
+.cam-lens { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 12px; margin-top: 18px; }
+.cam-lens > span { color: var(--t3); font-size: 13px; }
+.cam-lens .seg button { min-height: 34px; padding: 0 12px; font-size: 13px; font-variant-numeric: tabular-nums; }
+.cam-strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.cam-shot { display: grid; gap: 7px; padding: 0; border: 0; background: none; color: var(--t1); text-align: left; cursor: pointer; font: inherit; min-width: 0; }
+.cam-shot svg { aspect-ratio: 16 / 9; height: auto; border-radius: 8px; background: #202228; box-shadow: 0 0 0 1px var(--hair2); transition: box-shadow .18s var(--ease), opacity .18s var(--ease); opacity: .72; }
+.cam-shot:hover svg { opacity: .9; }
+.cam-shot[aria-pressed="true"] svg { opacity: 1; box-shadow: 0 0 0 1.5px var(--t1), 0 0 0 4px var(--g0); }
+.cam-shot .cap { display: flex; align-items: baseline; gap: 7px; font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; }
+.cam-shot .cap b { font-weight: 600; } .cam-shot .cap em { font-style: normal; color: var(--t2); } .cam-shot .cap i { font-style: normal; color: var(--t3); }
+.cam-shot .who { color: var(--t3); font-size: 12.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: -4px; }
+.cam-fine { margin: 18px 0 0; }
+@media (max-width: 520px) { .cam-shot .cap i { display: none; } .cam-facts { grid-template-columns: max-content max-content; } .cam-facts .who { grid-column: 1 / -1; margin-top: 14px; } }
+@media (min-width: 980px) {
+  .camdemo { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 28px 40px; align-items: start; }
+  .cam-strip { grid-column: 2; }
+}
+
+/* Polering 29. okt nat (efter det nye logo): roligere rytme, større og strammere overskrifter, færre "sorte klodser".
+   Afstandene følger én skala: 96 px mellem sektioner på telefon, 144 px på desktop. */
+.hero h1 { font-weight: 640; letter-spacing: -.045em; }
+.hero .lead { font-size: 17px; line-height: 1.55; }
+.head { margin-bottom: 48px; }
+.head h2, .end h2 { font-weight: 640; letter-spacing: -.035em; }
+/* Overrubrikken med G'ets to bånd: to hårstreger foran (designsprog 4) */
+.head .k::before { content: ""; width: 18px; height: 4px; flex: none; border-top: 1px solid currentColor; border-bottom: 1px solid currentColor; opacity: .7; }
+.head .k { letter-spacing: .005em; }
+.hows, .sec { padding-top: 96px; }
+.how { padding: 32px 0; }
+.end { padding-top: 112px; }
+.how-txt .k em.badge, .plan .badge { background: transparent; color: var(--t2); border: 1px solid var(--hair2); font-weight: 500; padding: 2px 9px; }
+.fgroup { border-top: 1px solid var(--hair); padding-top: 18px; }
+.fgroup h3 { margin-bottom: 10px; }
+.fgroup li { padding: 4px 0; }
+.faq summary { font-size: 16.5px; padding: 20px 0; }
+.foot { margin-top: 112px; }
+@media (min-width: 700px) {
+  .hero .lead { font-size: 19px; }
+}
+@media (min-width: 980px) {
+  .hero { padding: 112px 0 40px; }
+  .hero h1 { font-size: 84px; max-width: 14ch; line-height: 1.02; margin-bottom: 22px; }
+  .head h2, .end h2 { font-size: 50px; line-height: 1.06; }
+  .head > p:not(.k) { font-size: 18px; }
+  .hows, .sec { padding-top: 144px; }
+  .how { padding: 48px 0; }
+  .end { padding-top: 160px; }
+  .end h2 { font-size: 56px; }
+}
+
+/* ---------- Rejsen (29. okt): fem trin som appens faner, samme scene hele vejen ---------- */
+.hero { padding-top: 104px; }
+@media (min-width: 980px) { .hero { padding-top: 136px; } }
+.journey { padding-top: 96px; }
+.journey .head { margin-bottom: 28px; }
+.num { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--hair2); color: var(--t2); font: 600 11.5px/1 var(--body); font-variant-numeric: tabular-nums; flex: none; }
+.rail { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-top: 1px solid var(--hair2); }
+.rail li { position: relative; }
+.rail a { display: flex; align-items: center; gap: 9px; padding: 16px 4px 6px 0; color: var(--t2); text-decoration: none; font: 500 14.5px var(--body); transition: color .16s var(--ease); }
+.rail a:hover { color: var(--t1); }
+.rail a:hover .num { border-color: var(--t2); color: var(--t1); }
+.rail svg, .step-k svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+@media (max-width: 760px) {
+  .rail { grid-template-columns: 1fr; }
+  .rail a { padding: 13px 0; border-bottom: 1px solid var(--hair); }
+}
+
+.step { padding-top: 120px; }
+.step-head { display: grid; gap: 18px 56px; margin-bottom: 36px; }
+.step-k { color: var(--t2); }
+.step-k > span:not(.num) { color: var(--t2); }
+.step-txt h2 { font: 640 clamp(30px, 7vw, 50px)/1.06 var(--display); letter-spacing: -.035em; margin: 0 0 14px; text-wrap: balance; }
+.step-txt > p:not(.k) { color: var(--t2); font-size: 17px; margin: 0; max-width: 52ch; }
+.pts { list-style: none; margin: 0; padding: 0; align-self: end; }
+.pts li { position: relative; padding: 9px 0 9px 22px; border-top: 1px solid var(--hair); color: var(--t2); font-size: 14.5px; line-height: 1.45; }
+.pts li:last-child { border-bottom: 1px solid var(--hair); }
+.pts li::before { content: ""; position: absolute; left: 2px; top: 15px; width: 9px; height: 5px; border-left: 1.5px solid var(--t3); border-bottom: 1.5px solid var(--t3); transform: rotate(-45deg); }
+.step-fine { margin: 18px 0 0; max-width: 60ch; }
+@media (min-width: 980px) {
+  .step { padding-top: 168px; }
+  .step-head { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); margin-bottom: 44px; }
+  .step-txt > p:not(.k) { font-size: 18px; }
+}
+.anim .step, .anim .journey .head, .anim .rail { opacity: 0; transform: translateY(14px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+@media (prefers-reduced-motion: reduce) { .anim .step, .anim .journey .head, .anim .rail { opacity: 1; transform: none; transition: none; } }
+
+/* Knapperne under tegningerne i sidens tema */
+.cam-lens .chip, .pw-tools .chip { min-height: 34px; padding: 0 13px; background: var(--g1); color: var(--t1); border: 1px solid var(--hair2); -webkit-backdrop-filter: none; backdrop-filter: none; font-size: 13px; border-radius: 999px; cursor: pointer; }
+.cam-lens .chip:hover, .pw-tools .chip:hover { background: var(--g3); }
+.cam-lens .chip.ghost, .pw-tools .chip.ghost { background: transparent; border-color: transparent; color: var(--t2); }
+.chip:disabled { opacity: .4; cursor: default; }
+.btn.sm { min-height: 38px; padding: 0 18px; font-size: 14px; }
+
+/* 2. Lys */
+.pl .p-lamp rect, .pl .p-lamp path, .pl .p-lamp circle { fill: #2a2d33; stroke: #c9cdd2; stroke-width: .02; stroke-linejoin: round; }
+.pl .p-lamp.on rect, .pl .p-lamp.on path { fill: #3a3326; stroke: #f1d9a8; stroke-width: .025; }
+.pl .p-lamp.dim { opacity: .45; }
+.pl .p-lamp.prac circle { fill: #2a2d33; stroke: #c9cdd2; } .pl .p-lamp.prac .core { fill: #f1d9a8; stroke: none; }
+.pl .p-lamp.on2 rect, .pl .p-lamp.on2 path { stroke: #e9ecf0; }
+.pl .p-axis.warm { stroke: #f1d9a8; opacity: .45; }
+.pl .p-drag { cursor: grab; } .pl .p-drag:active { cursor: grabbing; } .pl .p-drag:focus { outline: none; }
+.pl .p-drag:focus-visible .p-focus { opacity: .8; stroke: #f1d9a8; }
+.pl .p-chip.dimc rect { fill: #0b0c0e; stroke: rgba(241, 217, 168, .35); } .pl .p-chip.dimc text { fill: #f1d9a8; font-weight: 600; }
+.pl .p-chip.lampc rect { fill: #0b0c0e; } .pl .p-chip.lampc text { fill: #d4d7dc; font-weight: 500; }
+.pl .p-chip.faint { opacity: .5; }
+.lit-frame .f-fig path, .lit-frame .f-fig ellipse { fill: #24262b; stroke: rgba(230, 232, 236, .5); stroke-width: .5; }
+.lit-frame .cam-code { font-weight: 500; }
+
+/* 3. Strøm: højdepunktet */
+.pwdemo { display: grid; gap: 22px; }
+.cam-plan.pw-plan { aspect-ratio: 6.2 / 5.4; }
+.pl .p-distro rect { fill: #1b1c20; stroke: #e9ecf0; stroke-width: .025; } .pl .p-distro path { stroke: #e9ecf0; stroke-width: .02; }
+.pl .p-cable { fill: none; stroke-width: .035; stroke-linecap: round; stroke-linejoin: round; }
+.pl .p-cable.ph0 { stroke: #e9ebee; } .pl .p-cable.ph1 { stroke: #a9adb3; } .pl .p-cable.ph2 { stroke: #6f757c; }
+.pl .p-cable.draw { stroke-dasharray: 1; stroke-dashoffset: 1; animation: pw-draw .75s cubic-bezier(.45, .05, .25, 1) forwards; }
+@keyframes pw-draw { to { stroke-dashoffset: 0; } }
+.pw-side { display: grid; gap: 0; align-content: start; min-width: 0; }
+.pw-panel { padding: 20px 20px 18px; border-radius: 16px; background: var(--g1); border: 1px solid var(--hair); }
+.pw-t { margin: 0 0 16px; font-size: 14px; color: var(--t2); } .pw-t b { color: var(--t1); font-weight: 600; }
+.phases { display: grid; gap: 12px; }
+.ph { display: grid; grid-template-columns: 26px minmax(0, 1fr) auto; align-items: center; gap: 12px; font-variant-numeric: tabular-nums; }
+.ph-n { font: 600 13px var(--body); color: var(--t2); }
+.ph-bar { position: relative; height: 10px; border-radius: 5px; background: var(--g3); overflow: hidden; }
+.ph-bar i { position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-radius: 5px; background: var(--t1); transition: width .55s var(--ease), background .3s; }
+.ph[data-ph="1"] .ph-bar i { opacity: .7; } .ph[data-ph="2"] .ph-bar i { opacity: .45; }
+.ph-bar em { position: absolute; top: -2px; bottom: -2px; left: 80%; width: 0; border-left: 1px dashed var(--t3); }
+.ph.over .ph-bar i { background: var(--bad); opacity: 1; }
+.ph-a { font-size: 13px; color: var(--t2); min-width: 86px; text-align: right; }
+.pw-ok { display: flex; align-items: center; gap: 8px; margin: 16px 0 0; padding-top: 14px; border-top: 1px solid var(--hair); color: var(--t3); font: 500 14px var(--body); }
+.pw-ok.good { color: var(--ok); } .pw-ok.bad { color: var(--bad); }
+.pw-ok.good::before { content: ""; width: 10px; height: 5px; border-left: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(-45deg) translateY(-2px); }
+.pw-facts { margin-top: 24px; }
+.pw-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 20px; }
+.pw-add { display: flex; flex-wrap: wrap; gap: 6px; }
+@media (min-width: 980px) {
+  .pwdemo { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 40px; align-items: start; }
+  .step#power .pw-plan { order: 0; }
+}
+
+/* 4. Produktion */
+.prod { display: grid; gap: 32px; }
+.prod h3 { margin: 0 0 12px; font: 600 14px var(--body); color: var(--t2); }
+.scenes { list-style: none; margin: 0 0 28px; padding: 0; }
+.scenes li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 2px 10px; padding: 12px 0; border-top: 1px solid var(--hair); }
+.scenes li:last-child { border-bottom: 1px solid var(--hair); }
+.scenes b { grid-row: span 2; font: 600 15px var(--body); font-variant-numeric: tabular-nums; }
+.scenes .sl { font: 600 13.5px var(--body); letter-spacing: .01em; }
+.scenes .who { color: var(--t3); font-size: 13px; }
+.prod-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; }
+.tape { display: inline-block; padding: 3px 9px; border-radius: 3px; background: var(--g1); border: 1px solid var(--hair2); font: 500 13px/1.45 var(--body); color: var(--t1); }
+.prod-r { padding: 20px; border-radius: 16px; background: var(--g1); border: 1px solid var(--hair); align-self: start; }
+.pk-head { display: grid; gap: 10px; margin-bottom: 8px; } .pk-head b { font: 600 15px var(--body); font-variant-numeric: tabular-nums; }
+.pk-bar { height: 4px; border-radius: 2px; background: var(--g3); overflow: hidden; } .pk-bar i { display: block; height: 100%; background: var(--t1); transition: width .35s var(--ease); }
+.pk { list-style: none; margin: 0; padding: 0; }
+.pk button { width: 100%; display: grid; grid-template-columns: 20px 34px minmax(0, 1fr); align-items: center; gap: 10px; min-height: 42px; padding: 6px 0; border: 0; border-bottom: 1px solid var(--hair); background: none; color: var(--t1); font: 14.5px var(--body); text-align: left; cursor: pointer; }
+.pk li:last-child button { border-bottom: 0; }
+.pk .box { width: 18px; height: 18px; border-radius: 5px; border: 1.5px solid var(--hair2); display: grid; place-items: center; transition: background .16s var(--ease), border-color .16s; }
+.pk .q { color: var(--t3); font-variant-numeric: tabular-nums; font-size: 13.5px; }
+.pk [aria-checked="true"] .box { background: var(--t1); border-color: var(--t1); }
+.pk [aria-checked="true"] .box::after { content: ""; width: 8px; height: 4px; border-left: 1.8px solid var(--g0); border-bottom: 1.8px solid var(--g0); transform: rotate(-45deg) translate(1px, -1px); }
+.pk [aria-checked="true"] .nm { color: var(--t3); text-decoration: line-through; text-decoration-color: var(--hair2); }
+.pk button:focus-visible { outline-offset: -2px; }
+.pk-kit { margin: 12px 0 0; }
+@media (min-width: 980px) { .prod { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 56px; } }
+
+/* 5. Levering: papirerne er lyse som en udskrift (PDF er altid lys) */
+.docs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 16px; }
+.doc-card { position: relative; display: grid; gap: 4px; align-content: start; }
+.doc-card b { font: 600 14.5px var(--body); margin-top: 10px; } .doc-card > span:last-child { color: var(--t3); font-size: 13px; }
+.sheet { position: relative; overflow: hidden; aspect-ratio: 210 / 297; border-radius: 6px; background: #fbfbfc; padding: 14% 12%; display: grid; align-content: start; gap: 7%; box-shadow: 0 0 0 1px rgba(0, 0, 0, .08), 0 18px 40px -22px rgba(0, 0, 0, .55); transition: transform .35s var(--ease), box-shadow .35s var(--ease); }
+.sheet i { display: block; height: 4px; border-radius: 2px; background: #d9dadd; } .sheet i:first-of-type { width: 55%; height: 6px; background: #17181b; margin-bottom: 6%; }
+.sheet i:nth-of-type(3) { width: 80%; } .sheet i:nth-of-type(5) { width: 65%; }
+.mini-shots { display: grid; gap: 5px; order: 2; } .mini-shots svg { display: block; width: 100%; aspect-ratio: 16 / 9; border-radius: 2px; background: #202228; }
+.sheet.s1 i:nth-of-type(n+3) { display: none; }
+.doc-card:hover .sheet { transform: translateY(-3px); }
+.ready-tag { position: absolute; top: 8px; right: 8px; padding: 2px 8px; border-radius: 999px; background: #17181b; color: #fff; font: 600 11.5px var(--body); opacity: 0; transform: scale(.8); transition: opacity .25s var(--ease), transform .25s var(--ease); }
+.doc-card.ready .ready-tag { opacity: 1; transform: none; }
+.doc-card.ready .sheet { box-shadow: 0 0 0 1.5px var(--t1), 0 18px 40px -22px rgba(0, 0, 0, .55); }
+.deliver-cta { display: grid; justify-items: start; gap: 10px; margin-top: 32px; } .deliver-cta .fine { margin: 4px 0 0; max-width: 62ch; }
+@media (max-width: 699px) {
+  .docs { grid-template-columns: 1fr; gap: 0; }
+  .doc-card { grid-template-columns: 52px minmax(0, 1fr); grid-template-rows: auto auto; column-gap: 16px; row-gap: 2px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--hair); }
+  .doc-card .sheet { grid-row: span 2; padding: 12% 10%; gap: 9%; border-radius: 3px; }
+  .doc-card b { margin-top: 0; align-self: end; } .doc-card > span:last-child { align-self: start; }
+  .sheet i { height: 2px; } .sheet i:first-of-type { height: 3px; } .mini-shots { gap: 2px; }
+  .ready-tag { top: 50%; right: 0; transform: translateY(-50%) scale(.8); } .doc-card.ready .ready-tag { transform: translateY(-50%); }
+}
+@media (min-width: 700px) { .docs { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 980px) { .docs { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px; } }
+
+/* Den svævende knap: kun en pille, ingen bjælke. Nederst til højre på desktop, nederst i midten på telefon. */
+.float-cta { position: fixed; z-index: 40; right: 24px; bottom: max(24px, env(safe-area-inset-bottom)); display: inline-flex; align-items: center; min-height: 46px; padding: 0 22px; border-radius: 999px;
+  background: var(--hi); color: var(--hi-fg); font: 600 14.5px var(--body); text-decoration: none; box-shadow: 0 12px 30px -10px rgba(0, 0, 0, .45), 0 0 0 1px var(--hair2);
+  opacity: 0; transform: translateY(14px); pointer-events: none; transition: opacity .3s var(--ease), transform .3s var(--ease); }
+.float-cta.on { opacity: 1; transform: none; pointer-events: auto; }
+.float-cta:hover { background: color-mix(in srgb, var(--hi) 86%, var(--t3)); }
+@media (max-width: 700px) { .float-cta { right: auto; left: 50%; transform: translate(-50%, 14px); bottom: max(16px, env(safe-area-inset-bottom)); } .float-cta.on { transform: translate(-50%, 0); } }
+@media (prefers-reduced-motion: reduce) { .float-cta { transition: opacity .01s; } }
+
+/* ---------- Clean (29. okt, site/clean): kort hero med én levende demo, korte trin, ensartet rytme ---------- */
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.hero { text-align: left; padding: 112px 0 24px; }
+.hero-in { display: grid; gap: 40px; justify-items: stretch; align-items: center; }
+.hero-txt { display: grid; justify-items: start; min-width: 0; }
+.hero .eyebrow { margin-bottom: 18px; }
+.hero h1 { max-width: 13ch; margin: 0 0 16px; }
+.hero .lead { margin: 0 0 28px; max-width: 34ch; }
+.hero-note { margin: 14px 0 0; color: var(--t3); font-size: 13.5px; }
+.show { position: relative; margin: 0; aspect-ratio: 16 / 10; border-radius: 18px; overflow: hidden; background: #202228;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .07) inset, 0 50px 100px -40px rgba(0, 0, 0, .75); }
+:root[data-theme-now="light"] .show { box-shadow: 0 0 0 1px rgba(0, 0, 0, .07), 0 50px 100px -44px rgba(0, 0, 0, .5); }
+.show-fr { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.show-code { left: 14px; top: 14px; }
+.show-plan { position: absolute; left: 14px; bottom: 14px; width: 30%; aspect-ratio: 6.2 / 5.4; border-radius: 10px; overflow: hidden; background: rgba(11, 12, 14, .86);
+  border: 1px solid rgba(255, 255, 255, .12); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); box-shadow: 0 10px 30px -12px rgba(0, 0, 0, .7); }
+.show-plan svg { width: 100%; height: 100%; display: block; }
+.show-plan text, .show-plan .p-dim, .show-plan .p-chip, .show-plan .p-grid { display: none; }
+.show-plan .p-wall { stroke-width: .09; }
+.pl .p-rail { fill: none; stroke: rgba(255, 255, 255, .35); stroke-width: .025; } .pl .p-key { fill: #e9ecf0; }
+.show-read { position: absolute; right: 14px; bottom: 14px; display: flex; align-items: center; gap: 10px; padding: 6px 12px; border-radius: 999px; background: rgba(11, 12, 14, .72);
+  border: 1px solid rgba(255, 255, 255, .12); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); color: rgba(255, 255, 255, .62); font: 500 12.5px var(--body); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.show-read b { color: rgba(255, 255, 255, .94); font-weight: 600; }
+@media (min-width: 980px) {
+  .hero { padding: 152px 0 40px; }
+  .hero-in { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 56px; }
+  .hero h1 { font-size: 64px; }
+}
+@media (max-width: 520px) { .show { aspect-ratio: 4 / 3.4; } .show-plan { width: 42%; } .show-read { right: 10px; bottom: 10px; gap: 7px; padding: 5px 10px; font-size: 11.5px; } .show-read span:last-child { display: none; } }
+
+/* Rejsen: kun rækken med de fem trin, og hvert trin er nummer, kort overskrift, én linje og demoen */
+.journey { padding-top: 72px; }
+.rail a { justify-content: flex-start; }
+.step { padding-top: 112px; }
+.step-head { display: block; margin-bottom: 32px; max-width: 640px; }
+.step-head h2 { font: 640 clamp(30px, 7vw, 48px)/1.06 var(--display); letter-spacing: -.035em; margin: 0 0 10px; text-wrap: balance; }
+.step-head > p:not(.k) { color: var(--t2); font-size: 17px; margin: 0; }
+@media (min-width: 980px) { .step { padding-top: 160px; } .step-head { margin-bottom: 40px; } .step-head > p:not(.k) { font-size: 18px; } }
+@media (max-width: 760px) { .rail { display: flex; flex-wrap: wrap; gap: 4px 18px; border-top: 0; } .rail a { padding: 6px 0; border-bottom: 0; } }
+
+/* ---------- Blød scroll og trinrækken (29. okt): stregen under det aktive trin glider med (launch.js), samme ease-in-out som scrollen ---------- */
+.rail { position: relative; }
+.rail-mark { position: absolute; left: 0; top: 0; height: 2px; width: 0; margin-top: 1px; border-radius: 1px; background: var(--t1); opacity: 0; pointer-events: none;
+  transition: transform .7s cubic-bezier(.65, 0, .35, 1), width .7s cubic-bezier(.65, 0, .35, 1), opacity .3s var(--ease); }
+.rail-mark.on { opacity: 1; }
+.rail a[aria-current] { color: var(--t1); } .rail a[aria-current] .num { border-color: var(--t1); color: var(--t1); }
+section[tabindex="-1"]:focus, main[tabindex="-1"]:focus { outline: none; }
+@media (prefers-reduced-motion: reduce) { .rail-mark { transition: opacity .01s; } }
+
+/* ---------- Lys på Anna (29. okt): opstillingens ord under billedet, det aktive står frem ---------- */
+.lit-kind { display: flex; align-items: center; gap: 8px; margin: 12px 0 0; font: 500 13px var(--body); color: var(--t3); letter-spacing: .01em; }
+.lit-kind span { transition: color .25s var(--ease); } .lit-kind span.on { color: var(--t1); font-weight: 600; }
+.lit-kind i { font-style: normal; color: var(--t3); opacity: .6; }
+.lit-frame image { image-rendering: auto; }
+
+/* ---------- Strøm (29. okt): det, der trækker en fase over 80 %, bliver rødt (appens advarselsfarve, som L-bjælken) ----------
+   .pl.ovK sættes af rejse.js, når fase K går over; .cul er den lampe (og dens kabel), der tippede den. */
+.pl .p-chip.cul-on { display: none; }
+.pl.ov0 .p-cable.ph0, .pl.ov1 .p-cable.ph1, .pl.ov2 .p-cable.ph2 { stroke: color-mix(in srgb, var(--bad) 42%, #8b9097); transition: stroke .3s var(--ease); }
+.pl.ov0 .p-cable.ph0.cul, .pl.ov1 .p-cable.ph1.cul, .pl.ov2 .p-cable.ph2.cul { stroke: var(--bad); stroke-width: .05; }
+.pl.ov0 .p-lamp.lp0 :is(rect, path), .pl.ov1 .p-lamp.lp1 :is(rect, path), .pl.ov2 .p-lamp.lp2 :is(rect, path) { stroke: color-mix(in srgb, var(--bad) 50%, #c9ccd1); }
+.pl.ov0 .p-lamp.lp0.cul :is(rect, path), .pl.ov1 .p-lamp.lp1.cul :is(rect, path), .pl.ov2 .p-lamp.lp2.cul :is(rect, path) { stroke: var(--bad); fill: color-mix(in srgb, var(--bad) 22%, #15161a); }
+.pl.ov0 .p-chip.cul-on.lp0, .pl.ov1 .p-chip.cul-on.lp1, .pl.ov2 .p-chip.cul-on.lp2 { display: inline; }
+.pl.ov0 .p-chip.cul-off.lp0, .pl.ov1 .p-chip.cul-off.lp1, .pl.ov2 .p-chip.cul-off.lp2 { display: none; }
+.pl .p-chip.hot rect { stroke: var(--bad); } .pl .p-chip.hot text { fill: var(--bad); font-weight: 600; }
+
+/* ---------- Ny forside (29. okt, Cadrage som inspiration, ikke kopi): hero med produktbillede, fire punkter, levering som ark ---------- */
+/* Hero-billedet (assets/hero.js): to app-vinduer med macOS-ramme. Tegningen er mørk i begge temaer (som appens lærred); rammen følger temaet. */
+.hshot { position: relative; margin: 0; aspect-ratio: 16 / 11.2; container-type: inline-size; --win-bar: #1c1d21; --win-t: rgba(255, 255, 255, .62); --win-dot: #4a4d53; --win-sh: 0 50px 90px -40px rgba(0, 0, 0, .95), 0 0 0 1px rgba(255, 255, 255, .09); }
+:root[data-theme-now="light"] .hshot { --win-bar: #ececef; --win-t: rgba(10, 11, 13, .62); --win-dot: #c4c6cb; --win-sh: 0 40px 80px -36px rgba(0, 0, 0, .42), 0 0 0 1px rgba(0, 0, 0, .1); }
+.hs-win { position: absolute; border-radius: max(8px, 1.7cqw); overflow: hidden; background: #0d0e10; box-shadow: var(--win-sh); }
+.hs-back { left: 0; top: 0; width: 90%; }
+.hs-front { right: 0; bottom: 0; width: 54%; }
+.hs-bar { position: relative; display: flex; align-items: center; height: max(22px, 4.6cqw); padding: 0 max(8px, 1.8cqw); background: var(--win-bar); border-bottom: 1px solid rgba(0, 0, 0, .25); }
+.hs-dots { display: flex; gap: max(4px, .9cqw); } .hs-dots i { width: max(6px, 1.25cqw); height: max(6px, 1.25cqw); border-radius: 50%; background: var(--win-dot); }
+.hs-title { position: absolute; left: 0; right: 0; text-align: center; font: 600 max(9px, 1.7cqw)/1 var(--body); color: var(--win-t); pointer-events: none; }
+.hs-body { display: grid; grid-template-columns: minmax(0, 1fr) 27%; }
+.hs-plan { display: block; width: 100%; height: auto; aspect-ratio: 6 / 4.85; }
+.hs-panel { display: grid; align-content: start; gap: max(5px, 1.1cqw); padding: max(8px, 1.9cqw) max(8px, 1.7cqw); background: #141518; border-left: 1px solid rgba(255, 255, 255, .06); color: #d4d7dc; font: 500 max(8px, 1.45cqw)/1.25 var(--body); }
+.hs-h { margin: 0; font-weight: 650; font-size: max(9px, 1.75cqw); color: #f4f5f7; } .hs-sub { margin: 0 0 max(2px, .6cqw); color: rgba(255, 255, 255, .5); }
+.hs-ph { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: max(2px, .4cqw) max(5px, .9cqw); align-items: center; font-variant-numeric: tabular-nums; }
+.hs-ph > span { color: rgba(255, 255, 255, .6); font-weight: 600; } .hs-ph small { grid-column: 2; color: rgba(255, 255, 255, .5); font-size: max(7px, 1.25cqw); }
+.hs-ph i { position: relative; height: max(4px, .8cqw); border-radius: 99px; background: rgba(255, 255, 255, .08); }
+.hs-ph b { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 99px; background: #e9ebee; }
+.hs-ph:nth-of-type(2) b { opacity: .7; } .hs-ph:nth-of-type(3) b { opacity: .45; }
+.hs-ph em { position: absolute; left: 80%; top: -2px; bottom: -2px; border-left: 1px dashed rgba(255, 255, 255, .3); }
+.hs-ok { margin: max(2px, .5cqw) 0 0; color: #6cc28c; font-weight: 600; }
+.hs-strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: max(5px, 1.1cqw); padding: max(8px, 1.7cqw); background: #111215; }
+.hs-strip figure { margin: 0; min-width: 0; }
+.hs-strip svg { display: block; width: 100%; aspect-ratio: 16 / 9; border-radius: max(3px, .6cqw); box-shadow: 0 0 0 1px rgba(255, 255, 255, .08); }
+.hs-strip figcaption { display: grid; margin-top: max(3px, .6cqw); font: 500 max(7.5px, 1.3cqw)/1.3 var(--body); color: rgba(255, 255, 255, .5); }
+.hs-strip figcaption b { color: #f4f5f7; font-weight: 650; }
+@media (max-width: 979px) { .hshot { aspect-ratio: 16 / 12.4; } .hs-front { width: 62%; } }
+@media (max-width: 520px) { .hs-panel .hs-sub, .hs-ph small { display: none; } }
+
+/* Fire korte punkter under hero */
+.points { padding-top: 56px; }
+.points ul { list-style: none; margin: 0; padding: 26px 0 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 20px; border-top: 1px solid var(--hair); }
+.points li { display: grid; gap: 5px; align-content: start; }
+.points svg { width: 22px; height: 22px; margin-bottom: 6px; fill: none; stroke: var(--t1); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.points b { font: 600 15.5px/1.3 var(--body); letter-spacing: -.01em; } .points span { color: var(--t2); font-size: 14.5px; line-height: 1.45; }
+@media (min-width: 980px) { .points { padding-top: 24px; } .points ul { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; } }
+
+/* Levering: fire ark viftet ud (rejse.js fylder dem), løft et frem, "Eksportér det hele" folder dem ned i en mappe */
+.fan { position: relative; --sw: 228px; --sp: 196px; --e: cubic-bezier(.65, 0, .35, 1); height: calc(30px + var(--sw) * 1.4143 + 56px); margin-top: 8px; }
+.leaf { position: absolute; left: 50%; top: 30px; width: var(--sw); aspect-ratio: 210 / 297; margin-left: calc(var(--sw) / -2); padding: 0; border: 0; background: none; cursor: pointer; z-index: calc(var(--i) + 1); transform-origin: 50% 100%;
+  transform: translateX(calc((var(--i) - 1.5) * var(--sp))) rotate(calc((var(--i) - 1.5) * 4deg)); transition: transform .6s var(--e); -webkit-tap-highlight-color: transparent; }
+@media (hover: hover) { .fan:not(.folded) .leaf:not(.up):hover { transform: translateX(calc((var(--i) - 1.5) * var(--sp))) translateY(-12px) rotate(calc((var(--i) - 1.5) * 2deg)); } }
+.leaf:focus-visible { outline: none; } .leaf:focus-visible .paper { box-shadow: 0 0 0 2px var(--sel), 0 24px 50px -24px rgba(0, 0, 0, .6); }
+.leaf.up { z-index: 20; transform: translateX(calc((var(--i) - 1.5) * var(--sp) * .45)) translateY(56px) scale(1.36); }
+.paper { position: relative; display: flex; flex-direction: column; width: 100%; height: 100%; overflow: hidden; border-radius: 4px; background: #fbfbfc; color: #17181b; text-align: left; padding: 8% 7.5% 6%;
+  container-type: inline-size; font-family: var(--body); box-shadow: 0 0 0 1px rgba(0, 0, 0, .1), 0 26px 50px -26px rgba(0, 0, 0, .7); }
+.pp-h { display: flex; justify-content: space-between; align-items: baseline; gap: 3cqw; padding-bottom: 2.6cqw; margin-bottom: 1.5cqw; border-bottom: 1.5px solid #17181b; }
+.pp-h b { font-size: 7.4cqw; font-weight: 700; letter-spacing: -.02em; white-space: nowrap; } .pp-h small { font-size: 3.4cqw; color: #6b6f76; text-align: right; }
+.pp-g { margin: 3.4cqw 0 .6cqw; font-size: 3.3cqw; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; color: #6b6f76; }
+.pp-r { display: grid; grid-template-columns: 9.5cqw minmax(0, 1fr); align-items: center; font-size: 4.3cqw; line-height: 1.2; padding: 1.2cqw 0; border-bottom: 1px solid #ececef; }
+.pp-r i { font-style: normal; color: #6b6f76; font-variant-numeric: tabular-nums; } .pp-r span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pp-ck { grid-template-columns: 6.5cqw 9.5cqw minmax(0, 1fr); }
+.pp-ck s { width: 3.6cqw; height: 3.6cqw; border: 1px solid #9a9ea6; border-radius: .7cqw; text-decoration: none; }
+.pp-ck.on s { background: #17181b; border-color: #17181b; } .pp-ck.on span, .pp-ck.on i { color: #9a9ea6; }
+.pp-bar { display: block; height: 1.5cqw; margin: .5cqw 0 1.6cqw; border-radius: 1cqw; background: #ececef; overflow: hidden; } .pp-bar i { display: block; height: 100%; background: #17181b; }
+.pp-shot { display: grid; grid-template-columns: 44cqw minmax(0, 1fr); gap: 3.5cqw; align-items: center; padding: 2.4cqw 0; border-bottom: 1px solid #ececef; }
+.pp-shot svg { display: block; width: 100%; aspect-ratio: 16 / 9; border-radius: 1.2cqw; }
+.pp-shot b { display: block; font-size: 5.2cqw; } .pp-shot small { display: block; font-size: 3.5cqw; color: #6b6f76; margin-top: .6cqw; }
+.pp-sc { display: grid; grid-template-columns: 8cqw minmax(0, 1fr); gap: 1cqw; padding: 2.6cqw 0; border-bottom: 1px solid #ececef; }
+.pp-sc b { font-size: 5cqw; } .pp-sc > span > span { display: block; font-size: 3.8cqw; font-weight: 600; line-height: 1.25; } .pp-sc small { display: block; font-size: 3.4cqw; color: #6b6f76; margin-top: .8cqw; }
+.pp-f { display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 2cqw; font-size: 2.8cqw; color: #9a9ea6; }
+.pp-f .gg-word { font-size: 2.6cqw; color: #6b6f76; }
+.leaf .ready-tag { top: 7px; right: 7px; z-index: 2; }
+.leaf.ready .ready-tag { opacity: 1; transform: none; }
+.leaf.ready .paper { box-shadow: 0 0 0 1.5px #17181b, 0 26px 50px -26px rgba(0, 0, 0, .7); }
+/* Mappen: bagside, arkene, forside (separate lag, så arkene glider ned i den) */
+.folder { display: contents; }
+.folder-back, .folder-front, .folder-l { position: absolute; left: 50%; width: calc(var(--sw) * 1.2); margin-left: calc(var(--sw) * -.6); opacity: 0; transform: translateY(18px); transition: opacity .45s var(--e), transform .6s var(--e); pointer-events: none; }
+.folder-back, .folder-front { bottom: 14px; height: calc(var(--sw) * .9); }
+.folder-back { z-index: 0; } .folder-front { z-index: 10; }
+.folder-back path { fill: #26282d; stroke: rgba(255, 255, 255, .12); stroke-width: 1; } .folder-front path { fill: #313339; stroke: rgba(255, 255, 255, .16); stroke-width: 1; }
+:root[data-theme-now="light"] .folder-back path { fill: #d6d7db; stroke: rgba(0, 0, 0, .08); } :root[data-theme-now="light"] .folder-front path { fill: #e4e5e8; stroke: rgba(0, 0, 0, .1); }
+.folder-l { z-index: 11; bottom: calc(14px + var(--sw) * .2); text-align: center; font: 600 13px var(--body); color: var(--t1); }
+.fan.folded .folder-back, .fan.folded .folder-front, .fan.folded .folder-l { opacity: 1; transform: none; pointer-events: auto; cursor: pointer; }
+.fan.folded .leaf { transform: translateY(var(--fold, calc(42px - var(--sw) * .06))) rotate(calc((var(--i) - 1.5) * 2.5deg)) scale(.56); transition-duration: .75s; transition-delay: calc(var(--i) * 60ms); }
+@media (max-width: 699px) {
+  .fan { --sw: 138px; --sp: 60px; }
+  .leaf.up { transform: translateX(0) translateY(56px) scale(1.7); }
+  .leaf .ready-tag { font-size: 10px; padding: 1px 6px; top: 4px; right: 4px; }
+  .folder-l { font-size: 11.5px; }
+}
+@media (prefers-reduced-motion: reduce) { .leaf, .folder-back, .folder-front, .folder-l { transition: none !important; } }
+
+/* ---------- Rejsen som slides (site/clean-1.0, Marcus 3. nov): appens intro-slides, men interaktive ---------- */
+/* Ét trin ad gangen, centreret, mørk grafit med en blød gradient. Etiketten "2 · Light", én overskrift, én linje og demoen. */
+.deck-on .step { display: none; padding-top: 0; }
+.deck-on .step.on { display: block; margin-top: 18px; padding: clamp(34px, 6vw, 64px) clamp(16px, 4vw, 48px) 28px; border-radius: 24px; border: 1px solid var(--hair);
+  background: radial-gradient(120% 80% at 50% 0%, var(--g2) 0%, var(--g1) 55%, var(--g0) 100%); }
+.deck-on .step.on.in-r { animation: deckInR .38s cubic-bezier(.2, .8, .2, 1) both; }
+.deck-on .step.on.in-l { animation: deckInL .38s cubic-bezier(.2, .8, .2, 1) both; }
+@keyframes deckInR { from { opacity: 0; transform: translateX(28px); } }
+@keyframes deckInL { from { opacity: 0; transform: translateX(-28px); } }
+.deck-on .step-head { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 12px; margin: 0 auto 32px; max-width: 46ch; }
+.deck-on .step-head h2 { font: 640 clamp(28px, 5.4vw, 44px)/1.08 var(--display); letter-spacing: -.035em; margin: 0; text-wrap: balance; }
+.deck-on .step-head > p:not(.k) { color: var(--t2); margin: 0; font-size: 17px; }
+.deck-on .step-k { display: inline-flex; align-items: center; gap: 6px; font: 500 12px var(--body); letter-spacing: .12em; text-transform: uppercase; color: var(--t3, var(--t2)); margin: 0; }
+.deck-on .step-k .num { border: 0; padding: 0; min-width: 0; height: auto; width: auto; background: none; color: inherit; font: inherit; }
+.deck-on .step-k .num::after { content: " ·"; }
+.deck-on .step-k .badge { margin-left: 6px; }
+.deck-on .step .step-fine { margin: 18px auto 0; text-align: center; }
+/* Bunden: Tilbage (rund ikon-knap) · prikkerne · Næste (lys knap) */
+.deck-nav { display: none; }
+.deck-on .deck-nav { position: sticky; bottom: 14px; z-index: 5; display: flex; align-items: center; justify-content: center; gap: 18px; width: fit-content; margin: 18px auto 0; padding: 8px 10px; border-radius: 999px;
+  background: color-mix(in srgb, var(--g1) 78%, transparent); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border: 1px solid var(--hair); }
+.deck-back { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--hair2); background: transparent; color: var(--t1); display: grid; place-items: center; cursor: pointer; }
+.deck-back[hidden] { visibility: hidden; display: grid; }
+.deck-back svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.deck-back:hover { background: var(--g3); }
+.deck-dots { display: flex; gap: 2px; }
+.deck-dot { width: 22px; height: 30px; border: 0; background: none; padding: 0; cursor: pointer; display: grid; place-items: center; }
+.deck-dot::before { content: ""; width: 6px; height: 6px; border-radius: 3px; background: var(--t3, var(--t2)); opacity: .45; transition: width .25s, opacity .25s; }
+.deck-dot[aria-current]::before { width: 18px; opacity: 1; background: var(--t1); }
+.deck-next { min-width: 112px; min-height: 40px; border-radius: 20px; }
+/* Trinbjælken hænger øverst, mens man er i rejsen, og markerer trinnet */
+.deck-on .journey { position: sticky; top: 0; z-index: 6; padding-top: 72px; transition: background .2s; }
+.deck-on .journey.pinned { padding-top: 8px; background: color-mix(in srgb, var(--g0) 82%, transparent); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+.deck-on .journey.pinned .head { display: none; }
+.deck-on .rail a[aria-current] { color: var(--t1); }
+.deck-on .rail a[aria-current] .num { border-color: var(--t1); color: var(--t1); }
+.deck-on .rail li { position: relative; }
+.deck-on .rail a[aria-current]::after { content: ""; position: absolute; left: 0; right: 12px; top: -1px; height: 2px; background: var(--t1); border-radius: 1px; }
+@media (max-width: 720px) {
+  .deck-on .rail { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .deck-on .rail a { padding: 10px 0 6px; border-bottom: 0; justify-content: center; font-size: 0; }
+  .deck-on .rail a .num { font-size: 12px; }
+  .deck-on .rail a svg { display: none; }
+  .deck-on .step.on { border-radius: 18px; }
+}
+@media (prefers-reduced-motion: reduce) { .deck-on .step.on.in-r, .deck-on .step.on.in-l { animation: none; } }
+/* Rettelser efter første gennemsyn: skjulte trin venter ikke på scroll-animationen; etiketten på én linje; bunden kun i rejsen */
+.deck-on.anim .step, .deck-on.anim .rail { opacity: 1; transform: none; }
+.deck-on .rail-mark { display: none; }
+.deck-on .step-k .num { display: inline; }
+.deck-on .deck-nav { visibility: hidden; opacity: 0; transition: opacity .2s, visibility 0s .2s; }
+.deck-on.deck-in .deck-nav { visibility: visible; opacity: 1; transition: opacity .2s; }
+/* I rejsen glider sidens topbjælke væk, så trinbjælken står alene øverst (ingen to bjælker oven i hinanden) */
+.deck-on.deck-in .top { transform: translateY(-110%); opacity: 0; pointer-events: none; }
+.deck-on .step { scroll-margin-top: 72px; }
+.deck-on .step.on { padding-bottom: 92px; }
+.deck-on .deliver-cta { display: grid; justify-items: center; text-align: center; gap: 10px; }
+
+/* ---------- 4. nov (Marcus): hele trinnet, også Næste, skal kunne ses på én skærm, mens man prøver demoen ---------- */
+.deck-on .step.on { max-width: 880px; margin: 16px auto 0; padding: 28px clamp(16px, 4vw, 40px) 20px; background: none; border-color: var(--hair); border-radius: 18px; }
+.deck-on .step-head { margin-bottom: 24px; gap: 6px; }
+.deck-on .step-head h2 { font-size: clamp(24px, 3.4vw, 32px); }
+.deck-on .step-head > p:not(.k) { font-size: 15px; }
+.deck-on .step-k { font-size: 11px; }
+.deck-on .deck-nav { position: static; margin: 20px auto 0; padding: 0; background: none; border-color: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; }
+.deck-on .camdemo, .deck-on .pwdemo { gap: 20px; }
+.deck-on .cam-facts { margin-top: 16px; }
+.deck-on .cam-lens { margin-top: 14px; }
+.deck-on .cam-strip { gap: 12px; }
+.deck-on .cam-shot .cap { font-size: 12px; }
+@media (min-width: 980px) {
+  .deck-on .camdemo { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 20px 40px; }
+  .deck-on .pwdemo { gap: 40px; }
+}
+
+/* ---------- 4. nov (Marcus: "ser ikke så godt ud", savner logoet): App Store-knappen som en massiv badge med Apple-logoet ---------- */
+.store { grid-template-columns: auto auto; column-gap: 10px; align-items: center; padding: 8px 20px 9px 16px; background: #000; color: #fff; border: 1px solid rgba(255, 255, 255, .28); }
+.store.is-soon { background: #000; color: #fff; border-color: rgba(255, 255, 255, .28); }
+.store.is-soon small { color: rgba(255, 255, 255, .78); }
+:root[data-theme-now="light"] .store, :root[data-theme-now="light"] .store.is-soon { border-color: #000; }
+.store-logo { width: 26px; height: 26px; fill: currentColor; margin-top: -2px; }
+.store-t { display: grid; justify-items: start; line-height: 1.1; }
+a.store:hover { background: #1b1c1f; }
+/* Vignet (Marcus 4. nov: "lidt mere dramatisk"; senere samme aften: "meget mere glidende overgang"): kanterne af skærmen falder
+   mørkt af som i et filmbillede. Mørket starter langt inde og følger en blød S-kurve (smoothstep, 9 stop), så der ingen synlig kant
+   er. Ligger over baggrunden og gitteret, under indholdet, og fanger aldrig klik. */
+body::after { content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(ellipse 150% 125% at 50% 42%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, .026) 34%, rgba(0, 0, 0, .094) 44%, rgba(0, 0, 0, .19) 53%, rgba(0, 0, 0, .3) 63%, rgba(0, 0, 0, .41) 72%, rgba(0, 0, 0, .506) 81%, rgba(0, 0, 0, .574) 91%, rgba(0, 0, 0, .6) 100%); }
+:root[data-theme-now="light"] body::after { background: radial-gradient(ellipse 150% 125% at 50% 42%, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, .005) 39%, rgba(0, 0, 0, .019) 48%, rgba(0, 0, 0, .038) 56%, rgba(0, 0, 0, .06) 65%, rgba(0, 0, 0, .082) 74%, rgba(0, 0, 0, .101) 83%, rgba(0, 0, 0, .115) 91%, rgba(0, 0, 0, .12) 100%); }
+main, footer { position: relative; z-index: 1; }
+/* ---------- 4. nov (Marcus): Instrument Serif i overskrifterne, mindre tekst, tydeligere ramme, "show it, don't tell it" ---------- */
+:root { --serif: "Instrument Serif", "Iowan Old Style", Georgia, serif; }
+.hero h1, main h2, .doc h1 { font-family: var(--serif) !important; font-weight: 400 !important; letter-spacing: -.012em !important; line-height: 1.04 !important; }
+.hero h1 { font-size: clamp(40px, 7vw, 56px) !important; }
+main h2 { font-size: clamp(28px, 4.2vw, 40px) !important; }
+.deck-on .step-head h2 { font-size: clamp(26px, 3.4vw, 34px) !important; }
+.hero .lead { font-size: 16px; }
+/* Rammen om trinnet og demoerne står tydeligere */
+.deck-on .step.on { border-color: rgba(255, 255, 255, .16); }
+:root[data-theme-now="light"] .deck-on .step.on { border-color: rgba(0, 0, 0, .16); }
+.deck-on .stage, .deck-on .pw-plan, .deck-on .pw-panel { box-shadow: 0 0 0 1px rgba(255, 255, 255, .12); }
+/* Vis det, sig det ikke: i rejsen er demoen forklaringen; linjen under overskriften og småteksten fjernes (demoens egen hjælp står i den) */
+.deck-on .step-head > p:not(.k) { display: none; }
+.deck-on .step .step-fine { font-size: 12px; color: var(--t3); }
+
+/* Founding-prisen er tidsbegrænset (Marcus 4. nov): normalprisen overstreget, badge og slutdato med nedtælling */
+.price s.was { color: var(--t3); font: 500 17px/1.1 var(--body); text-decoration-thickness: 1.5px; text-decoration-color: color-mix(in srgb, var(--t2) 70%, transparent); margin-right: 2px; }
+.plan .until { margin: 2px 0 8px; display: inline-flex; align-items: center; gap: 0; width: fit-content; padding: 3px 10px; border-radius: 999px; font: 500 12.5px var(--body);
+  color: #f1d9a8; background: rgba(241, 217, 168, .08); border: 1px solid rgba(241, 217, 168, .28); }
+.plan .until b { font-weight: 600; }
+:root[data-theme-now="light"] .plan .until { color: #6b5a3a; background: rgba(122, 104, 74, .08); border-color: rgba(122, 104, 74, .3); }
+.plan.hot .badge { color: var(--t1); border-color: var(--t2); }
+/* ---------- 4. nov (Marcus): trinbjælken ud i siden, så den ikke hænger over resten af siden ----------
+   Rejsen hænger ikke længere fast øverst. På brede skærme står trinene lodret i venstre side, kun mens man er i rejsen
+   (.deck-in). På smalle skærme står de øverst i rejsen og ruller væk med den. */
+.deck-on .journey, .deck-on .journey.pinned { position: relative; top: auto; padding-top: 72px; background: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+.deck-on .journey.pinned .head { display: block; }
+
+@media (min-width: 1240px) {
+  .deck-on .rail { position: fixed; left: 28px; top: 50%; transform: translateY(-50%); z-index: 40; display: grid; grid-template-columns: none; gap: 2px; border-top: 0;
+    opacity: 0; pointer-events: none; transition: opacity .25s var(--ease); }
+  .deck-on.deck-in .rail { opacity: 1; pointer-events: auto; }
+  .deck-on .rail a { padding: 7px 10px 7px 14px; font-size: 13px; gap: 8px; border: 0; }
+  .deck-on .rail a svg { width: 15px; height: 15px; }
+  .deck-on .rail a[aria-current]::after { left: 0; right: auto; top: 8px; bottom: 8px; width: 1.5px; height: auto; }
+}
+.plan .until { white-space: nowrap; }
+/* Én trinbjælke, der altid ser ens ud i den smalle udgave: tynd linje over, markering på det aktive trin, ingen glas */
+@media (max-width: 1239px) { .deck-on .rail { border-top: 1px solid var(--hair2); } .deck-on .rail a { padding: 12px 4px 4px 0; } }
+@media (min-width: 1240px) { html.deck-on:not(.deck-in) .rail { opacity: 0 !important; pointer-events: none; } }
+
+/* ---------- 4. nov (Marcus): App Store-knappen som én simpel pille: app-ikonet + Apple-logo + Mac App Store ---------- */
+.store.simple { display: inline-flex; align-items: center; gap: 12px; min-height: 0; height: 50px; padding: 0 20px 0 6px; border-radius: 999px;
+  background: var(--hi); color: var(--hi-fg); border: 1px solid transparent; text-decoration: none; transition: background .16s var(--ease), transform .16s var(--ease); }
+.store.simple:hover { background: color-mix(in srgb, var(--hi) 86%, var(--t3)); }
+.store.simple:active { transform: translateY(1px); }
+.store-app { width: 38px; height: 38px; border-radius: 50%; background: radial-gradient(circle at 30% 25%, #2a2c31, #0b0c0e 70%); display: grid; place-items: center; flex: none;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .12) inset; }
+.store-app svg { width: 24px; height: 24px; }
+.store.simple .store-t { display: inline-flex; align-items: center; gap: 7px; }
+.store.simple .store-logo { width: 18px; height: 18px; margin-top: -3px; }
+.store.simple b { font: 600 16px/1 var(--body); letter-spacing: -.01em; white-space: nowrap; }
+/* ---------- 4. nov (Marcus: "kan vi ikke bruge teksten fra logoet?"): Geist som i navnetrækket ----------
+   Overskrifterne i Geist (stram, halvfed); etiketterne i Geist-versaler med luft som GAFFERGRID i logoet. */
+:root { --serif: "Geist", -apple-system, "Inter", system-ui, sans-serif; }
+.hero h1, main h2, .doc h1 { font-weight: 600 !important; letter-spacing: -.035em !important; line-height: 1.06 !important; }
+.hero h1 { font-size: clamp(38px, 6.4vw, 54px) !important; }
+.deck-on .step-k, .k, .eyebrow, .plan .badge { font-family: "Geist", var(--body); }
+.deck-on .step-k { letter-spacing: .2em; font-weight: 600; }
+
+/* Lys-demoen (4. nov): fill-valg og dimmer; bounce som hvid plade, negativ som sort floppy på tegningen */
+.lit-ctl, .lit-dim { margin-top: 12px; }
+.lit-dim { display: flex; align-items: center; gap: 12px; color: var(--t3); font-size: 13px; transition: opacity .2s; }
+.lit-dim.off { opacity: .35; }
+.lit-dim input { flex: 1; max-width: 220px; accent-color: #e9ecf0; }
+.lit-dim b { min-width: 42px; color: var(--t1); font-weight: 600; font-variant-numeric: tabular-nums; }
+.pl .p-flag rect { stroke-width: .02; }
+.pl .p-flag.neg rect { fill: #050506; stroke: #8b9097; }
+.pl .p-flag.bnc rect { fill: #e9ecf0; stroke: #e9ecf0; }
+.pl .p-flag.on rect { stroke: #f1d9a8; stroke-width: .03; }
+.plan.go { cursor: pointer; transition: background .16s var(--ease); border-radius: 4px; }
+.plan.go:hover { background: rgba(255, 255, 255, .03); }
+
+/* Kamera-demoen (4. nov): "+" ved shotsene tilføjer et kamera */
+.cam-add { display: grid; align-content: start; gap: 7px; padding: 0; border: 0; background: none; color: var(--t2); cursor: pointer; font: inherit; text-align: left; }
+.cam-add .plus { display: grid; place-items: center; aspect-ratio: 16 / 9; border-radius: 8px; border: 1px dashed var(--hair2); font: 300 28px/1 var(--body); color: var(--t2); transition: border-color .16s, color .16s, background .16s; }
+.cam-add > span:last-child { font-size: 13px; }
+.cam-add:hover .plus { border-color: var(--t2); color: var(--t1); background: rgba(255, 255, 255, .03); }
+.cam-add[hidden], .cam-shot[hidden] { display: none; }
+
+/* Kamera-demoen (4. nov): justér kameraet i billedet */
+.cam-frame { cursor: grab; touch-action: none; }
+.cam-frame.looking { cursor: grabbing; }
+.cam-look { position: absolute; left: 10px; bottom: 10px; padding: 3px 9px; border-radius: 6px; background: rgba(11, 12, 14, .6); color: rgba(255, 255, 255, .62); font: 500 11.5px var(--body); pointer-events: none; transition: opacity .3s; }
+.stage.used ~ .cam-view .cam-look, .cam-frame.looking .cam-look { opacity: 0; }
+.cam-hgt { position: absolute; right: 10px; top: 10px; display: flex; align-items: center; gap: 2px; padding: 2px; border-radius: 8px; background: rgba(11, 12, 14, .72); border: 1px solid rgba(255, 255, 255, .12); }
+.cam-hgt b { padding: 0 6px; color: rgba(255, 255, 255, .86); font: 500 12px var(--body); font-variant-numeric: tabular-nums; }
+.cam-hgt button { width: 24px; height: 24px; border: 0; border-radius: 6px; background: none; color: #e9ecf0; font: 500 15px/1 var(--body); cursor: pointer; }
+.cam-hgt button:hover { background: rgba(255, 255, 255, .08); }
+.cam-hgt { top: auto; bottom: 10px; }
+/* Blødere skift mellem trinene (Marcus 4. nov): ens højde på kortet, så siden ikke hopper; det nye trin glider og toner ind */
+@media (min-width: 980px) { .deck-on .step.on { min-height: 640px; } }
+.deck-on .step.on.in-r { animation: deckInR2 .6s cubic-bezier(.22, 1, .36, 1) both; }
+.deck-on .step.on.in-l { animation: deckInL2 .6s cubic-bezier(.22, 1, .36, 1) both; }
+@keyframes deckInR2 { from { opacity: 0; transform: translateX(40px) scale(.985); filter: blur(5px); } 60% { filter: blur(0); } }
+@keyframes deckInL2 { from { opacity: 0; transform: translateX(-40px) scale(.985); filter: blur(5px); } 60% { filter: blur(0); } }
+.deck-on .step.on .step-head, .deck-on .step.on .camdemo, .deck-on .step.on .pwdemo, .deck-on .step.on > div { animation: deckRise .7s cubic-bezier(.22, 1, .36, 1) both; }
+.deck-on .step.on .step-head { animation-delay: .04s; }
+.deck-on .step.on .step-head + * { animation-delay: .1s; }
+@keyframes deckRise { from { opacity: 0; transform: translateY(10px); } }
+@media (prefers-reduced-motion: reduce) { .deck-on .step.on.in-r, .deck-on .step.on.in-l, .deck-on .step.on * { animation: none !important; } }
+/* Topbaren er altid synlig, også i rejsen (Marcus 4. nov) */
+/* Rul ned: topbaren glider væk; rul op: den kommer tilbage (Marcus 4. nov aften) */
+.deck-on.deck-in .top:not(.gone) { transform: none; opacity: 1; pointer-events: auto; }
+.deck-on .step { scroll-margin-top: 84px; }
+
+/* Produktion (4. nov): dine shots og dagen */
+.ps { list-style: none; margin: 0 0 22px; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.ps-card { display: grid; gap: 6px; min-width: 0; }
+.ps-card svg { width: 100%; aspect-ratio: 16 / 9; height: auto; border-radius: 8px; background: #202228; box-shadow: 0 0 0 1px var(--hair2); }
+.ps-card .cap { display: flex; gap: 7px; align-items: baseline; font-size: 13px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.ps-card .cap em { font-style: normal; color: var(--t2); } .ps-card .cap i { font-style: normal; color: var(--t3); }
+.ps-card .who { color: var(--t3); font-size: 12.5px; margin-top: -3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.day { list-style: none; margin: 0; padding: 0; }
+.day li { display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 10px; padding: 8px 0; border-top: 1px solid var(--hair); font-size: 13.5px; color: var(--t2); font-variant-numeric: tabular-nums; }
+.day li:last-child { border-bottom: 1px solid var(--hair); }
+.day li b { color: var(--t3); font-weight: 500; } .day li i { font-style: normal; color: var(--t3); font-size: 12.5px; }
+.day li.sh span { color: var(--t1); font-weight: 600; }
+
+/* Planerne (4. nov): hvad man får, som en tydelig liste; Gratis er indbydende */
+.plan .badge { white-space: nowrap; }
+.plan-d { color: var(--t2); font-size: 14px; }
+.plan-pts { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 8px; font-size: 13.5px; color: var(--t1); }
+.plan-pts li { position: relative; padding-left: 22px; line-height: 1.4; }
+.plan-pts li::before { content: ""; position: absolute; left: 2px; top: 5px; width: 10px; height: 6px; border-left: 1.6px solid var(--t2); border-bottom: 1.6px solid var(--t2); transform: rotate(-45deg); }
+.plan-pts li.all { color: var(--t2); }
+.plan-pts li.plus { color: #f1d9a8; }
+.plan-pts li.plus::before { border-color: #f1d9a8; }
+.plan.free .badge { color: var(--t1); border-color: var(--t2); }
+.plan.free::before { content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 1.5px; background: var(--t2); opacity: .7; }
+
+.lit-k { margin-top: 6px; }
+.lit-k input { accent-color: #e9ecf0; background: linear-gradient(90deg, #ffb46b, #fff4e5 55%, #dfe8ff); border-radius: 4px; height: 4px; }
+
+/* Lys (4. nov): skift kameravinkel øverst i billedet; kameraet står på tegningen */
+.lit-cams { display: inline-flex; align-items: center; gap: 4px; padding: 2px 4px 2px 9px; }
+.lit-cams button { padding: 2px 7px; border: 0; border-radius: 5px; background: none; color: rgba(255, 255, 255, .6); font: 600 12px var(--body); cursor: pointer; }
+.lit-cams button[aria-pressed="true"] { background: #e9ecf0; color: #0b0c0e; }
+.lit-cams button:hover:not([aria-pressed="true"]) { color: #fff; background: rgba(255, 255, 255, .08); }
+.lit-cams span:last-child { color: rgba(255, 255, 255, .5); margin-left: 2px; }
+.pl .lit-cam .p-body { fill: #2a2d33; stroke: #8fb2ff; stroke-width: .02; }
+.pl .lit-cam-axis { stroke: #8fb2ff; opacity: .35; }
+.lit-dim > span:first-child { min-width: 112px; }
+/* Samme højde på alle trin (4. nov): Næste står altid samme sted */
+.deck-on .journey { position: relative; }
+@media (min-width: 980px) { .deck-on .step.on { min-height: var(--deck-h, 640px); } }
+.deck-next { min-width: 150px; }
+/* Produktion strammere (4. nov), så alle trin kan være på én skærm */
+.deck-on #production .pk button { padding-top: 6px; padding-bottom: 6px; min-height: 0; }
+.deck-on #production .prod-r { padding: 16px 18px; }
+.deck-on #production .pk-kit { margin-top: 8px; }
+.deck-on #production .ps { margin-bottom: 16px; }
+.deck-on #production .day li { padding: 6px 0; }
+/* Levering og Framing lidt lavere (4. nov), så kortet + Næste kan være på en 800 px høj skærm */
+@media (min-width: 980px) {
+  .deck-on #deliver .fan { --sw: 196px; --sp: 170px; height: calc(20px + var(--sw) * 1.4143 + 40px); }
+  .deck-on #deliver .fan { --fold: 7px; } /* den lavere mappe: arkene sænkes mindre, så de står helt i mappen (Marcus 4. nov) */
+  .deck-on #deliver .deliver-cta { margin-top: 16px; }
+  .deck-on .cam-strip { gap: 10px; }
+  .deck-on .cam-shot .who { display: none; }
+  .deck-on .cam-facts { margin-top: 12px; }
+  .deck-on .step.on { padding-top: 22px; padding-bottom: 16px; }
+  .deck-on .step-head { margin-bottom: 18px; }
+}
+.deck-on .step { scroll-margin-top: 74px; }
+.deck-on .deck-nav { margin-top: 12px; }
+/* Topbaren som liquid glass (Marcus 4. nov): mere gennemsigtig og kun let sløret, så gitteret ses under; lys kant og glans */
+.top.glass .wrap {
+  background: linear-gradient(180deg, rgba(255, 255, 255, .09), rgba(255, 255, 255, .015) 55%, rgba(255, 255, 255, .04)), color-mix(in srgb, var(--g0) 22%, transparent);
+  -webkit-backdrop-filter: blur(5px) saturate(170%) brightness(1.08); backdrop-filter: blur(5px) saturate(170%) brightness(1.08);
+  border-color: rgba(255, 255, 255, .16);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .28) inset, 0 -1px 0 rgba(255, 255, 255, .05) inset, 0 0 24px rgba(255, 255, 255, .035) inset, 0 12px 32px -14px rgba(0, 0, 0, .55);
+}
+:root[data-theme-now="light"] .top.glass .wrap {
+  background: linear-gradient(180deg, rgba(255, 255, 255, .55), rgba(255, 255, 255, .25)); border-color: rgba(0, 0, 0, .08);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .9) inset, 0 12px 32px -16px rgba(0, 0, 0, .25);
+}
+
+/* Glasset mere dæmpet (4. nov aften) */
+.top.glass .wrap {
+  background: linear-gradient(180deg, rgba(255, 255, 255, .045), rgba(255, 255, 255, .01) 60%), color-mix(in srgb, var(--g0) 45%, transparent);
+  -webkit-backdrop-filter: blur(6px) saturate(130%); backdrop-filter: blur(6px) saturate(130%);
+  border-color: rgba(255, 255, 255, .09);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .1) inset, 0 10px 28px -14px rgba(0, 0, 0, .5);
+}
+.top.glass .tbtn.solid { background: color-mix(in srgb, var(--hi) 88%, transparent); }
+/* Opstillingen kan klikkes (4. nov): flytter keyen til vinklen */
+.lit-kind button { padding: 3px 8px; border: 1px solid transparent; border-radius: 999px; background: none; color: var(--t3); font: inherit; cursor: pointer; transition: color .2s, border-color .2s, background .2s; }
+.lit-kind button:hover { color: var(--t1); border-color: var(--hair2); }
+.lit-kind button.on { color: var(--t1); font-weight: 600; border-color: var(--hair2); background: rgba(255, 255, 255, .04); }
+.lit-kind { gap: 2px; }
+/* Bounce og negativ er passive plader: ingen dimmer eller Kelvin (Marcus 4. nov). Pladsen bliver, så intet hopper. */
+.lit-dim.off { visibility: hidden; }
+/* Lys: "Ansigt + 4 looks" (Marcus 4. nov aften). Looks som én knaprække under billedet; lampens indstillinger først efter et klik.
+   Panelet har fast højde (hint eller indstillinger), så trinnet ikke vokser, og Næste står fast. */
+.lit-looks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; margin-top: 12px; }
+.lit-looks button { min-height: 36px; padding: 0 10px; border-radius: 999px; border: 1px solid var(--hair2); background: var(--g1); color: var(--t2); font: 500 13.5px var(--body); cursor: pointer; transition: background .18s var(--ease), color .18s var(--ease), border-color .18s var(--ease); }
+.lit-looks button:hover { color: var(--t1); background: var(--g3); }
+.lit-looks button[aria-pressed="true"] { background: #f4f5f7; color: #0c0d0f; border-color: transparent; font-weight: 600; }
+.lit-looks button:focus-visible, .lit-x:focus-visible { outline: 2px solid var(--sel, #8fb2ff); outline-offset: 2px; }
+.lit-panel { min-height: 124px; }
+.lit-hint { margin: 16px 0 0; font-size: 13px; color: var(--t3); }
+.lit-edit .lit-ctl { margin-top: 14px; }
+.lit-edit .lit-ctl > b { min-width: 74px; font: 600 14px var(--body); color: var(--t1); }
+.lit-x { display: inline-grid; place-items: center; width: 34px; height: 34px; margin-left: auto; border: 1px solid var(--hair2); border-radius: 999px; background: transparent; color: var(--t2); cursor: pointer; }
+.lit-x:hover { color: var(--t1); background: var(--g3); }
+.lit-x svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; }
+.lit-edit .lit-dim { margin-top: 8px; }
+.lit-cams span:first-child { color: rgba(255, 255, 255, .86); }
+/* ---------- Hero: ét vindue, tre øjeblikke (Marcus 4. nov aften; assets/hero.js) ----------
+   Ét app-vindue (tegningen | billedet, strøm forneden), let på skrå, som stod det på et bord og vendte sig mod overskriften:
+   venstre kant nærmest. Retter sig op ved hover, fokus og tryk. Vinduets indhold er mørkt i begge temaer (appens lærred). */
+.hshot.hs3 { aspect-ratio: auto; display: grid; gap: 14px; justify-items: center; perspective: 1700px; perspective-origin: 30% 40%; }
+.hs3-stage { position: relative; width: 100%; transform: rotateY(9deg) rotateX(4deg); transform-origin: 40% 50%; transition: transform .7s var(--ease); }
+.hs3-stage::after { content: ""; position: absolute; left: 8%; right: 4%; bottom: -26px; height: 40px; border-radius: 50%; background: radial-gradient(closest-side, rgba(0, 0, 0, .55), rgba(0, 0, 0, 0)); filter: blur(10px); z-index: -1; pointer-events: none; }
+:root[data-theme-now="light"] .hs3-stage::after { background: radial-gradient(closest-side, rgba(0, 0, 0, .22), rgba(0, 0, 0, 0)); }
+.hshot.hs3:hover .hs3-stage, .hshot.hs3:has(:focus-visible) .hs3-stage, .hshot.hs3:active .hs3-stage { transform: rotateY(2deg) rotateX(1deg); }
+.hs3-win { position: relative; width: 100%; box-shadow: var(--win-sh), inset 0 1px 0 rgba(255, 255, 255, .07); }
+.hs3-win::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 3; background: linear-gradient(115deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, 0) 38%); }
+.hs3-main { display: grid; grid-template-columns: 41fr 59fr; align-items: stretch; background: #0d0e10; }
+.hs3-plan { display: block; width: 100%; height: 100%; aspect-ratio: 6 / 4.85; }
+.hs3-view { position: relative; align-self: center; margin: max(6px, 1.2cqw); margin-left: 0; aspect-ratio: 16 / 9; border-radius: max(4px, .8cqw); overflow: hidden; background: #16171b; box-shadow: 0 0 0 1px rgba(255, 255, 255, .08); }
+.hs3-view .v { position: absolute; inset: 0; width: 100%; height: 100%; display: block; transition: opacity .7s var(--ease); }
+.hs3-view .v-lit { opacity: 0; } .hs3-win.lit .v-lit { opacity: 1; } .hs3-win.lit .v-line { opacity: 0; }
+.hs3-tag { position: absolute; left: max(5px, 1cqw); top: max(5px, 1cqw); padding: max(2px, .35cqw) max(5px, .9cqw); border-radius: max(4px, .7cqw); background: rgba(11, 12, 14, .72); border: 1px solid rgba(255, 255, 255, .12); color: rgba(255, 255, 255, .86); font: 600 max(8px, 1.35cqw)/1.2 var(--body); font-variant-numeric: tabular-nums; z-index: 2; }
+/* Tegningens lag: lamper og stråler fra Lys, kabler fra Strøm, blødt ind og ud */
+.hs3-plan .g-beams, .hs3-plan .g-lamps, .hs3-plan .g-cables { transition: opacity .6s var(--ease); }
+.hs3-win[data-m="0"] .g-beams, .hs3-win[data-m="0"] .g-lamps { opacity: 0; }
+.hs3-plan .g-distro rect { fill: #1b1c20; stroke: #e9ecf0; stroke-width: .025; } .hs3-plan .g-distro path { stroke: #e9ecf0; stroke-width: .02; }
+.hs3-win[data-m="0"] .g-distro, .hs3-win[data-m="1"] .g-distro { opacity: .35; } .hs3-plan .g-distro { transition: opacity .6s var(--ease); }
+/* Strøm-bjælken */
+.hs3-power { display: grid; grid-template-columns: auto repeat(3, minmax(0, 1fr)) auto; align-items: center; gap: max(6px, 1.6cqw); padding: max(6px, 1.2cqw) max(8px, 1.7cqw); background: #141518; border-top: 1px solid rgba(255, 255, 255, .06); color: #d4d7dc; font: 500 max(8px, 1.3cqw)/1.2 var(--body); }
+.hs3-ph-h { display: grid; } .hs3-ph-h b { color: #f4f5f7; font-weight: 650; } .hs3-ph-h small { color: rgba(255, 255, 255, .45); font-size: max(7px, 1.1cqw); }
+.hs3-ph { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 1px max(4px, .7cqw); align-items: center; font-variant-numeric: tabular-nums; }
+.hs3-ph > span { color: rgba(255, 255, 255, .6); font-weight: 600; } .hs3-ph small { grid-column: 2; color: rgba(255, 255, 255, .45); font-size: max(7px, 1.1cqw); }
+.hs3-ph i { position: relative; height: max(4px, .75cqw); border-radius: 99px; background: rgba(255, 255, 255, .08); }
+.hs3-ph b { position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-radius: 99px; background: #e9ebee; transition: width 1.4s var(--ease) .5s; }
+.hs3-ph:nth-of-type(2) b { opacity: .7; } .hs3-ph:nth-of-type(3) b { opacity: .45; }
+.hs3-ph em { position: absolute; left: 80%; top: -2px; bottom: -2px; border-left: 1px dashed rgba(255, 255, 255, .3); }
+.hs3-ok { color: rgba(255, 255, 255, .45); font-weight: 600; white-space: nowrap; transition: color .5s var(--ease); } .hs3-ok.on { color: #e9ebee; }
+/* Øjeblikkene under vinduet */
+.hs3-moments { display: inline-flex; gap: 4px; padding: 3px; border-radius: 999px; background: var(--g1); border: 1px solid var(--hair); }
+.hs3-moments button { position: relative; min-height: 32px; padding: 0 14px 0 24px; border: 0; border-radius: 999px; background: transparent; color: var(--t3); font: 500 13px var(--body); cursor: pointer; transition: color .2s var(--ease), background .2s var(--ease); }
+.hs3-moments button::before { content: ""; position: absolute; left: 11px; top: 50%; width: 6px; height: 6px; margin-top: -3px; border-radius: 50%; background: currentColor; opacity: .5; }
+.hs3-moments button:hover { color: var(--t1); }
+.hs3-moments button[aria-pressed="true"] { color: var(--t1); background: var(--g2); box-shadow: 0 0 0 1px var(--hair); } .hs3-moments button[aria-pressed="true"]::before { opacity: 1; }
+.hs3-moments button:focus-visible { outline: 2px solid var(--sel, #8fb2ff); outline-offset: 2px; }
+@media (max-width: 979px) { .hs3-stage, .hshot.hs3:hover .hs3-stage { transform: rotateY(5deg) rotateX(2deg); } }
+@media (max-width: 520px) { .hs3-stage, .hshot.hs3:hover .hs3-stage { transform: none; } .hs3-ph-h small, .hs3-ph small { display: none; } .hs3-power { grid-template-columns: auto repeat(3, minmax(0, 1fr)); } .hs3-ok { grid-column: 1 / -1; } }
+@media (prefers-reduced-motion: reduce) { .hs3-stage { transition: none; } .hs3-view .v, .hs3-ph b { transition: none; } }
+/* Større på en bred skærm: vinduet går lidt ud i margenen til højre, så teksten i det kan læses */
+@media (min-width: 980px) { .hshot.hs3 .hs3-stage { width: 116%; justify-self: start; } .hshot.hs3 .hs3-moments { margin-left: 16%; } }
+.hs3-power { font-size: max(10px, 1.5cqw); } .hs3-ph-h small, .hs3-ph small { font-size: max(8.5px, 1.25cqw); } .hs3-tag { font-size: max(9.5px, 1.45cqw); }
+/* Rammen om trinnene som samme liquid glass som topbaren (Marcus 4. nov aften) */
+.deck-on .step.on {
+  background: linear-gradient(180deg, rgba(255, 255, 255, .045), rgba(255, 255, 255, .01) 40%), color-mix(in srgb, var(--g0) 45%, transparent);
+  -webkit-backdrop-filter: blur(6px) saturate(130%); backdrop-filter: blur(6px) saturate(130%);
+  border: 1px solid rgba(255, 255, 255, .09);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .1) inset, 0 24px 60px -30px rgba(0, 0, 0, .6);
+}
+:root[data-theme-now="light"] .deck-on .step.on {
+  background: linear-gradient(180deg, rgba(255, 255, 255, .6), rgba(255, 255, 255, .3)); border-color: rgba(0, 0, 0, .08);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .9) inset, 0 24px 60px -34px rgba(0, 0, 0, .25);
+}
+/* Spørgsmål centreret (Marcus 4. nov: de stod lidt off center) – overskrift, listen og linjen under på samme midterakse */
+#faq > .head, #faq .faq, #faq > .gaff { max-width: 800px; margin-left: auto; margin-right: auto; }
+/* Hero bygges op (Marcus 4. nov aften): billedet til højre kommer frem, når kameraet står (--v sættes af hero.js), og vinduet i væggen */
+.hs3-view .v-line, .hs3-view .hs3-tag { opacity: var(--v, 0); transition: none; }
+.hs3-view .v-lit { opacity: 0; transition: opacity .7s var(--ease); }
+.hs3-win.lit .v-lit { opacity: var(--v, 0); } .hs3-win.lit .v-line { opacity: 0; transition: opacity .7s var(--ease); }
+.hs3-view .hs3-tag:empty { display: none; }
+.hs3-plan .w-win rect { fill: #0d0e10; stroke: rgba(233, 236, 240, .85); stroke-width: .02; } .hs3-plan .w-win line { stroke: rgba(233, 236, 240, .6); stroke-width: .012; }
+@media (max-width: 520px) { .hs3-moments { gap: 0; max-width: 100%; } .hs3-moments button { padding: 0 8px 0 17px; font-size: 12px; } .hs3-moments button::before { left: 7px; width: 5px; height: 5px; margin-top: -2.5px; } }
+/* Rammen om trinnene meget mere gennemsigtig (Marcus 4. nov aften): gitteret skal ses tydeligt igennem */
+.deck-on .step.on {
+  background: linear-gradient(180deg, rgba(255, 255, 255, .035), rgba(255, 255, 255, 0) 35%), rgba(11, 12, 14, .12);
+  -webkit-backdrop-filter: blur(1.5px) saturate(115%); backdrop-filter: blur(1.5px) saturate(115%);
+  border-color: rgba(255, 255, 255, .1);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .08) inset;
+}
+:root[data-theme-now="light"] .deck-on .step.on { background: linear-gradient(180deg, rgba(255, 255, 255, .35), rgba(255, 255, 255, .1)); }
+/* 3D-hældningen vendt (Marcus 4. nov): skærmen peger ind mod midten af siden (højre kant nærmest, venstre kant væk) */
+.hs3-stage { transform: rotateY(-9deg) rotateX(4deg); transform-origin: 60% 50%; }
+/* Klik på et trin må ikke låse vinduet lige (Marcus 4. nov): kun hover og tastaturfokus (:focus-visible) retter det op, så 3D-effekten bliver ved med at bevæge sig efter et klik */
+.hshot.hs3:hover .hs3-stage, .hshot.hs3:has(:focus-visible) .hs3-stage, .hshot.hs3:active .hs3-stage { transform: rotateY(-2deg) rotateX(1deg); }
+@media (max-width: 979px) { .hs3-stage, .hshot.hs3:hover .hs3-stage { transform: rotateY(-5deg) rotateX(2deg); } }
+.hshot.hs3 { perspective-origin: 70% 40%; }
+/* Skygge og glans spejlet med den vendte hældning (Marcus 4. nov): højre kant er nærmest, så skyggen under er størst og mørkest
+   mod højre, kastet en anelse ned mod højre, og glansen fanges i den nære højre kant. */
+.hs3-stage::after { left: 2%; right: -3%; bottom: -30px; height: 46px; background: radial-gradient(60% 100% at 62% 50%, rgba(0, 0, 0, .6), rgba(0, 0, 0, 0) 70%); }
+.hs3-win { box-shadow: 14px 46px 90px -40px rgba(0, 0, 0, .95), 0 0 0 1px rgba(255, 255, 255, .08), inset 0 1px 0 rgba(255, 255, 255, .07); }
+:root[data-theme-now="light"] .hs3-win { box-shadow: 14px 40px 80px -36px rgba(0, 0, 0, .42), 0 0 0 1px rgba(0, 0, 0, .1); }
+.hs3-win::before { background: linear-gradient(245deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, 0) 38%); }
+/* Hero (Marcus 4. nov aften): ingen strøm-bjælke forneden. Tegningen fylder vinduet under Rum og Personer; når kameraet sættes,
+   deles vinduet (tegningen glider til venstre, billedet kommer ind), og under Strøm bliver billedet til strøm-oversigten.
+   Vinduets højde er fast (hs3-main har fast format), så intet hopper. */
+.hs3-main { position: relative; display: block; aspect-ratio: 2.6; }
+.hs3-main .hs3-plan { position: absolute; left: 0; top: 0; width: 100%; height: 100%; aspect-ratio: auto; transition: width .9s var(--ease); }
+.hs3-win.split .hs3-plan { width: 41%; }
+.hs3-main .hs3-view { position: absolute; right: max(6px, 1.2cqw); top: 50%; width: calc(59% - max(6px, 1.2cqw)); margin: 0; opacity: 0; transform: translate(14%, -50%); transition: opacity .8s var(--ease), transform .9s var(--ease); }
+.hs3-win.split .hs3-view { opacity: 1; transform: translate(0, -50%); }
+.hs3-pw { position: absolute; inset: 0; display: grid; align-content: center; gap: max(5px, 1cqw); padding: max(10px, 2.4cqw) max(12px, 3cqw); background: #121316; color: #d4d7dc; font: 500 max(9px, 1.45cqw)/1.25 var(--body); opacity: 0; transition: opacity .7s var(--ease); z-index: 1; }
+.hs3-win.pw .hs3-pw { opacity: 1; } .hs3-win.pw .hs3-tag { opacity: 0; }
+.pw-st { display: flex; align-items: center; gap: max(6px, 1cqw); margin: 0; font: 650 max(12px, 2.3cqw)/1.15 var(--body); color: #f4f5f7; letter-spacing: -.01em; }
+.pw-st i { flex: none; width: max(7px, 1.2cqw); height: max(7px, 1.2cqw); border-radius: 50%; background: rgba(255, 255, 255, .25); transition: background .5s var(--ease); }
+.pw-st.on i { background: #79a98a; box-shadow: 0 0 0 max(3px, .5cqw) rgba(121, 169, 138, .16); }
+.pw-st:not(.on) b { color: rgba(255, 255, 255, .62); font-weight: 600; }
+.pw-sub { margin: 0 0 max(4px, .8cqw); color: rgba(255, 255, 255, .45); }
+.pw-row { display: grid; grid-template-columns: max(18px, 3cqw) minmax(0, 1fr) max(64px, 10cqw); align-items: center; gap: max(6px, 1.2cqw); font-variant-numeric: tabular-nums; }
+.pw-row > span { color: rgba(255, 255, 255, .62); font-weight: 650; }
+.pw-row i { position: relative; height: max(5px, .9cqw); border-radius: 99px; background: rgba(255, 255, 255, .08); }
+.pw-row b { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 99px; background: #e9ebee; }
+.pw-row:nth-of-type(2) b { opacity: .72; } .pw-row:nth-of-type(3) b { opacity: .5; }
+.pw-row em { position: absolute; left: 80%; top: -3px; bottom: -3px; border-left: 1px dashed rgba(255, 255, 255, .32); }
+.pw-row small { color: rgba(255, 255, 255, .5); font-size: inherit; text-align: right; }
+.pw-tot { margin: max(4px, .8cqw) 0 0; color: rgba(255, 255, 255, .62); font-variant-numeric: tabular-nums; }
+@media (prefers-reduced-motion: reduce) { .hs3-main .hs3-plan, .hs3-main .hs3-view, .hs3-pw { transition: none; } }
+/* Hero: et valgt trin står stille; ▶ starter opbygningen igen */
+.hs3-moments .hs3-play { display: inline-grid; place-items: center; width: 32px; min-height: 32px; padding: 0; margin-left: 2px; color: var(--t2); }
+.hs3-moments .hs3-play::before { display: none; } .hs3-moments .hs3-play[hidden] { display: none; }
+.hs3-moments .hs3-play svg { width: 14px; height: 14px; fill: currentColor; }
+.hs3-moments .hs3-play:hover { color: var(--t1); background: var(--g3); }
+/* Lys: tre looks (Blødt er taget ud, Marcus 4. nov), lige brede og centreret */
+.lit-looks { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+/* Hero, Kamera (Marcus 4. nov): brændvidden skiftes og kameraet drejes, inden Lys holder samme frame. Linserækken ligger forneden i
+   billedet som appens brændvidde-knapper; den valgte lyser op. */
+.hs3-lens { position: absolute; left: 50%; bottom: max(6px, 1.4cqw); transform: translate(-50%, 6px); display: flex; align-items: center; gap: 2px; padding: 3px; border-radius: 99px;
+  background: rgba(18, 19, 22, .78); box-shadow: 0 0 0 1px rgba(255, 255, 255, .1); font: 600 max(9px, 1.3cqw)/1 var(--body); color: rgba(255, 255, 255, .55); opacity: 0; transition: opacity .5s var(--ease), transform .5s var(--ease); z-index: 2; pointer-events: none; }
+.hs3-lens i { font-style: normal; padding: max(3px, .5cqw) max(6px, 1.1cqw); border-radius: 99px; transition: background .25s, color .25s; font-variant-numeric: tabular-nums; }
+.hs3-lens i.on { background: #e9ebee; color: #121316; }
+.hs3-lens em { font-style: normal; padding: 0 max(5px, .9cqw) 0 2px; }
+.hs3-win.adj .hs3-lens { opacity: 1; transform: translate(-50%, 0); }
+/* Strøm i heroen (Marcus 4. nov): faserne ser ud som i strøm-demoen (L1–L3 som vandrette bjælker, 80 %-mærket, "A / 16 A"), lidt
+   større, og bjælkerne bliver svagt grønne, når strømmen holder */
+.hs3-pw .phases { gap: max(8px, 1.6cqw); margin: max(4px, .8cqw) 0 max(2px, .4cqw); }
+.hs3-pw .ph { grid-template-columns: max(22px, 3.6cqw) minmax(0, 1fr) auto; gap: max(8px, 1.6cqw); }
+.hs3-pw .ph-n { font: 650 max(11px, 1.7cqw) var(--body); color: rgba(255, 255, 255, .62); }
+.hs3-pw .ph-bar { height: max(8px, 1.4cqw); border-radius: 99px; background: rgba(255, 255, 255, .08); }
+.hs3-pw .ph-bar i { border-radius: 99px; background: #e9ebee; transition: background .7s var(--ease); }
+.hs3-pw .ph-bar em { border-left-color: rgba(255, 255, 255, .32); }
+.hs3-pw .ph-a { font-size: max(10.5px, 1.6cqw); color: rgba(255, 255, 255, .62); min-width: max(70px, 11cqw); }
+.hs3-win.pw-good .hs3-pw .ph-bar i { background: rgba(121, 169, 138, .85); }
+/* Heroens skygge (Marcus 4. nov: "ser lidt funky ud og matcher ikke formen"): kun én skygge på selve vinduet, der vipper med det,
+   centreret og blød. Den løse ellipse under vinduet er væk. */
+.hs3-stage::after { display: none; }
+.hs3-win { box-shadow: 0 34px 70px -28px rgba(0, 0, 0, .85), 0 0 0 1px rgba(255, 255, 255, .08), inset 0 1px 0 rgba(255, 255, 255, .07); }
+:root[data-theme-now="light"] .hs3-win { box-shadow: 0 30px 60px -28px rgba(0, 0, 0, .35), 0 0 0 1px rgba(0, 0, 0, .1); }
+/* Topbaren som rammen om trinnene (Marcus 4. nov): samme gennemsigtige glas, så gitteret ses tydeligt igennem */
+.top.glass .wrap {
+  background: linear-gradient(180deg, rgba(255, 255, 255, .035), rgba(255, 255, 255, 0) 35%), rgba(11, 12, 14, .12);
+  -webkit-backdrop-filter: blur(1.5px) saturate(115%); backdrop-filter: blur(1.5px) saturate(115%);
+  border-color: rgba(255, 255, 255, .1);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .08) inset;
+}
+:root[data-theme-now="light"] .top.glass .wrap { background: linear-gradient(180deg, rgba(255, 255, 255, .35), rgba(255, 255, 255, .1)); }
+/* Strøm-demoens knapper (Marcus 4. nov: "der er noget med placeringen"): Læg kabler og Nulstil på én linje (Nulstil til højre),
+   lamperne, man kan tilføje, samlet på linjen under */
+.pw-tools { gap: 10px 8px; }
+.pw-tools [data-reset] { margin-left: auto; }
+.pw-tools .pw-add { flex-basis: 100%; gap: 8px; }
+/* Strøm i heroen på telefon: kortere og mindre, så status-linjen ikke løber ud af billedet */
+@media (max-width: 520px) { .hs3-pw { padding: 8px 10px; gap: 4px; } .hs3-pw .pw-st { font-size: 11px; } .hs3-pw .pw-sub, .hs3-pw .pw-tot { display: none; }
+  .hs3-pw .phases { gap: 6px; margin: 2px 0 0; } .hs3-pw .ph { gap: 6px; } .hs3-pw .ph-n, .hs3-pw .ph-a { font-size: 10px; } .hs3-pw .ph-a { min-width: 0; } }
+/* Lys i heroen (Marcus 4. nov): stregbilledet toner ud i sort, og lagene med lampernes lys tones op ét ad gangen (hero.js sætter
+   opaciteten); ingen CSS-overgang på lagene, så de følger tiden præcist */
+.hs3-view .v-lit, .hs3-win.lit .v-lit { opacity: 0; transition: none; }
+.hs3-view::before { content: ""; position: absolute; inset: 0; background: #050506; opacity: var(--dark, 0); pointer-events: none; }
+.hs3-win.lit .v-line { opacity: calc(1 - var(--dark, 0)); transition: none; }
+/* Heroen fylder mere (Marcus 4. nov: "en smule mere, så der er balance"): billedet får mere af bredden, og vinduet er højere, så
+   rummet på tegningen bliver større (tegningen er højde-begrænset i det brede vindue) */
+@media (min-width: 980px) { .hero-in { grid-template-columns: minmax(0, 4.3fr) minmax(0, 7.7fr); gap: 44px; } }
+.hs3-main { aspect-ratio: 2.15; }
+/* Vinduet må aldrig gå ud over skærmen (vandret rul ved 1024–1280 px): det stikker kun ud over spalten, når der er plads */
+@media (min-width: 980px) and (max-width: 1199px) { .hshot.hs3 .hs3-stage { width: 100%; } .hshot.hs3 .hs3-moments { margin-left: 0; } }
+@media (min-width: 1200px) and (max-width: 1399px) { .hshot.hs3 .hs3-stage { width: 104%; } .hshot.hs3 .hs3-moments { margin-left: 4%; } }
+/* Lys i heroen: Maya skal stå helt mørk, før key tændes (lag 0, lamperne næsten slukket, ekstra dæmpet her) */
+.hs3-view .v-lit.l0 { filter: brightness(.32); }
+/* Strøm i heroen blødere (Marcus 4. nov): bjælkerne glider mod grøn, prikken og OK-teksten toner frem */
+.hs3-pw .ph-bar i { transition: background 1.4s var(--ease); }
+.hs3-pw .pw-st i { transition: background 1.2s var(--ease), box-shadow 1.2s var(--ease); }
+.hs3-pw .pw-st.on b { animation: hs3-ok .9s var(--ease) both; }
+@keyframes hs3-ok { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .hs3-pw .pw-st.on b { animation: none; } }
+/* ---------- Trinene som heroen (Marcus 4. nov: "alle fanerne må gerne matche setuppet heroppe så meget som muligt") ----------
+   Framing, Lys og Strøm: tegningen og billedet (Strøm: fasepanelet) ligger side om side i ét app-vindue med titellinje og de tre
+   prikker, som heroens vindue. Knapper og tal ligger under vinduet. Ingen ændring i markup: .cam-view og .pw-side er display:
+   contents, så deres dele placeres direkte i gitteret, og vinduet er ::before (fladen) og ::after (titellinjen). */
+@media (min-width: 821px) {
+  .deck-on #frame .camdemo, .deck-on #light .camdemo, .deck-on #power .pwdemo { --wpad: 18px; position: relative; grid-template-rows: 30px auto auto auto; row-gap: 22px; column-gap: 22px; padding: 0 var(--wpad); }
+  .deck-on #frame .camdemo, .deck-on #light .camdemo { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+  .deck-on #power .pwdemo { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); }
+  .deck-on #frame .camdemo::before, .deck-on #light .camdemo::before, .deck-on #power .pwdemo::before {
+    content: ""; grid-column: 1 / -1; grid-row: 1 / 3; margin: 0 calc(-1 * var(--wpad)) -18px; border-radius: 14px; background: #0d0e10; z-index: 0;
+    box-shadow: 0 34px 70px -28px rgba(0, 0, 0, .85), 0 0 0 1px rgba(255, 255, 255, .08), inset 0 1px 0 rgba(255, 255, 255, .06); }
+  .deck-on #frame .camdemo::after, .deck-on #light .camdemo::after, .deck-on #power .pwdemo::after {
+    content: "Kitchen night · Scene 12"; grid-column: 1 / -1; grid-row: 1; margin: 0 calc(-1 * var(--wpad)); display: flex; align-items: center; justify-content: center; z-index: 1;
+    border-radius: 14px 14px 0 0; background: #1c1d21 radial-gradient(circle at 18px 50%, #4a4d53 3.5px, transparent 4px) no-repeat, #1c1d21;
+    background-image: radial-gradient(circle at 18px 50%, #4a4d53 3.5px, transparent 4px), radial-gradient(circle at 32px 50%, #4a4d53 3.5px, transparent 4px), radial-gradient(circle at 46px 50%, #4a4d53 3.5px, transparent 4px);
+    border-bottom: 1px solid rgba(0, 0, 0, .3); font: 600 12px/1 var(--body); color: rgba(255, 255, 255, .62); }
+  :lang(da) .deck-on #frame .camdemo::after, :lang(da) .deck-on #light .camdemo::after, :lang(da) .deck-on #power .pwdemo::after { content: "Køkken nat · Scene 12"; }
+  .deck-on #frame .cam-view, .deck-on #light .cam-view, .deck-on #power .pw-side { display: contents; }
+  .deck-on #frame .camdemo > *, .deck-on #light .camdemo > *, .deck-on #power .pwdemo > *, .deck-on .cam-view > *, .deck-on .pw-side > * { position: relative; z-index: 1; }
+  /* i vinduet: tegningen uden eget kort, billedet som heroens billede */
+  .deck-on #frame .cam-plan, .deck-on #light .cam-plan, .deck-on #power .pw-plan { grid-column: 1; grid-row: 2; align-self: center; background: none; box-shadow: none; border: 0; }
+  .deck-on #frame .cam-frame, .deck-on #light .cam-frame { grid-column: 2; grid-row: 2; align-self: center; margin: 0; }
+  .deck-on #power .pw-panel { grid-column: 2; grid-row: 2; align-self: center; background: #121316; border-color: rgba(255, 255, 255, .08); color: #d4d7dc; }
+  /* under vinduet */
+  .deck-on #frame .cam-facts, .deck-on #light .cam-view > .facts, .deck-on #power .pw-facts { grid-column: 1; grid-row: 3; margin: 0; }
+  .deck-on #frame .cam-lens, .deck-on #light .lit-looks, .deck-on #power .pw-tools { grid-column: 2; grid-row: 3; align-self: start; margin: 0; }
+  .deck-on #frame .cam-strip, .deck-on #light .lit-panel { grid-column: 1 / -1; grid-row: 4; }
+}
+@media (min-width: 821px) { /* vinduets flade og titellinje fylder deres rækker (gitteret har align-items: start) */
+  .deck-on #frame .camdemo::before, .deck-on #light .camdemo::before, .deck-on #power .pwdemo::before,
+  .deck-on #frame .camdemo::after, .deck-on #light .camdemo::after, .deck-on #power .pwdemo::after { align-self: stretch; } }
+@media (min-width: 821px) { /* titellinjens farve og luft mellem vinduet og det, der ligger under */
+  .deck-on #frame .camdemo::after, .deck-on #light .camdemo::after, .deck-on #power .pwdemo::after { background-color: #1c1d21; background-repeat: no-repeat; }
+  .deck-on #frame .cam-facts, .deck-on #light .cam-view > .facts, .deck-on #power .pw-facts,
+  .deck-on #frame .cam-lens, .deck-on #light .lit-looks, .deck-on #power .pw-tools { margin-top: 20px; } }
+/* "Pay once" i lyst tema (gennemgang 4. nov: lysegul på hvid kunne ikke læses) */
+:root[data-theme-now="light"] .plan-pts li.plus { color: #8a6a2c; } :root[data-theme-now="light"] .plan-pts li.plus::before { border-color: #8a6a2c; }
+@media (min-width: 821px) { /* Framing (Marcus 4. nov: "blevet for stort igen"): filmstrimlen under brændvidderne i højre spalte, ikke i fuld bredde;
+     tallene og personerne på én linje under tegningen */
+  .deck-on #frame .camdemo { grid-template-columns: minmax(0, 5.4fr) minmax(0, 6.6fr); }
+  .deck-on #frame .cam-strip { grid-column: 2; grid-row: 4; }
+  .deck-on #frame .cam-facts { gap: 0 16px; } .deck-on #frame .cam-facts .fact b { font-size: 22px; }
+  .deck-on #frame .cam-facts .fact.who b { display: flex; gap: 4px; white-space: nowrap; } }
+@media (min-width: 821px) { /* Trinene mere kompakte (Marcus 4. nov: "fylder stadig for meget"): lavere vindue, mindre luft, ingen fast mindstehøjde */
+  .deck-on .step.on { min-height: 0; }
+  .deck-on #frame .camdemo, .deck-on #light .camdemo, .deck-on #power .pwdemo { row-gap: 14px; }
+  .deck-on #frame .cam-plan, .deck-on #light .cam-plan { width: auto; height: 270px; aspect-ratio: 6.2 / 5.9; justify-self: center; }
+  .deck-on #power .pw-plan { width: auto; height: 300px; aspect-ratio: 6.2 / 5.4; justify-self: center; }
+  .deck-on #frame .camdemo::before, .deck-on #light .camdemo::before, .deck-on #power .pwdemo::before { margin-bottom: -14px; }
+  .deck-on #frame .cam-facts, .deck-on #light .cam-view > .facts, .deck-on #power .pw-facts,
+  .deck-on #frame .cam-lens, .deck-on #light .lit-looks, .deck-on #power .pw-tools { margin-top: 14px; }
+  .deck-on #frame .cam-strip { grid-template-columns: repeat(4, 112px); justify-content: start; }
+  .deck-on #frame .cam-shot .cap, .deck-on #frame .cam-add > span:last-child { font-size: 11.5px; } }
+/* Telefon: højde-knappen i Framing øverst til højre, så den ikke støder ind i vinket forneden eller dækker Maya (gennemgang 4. nov) */
+@media (max-width: 600px) { .cam-frame .cam-hgt { top: 8px; bottom: auto; right: 8px; } .cam-hgt b { font-size: 11px; padding: 0 4px; } .cam-hgt button { width: 22px; height: 22px; } }
+/* Lave skærme (fx 1024 × 768, gennemgang 4. nov): trinene strammes, så Næste altid kan ses uden at rulle */
+@media (min-width: 821px) and (max-height: 860px) {
+  .deck-on .step.on { padding-top: 18px; padding-bottom: 14px; margin-top: 10px; }
+  .deck-on .step-head { margin-bottom: 12px; } .deck-on .step-head h2 { font-size: 28px !important; }
+  .deck-on #frame .cam-plan, .deck-on #light .cam-plan { height: 230px; }
+  .deck-on #power .pw-plan { height: 250px; }
+  .deck-on #light .lit-panel { margin-top: 0; }
+  .deck-on .deck-nav { margin-top: 8px; } }
+/* Invitation til at prøve (Marcus 4. nov): under hvert trins overskrift en lille pille med den pulserende prik ("Try it · Drag the
+   camera …"), og i hero linket "Try it here ↓" ned til demoen */
+.deck-on .step-head > p.try { display: inline-flex; align-items: center; gap: 8px; margin: 10px 0 0; padding: 5px 12px 5px 10px; border-radius: 999px; font-size: 13px; color: var(--t2);
+  background: rgba(255, 255, 255, .04); border: 1px solid var(--hair); }
+.deck-on .step-head > p.try::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #f1d9a8; box-shadow: 0 0 8px #f1d9a8; animation: pulse 1.8s ease-in-out infinite; flex: none; }
+.deck-on .step-head > p.try b { color: var(--t1); font-weight: 600; }
+.deck-on .step-head > p.try b::after { content: "·"; margin: 0 6px; color: var(--t3); font-weight: 400; }
+:root[data-theme-now="light"] .deck-on .step-head > p.try { background: rgba(0, 0, 0, .03); }
+:root[data-theme-now="light"] .deck-on .step-head > p.try::before { background: #b08a3e; box-shadow: none; }
+.try-link span { display: inline-block; transition: transform .25s var(--ease); } .try-link:hover span { transform: translateY(2px); }
+@media (prefers-reduced-motion: reduce) { .deck-on .step-head > p.try::before { animation: none; } }
+@media (min-width: 821px) and (max-height: 860px) { /* plads til "Try it"-pillen på lave skærme */
+  .deck-on .step-k { display: none; } .deck-on .step-head > p.try { margin-top: 6px; }
+  .deck-on .step-head h2 { font-size: 26px !important; }
+  .deck-on #frame .cam-plan, .deck-on #light .cam-plan { height: 210px; } .deck-on #power .pw-plan { height: 230px; } }
+/* Heroens skygge (Marcus 4. nov: "hjørnerne på skyggen er der ikke helt"): en tæt kontaktskygge og en blød skygge uden negativ
+   spredning, så hjørnerne følger vinduets runding; glansen dæmpet, så kanten ikke ser kantet ud */
+.hs3-win { box-shadow: 0 1px 2px rgba(0, 0, 0, .45), 0 22px 50px -10px rgba(0, 0, 0, .6), 0 0 0 1px rgba(255, 255, 255, .08), inset 0 1px 0 rgba(255, 255, 255, .06); }
+:root[data-theme-now="light"] .hs3-win { box-shadow: 0 1px 2px rgba(0, 0, 0, .12), 0 22px 50px -12px rgba(0, 0, 0, .25), 0 0 0 1px rgba(0, 0, 0, .1); }
+.hs3-win::before { background: linear-gradient(245deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, 0) 30%); }
+/* Lave skærme: vinket under Lys ("Click a lamp …") skjules; pillen over vinduet siger det samme. Panelet med dimmer osv. vises stadig. */
+@media (min-width: 821px) and (max-height: 860px) { .deck-on #light .lit-hint { display: none; } }
+@media (min-width: 821px) and (max-height: 860px) { .deck-on #light .cam-plan { height: 196px; } .deck-on #light .lit-looks button { min-height: 34px; } }
+@media (min-width: 821px) and (max-height: 860px) { .deck-on #light .lit-panel { min-height: 0; } }
+/* Næste står samme sted på alle trin (Marcus 4. nov): alle trin får det højeste trins højde (--deck-h, målt af slides.js) */
+@media (min-width: 821px) { .deck-on .step.on { min-height: var(--deck-h, 0); } }
+/* Heroens opstartsskærm (Marcus 4. nov, som appens): metal-G'et tegnes op, navnet toner frem, og så toner den ud til rummet */
+.hs3-boot { position: absolute; inset: 0; z-index: 4; display: grid; place-content: center; justify-items: center; gap: max(10px, 2cqw); pointer-events: none;
+  background: radial-gradient(70% 60% at 50% -8%, rgba(241, 217, 168, .06), transparent 70%), radial-gradient(120% 90% at 50% 0%, #1b1d21, #0d0e10 62%) #0d0e10; transition: opacity .6s var(--ease), visibility 0s .6s; }
+.hs3-boot svg { width: max(36px, 7cqw); height: max(36px, 7cqw); overflow: visible; filter: drop-shadow(0 1px 1.2px rgba(0, 0, 0, .7)); }
+.hs3-boot .b-draw { stroke-dasharray: 100; stroke-dashoffset: 100; }
+.hs3-boot b { font: 600 max(11px, 1.9cqw)/1 var(--display); letter-spacing: .01em; color: rgba(255, 255, 255, .92); opacity: 0; transform: translateY(4px); }
+.hs3-boot b span { color: rgba(255, 255, 255, .55); }
+.hs3-win.booting .hs3-boot .b-draw { animation: hs3-draw .8s cubic-bezier(.3, .1, .2, 1) forwards; }
+.hs3-win.booting .hs3-boot b { animation: hs3-word .5s cubic-bezier(.2, .8, .2, 1) .35s forwards; }
+.hs3-win.booted .hs3-boot { opacity: 0; visibility: hidden; }
+@keyframes hs3-draw { to { stroke-dashoffset: 0; } } @keyframes hs3-word { to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .hs3-boot { display: none; } }
+/* Opstarten: kun G'et (Marcus 4. nov), og en blødere overgang til rummet: G'et toner ud og bliver en anelse mindre, mens væggene begynder */
+.hs3-boot { transition: opacity 1.1s var(--ease), visibility 0s 1.1s; } .hs3-boot svg { transition: transform 1.1s var(--ease); }
+.hs3-win.booted .hs3-boot svg { transform: scale(.88); }
+/* Opstarten omvendt (Marcus 4. nov): G'et står fremme fra start, og når rummet skal i gang, viskes det ud igen (stregen trækkes
+   tilbage) og toner over i rummet */
+.hs3-boot .b-draw { stroke-dashoffset: 0; }
+.hs3-win.booted .hs3-boot .b-draw { animation: hs3-undraw .9s cubic-bezier(.5, 0, .7, 1) forwards; }
+@keyframes hs3-undraw { to { stroke-dashoffset: -100; } }
+.hs3-boot { transition: opacity .9s var(--ease) .35s, visibility 0s 1.25s; }
+.hs3-win.booted .hs3-boot svg { transform: none; }
+/* Strøm-demoen (Marcus 4. nov): en lille opfordring foran lamperne, man kan tilføje: "Prøv en lampe for meget" */
+.pw-tools .pw-add { align-items: center; } .pw-try { flex-basis: 100%; margin: 2px 0 0; color: var(--t3); font-size: 12.5px; }
+/* Præcis omvendt af appens opstart (Marcus 4. nov): appen tegner stregen fra 100 → 0 på .7 s med cubic-bezier(.3, .1, .2, 1); her
+   trækkes den tilbage 0 → 100 samme vej, med den spejlvendte kurve (.8, 0, .7, .9) og samme tid */
+.hs3-win.booted .hs3-boot .b-draw { animation: hs3-undraw2 .7s cubic-bezier(.8, 0, .7, .9) forwards; }
+@keyframes hs3-undraw2 { from { stroke-dashoffset: 0; } to { stroke-dashoffset: 100; } }
+.hs3-boot { transition: opacity .45s var(--ease) .6s, visibility 0s 1.05s; }
+/* ---------- Trinene som heroen, del 2 (Marcus 4. nov) ----------
+   Strøm: fasepanelet er bygget som heroens strøm-oversigt: status med prik øverst, tavlen som lille linje under, bjælkerne bliver
+   svagt grønne, når strømmen holder (og røde, når en fase er over) */
+.deck-on #power .pw-panel { display: flex; flex-direction: column; }
+.deck-on #power .pw-panel .pw-ok { order: -2; margin: 0; padding: 0; border: 0; display: flex; align-items: center; gap: 9px; font: 650 17px/1.2 var(--body); color: #f4f5f7; letter-spacing: -.01em; }
+.deck-on #power .pw-panel .pw-ok::before { content: ""; flex: none; width: 8px; height: 8px; border: 0; border-radius: 50%; transform: none; background: rgba(255, 255, 255, .25); }
+.deck-on #power .pw-panel .pw-ok:not(.good):not(.bad) { color: rgba(255, 255, 255, .62); font-weight: 600; }
+.deck-on #power .pw-panel .pw-ok.good::before { background: #79a98a; box-shadow: 0 0 0 4px rgba(121, 169, 138, .16); }
+.deck-on #power .pw-panel .pw-ok.bad { color: #f0a59a; } .deck-on #power .pw-panel .pw-ok.bad::before { background: var(--bad); box-shadow: 0 0 0 4px rgba(240, 120, 100, .16); }
+.deck-on #power .pw-panel .pw-t { order: -1; margin: 4px 0 14px; } .deck-on #power .pw-panel .pw-t b { color: rgba(255, 255, 255, .45); font-weight: 500; font-size: 13px; }
+.deck-on #power .pw-panel:has(.pw-ok.good) .ph-bar i { background: rgba(121, 169, 138, .85); opacity: 1; }
+/* Produktion i samme app-vindue som heroen og de andre trin */
+@media (min-width: 821px) {
+  .deck-on #production .prod { position: relative; padding: 52px 22px 22px; border-radius: 14px; background: #0d0e10;
+    box-shadow: 0 34px 70px -28px rgba(0, 0, 0, .85), 0 0 0 1px rgba(255, 255, 255, .08), inset 0 1px 0 rgba(255, 255, 255, .06); }
+  .deck-on #production .prod::before { content: "Kitchen night · Scene 12"; position: absolute; left: 0; right: 0; top: 0; height: 30px; display: flex; align-items: center; justify-content: center;
+    border-radius: 14px 14px 0 0; border-bottom: 1px solid rgba(0, 0, 0, .3); font: 600 12px/1 var(--body); color: rgba(255, 255, 255, .62); background-color: #1c1d21; background-repeat: no-repeat;
+    background-image: radial-gradient(circle at 18px 50%, #4a4d53 3.5px, transparent 4px), radial-gradient(circle at 32px 50%, #4a4d53 3.5px, transparent 4px), radial-gradient(circle at 46px 50%, #4a4d53 3.5px, transparent 4px); }
+  :lang(da) .deck-on #production .prod::before { content: "Køkken nat · Scene 12"; }
+  .deck-on #production .prod { color: #d4d7dc; } }
+/* Tegningen i trinene større (Marcus 4. nov: "næsten ikke til at tilpasse kameraet"): lige brede spalter og en højere tegning */
+@media (min-width: 821px) {
+  .deck-on #frame .camdemo, .deck-on #light .camdemo { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .deck-on #frame .cam-plan, .deck-on #light .cam-plan { height: 340px; }
+  .deck-on #power .pwdemo { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); } .deck-on #power .pw-plan { height: 360px; } }
+@media (min-width: 821px) and (max-height: 860px) {
+  .deck-on #frame .cam-plan { height: 270px; } .deck-on #light .cam-plan { height: 250px; } .deck-on #power .pw-plan { height: 280px; } }
+@media (min-width: 821px) and (max-height: 860px) { .deck-on #frame .cam-plan { height: 220px; } .deck-on #light .cam-plan { height: 196px; } .deck-on #power .pw-plan { height: 230px; } }
+/* Produktion i vinduet er det højeste trin og bestemmer alle trins højde: tættere pakkeliste, især på lave skærme */
+@media (min-width: 821px) { .deck-on #production .pk button { min-height: 34px; padding: 4px 0; } .deck-on #production .prod { padding-top: 46px; } }
+@media (min-width: 821px) and (max-height: 860px) { .deck-on #production .pk button { min-height: 28px; padding: 2px 0; font-size: 13.5px; } .deck-on #production .prod { padding: 42px 18px 12px; } }
+@media (min-width: 821px) and (min-height: 861px) { /* 1440 × 900: Næste skal kunne ses uden at rulle */
+  .deck-on #light .lit-panel { min-height: 0; } .deck-on #light .cam-plan { height: 320px; } .deck-on #frame .cam-plan { height: 320px; } .deck-on #power .pw-plan { height: 330px; } }
+/* Punkterne under hero (Marcus 4. nov): ikke fire spalter, men én rolig, centreret række små piller med det, demoerne ikke viser */
+.points ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding-top: 22px; }
+.points li { display: inline-flex; align-items: center; gap: 9px; padding: 8px 14px 8px 11px; border-radius: 999px; border: 1px solid var(--hair); background: rgba(255, 255, 255, .025); }
+.points svg { width: 18px; height: 18px; margin: 0; flex: none; }
+.points b { font-size: 14px; } .points span { font-size: 13.5px; color: var(--t3); } .points span::before { content: "·"; margin: 0 7px 0 1px; color: var(--t3); }
+:root[data-theme-now="light"] .points li { background: rgba(0, 0, 0, .02); }
+@media (max-width: 600px) { .points span { display: none; } }
+/* Punkterne som én kapsel (Marcus 4. nov: "adskil os fra Cadrage"): bygget som appens fanebjælke, tynde skillestreger, glas, og
+   det første punkt (hele planen) fremhævet; de praktiske ting dæmpet efter det */
+.points ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 0; width: fit-content; max-width: 100%; margin: 0 auto; padding: 4px; border-top: 0;
+  border: 1px solid rgba(255, 255, 255, .1); border-radius: 999px; background: linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, .01)); box-shadow: 0 1px 0 rgba(255, 255, 255, .06) inset; }
+.points li { border: 0; background: none; border-radius: 999px; padding: 8px 16px 8px 13px; position: relative; }
+.points li + li::before { content: ""; position: absolute; left: 0; top: 30%; bottom: 30%; border-left: 1px solid rgba(255, 255, 255, .1); }
+.points li:first-child { background: rgba(255, 255, 255, .07); box-shadow: 0 0 0 1px rgba(255, 255, 255, .08) inset; }
+.points li:first-child + li::before { display: none; }
+.points li:not(:first-child) b { font-weight: 500; color: var(--t2); }
+.points li:not(:first-child) svg { stroke: var(--t2); }
+:root[data-theme-now="light"] .points ul { border-color: rgba(0, 0, 0, .1); background: rgba(0, 0, 0, .02); }
+:root[data-theme-now="light"] .points li:first-child { background: rgba(0, 0, 0, .05); }
+:root[data-theme-now="light"] .points li + li::before { border-color: rgba(0, 0, 0, .1); }
+@media (max-width: 700px) { .points ul { border-radius: 18px; } .points li + li::before { display: none; } .points li { padding: 7px 12px; } }
+.hero h1 { max-width: none; } /* ny overskrift med fast linjeskift (Marcus 4. nov) */
+@media (min-width: 980px) { .hero-in { grid-template-columns: minmax(0, 4.8fr) minmax(0, 7.2fr); gap: 40px; } .hero h1 { font-size: clamp(38px, 3.3vw, 50px) !important; } }
+/* Overskriften lidt mindre (Marcus 4. nov), så begge linjer står på én linje hver */
+@media (min-width: 980px) { .hero h1 { font-size: clamp(32px, 2.75vw, 42px) !important; } }
+/* Punkterne i stil E (Marcus 4. nov): ikoner i små felter som appens værktøjsknapper, navn og én linje; Lær med Gaff og Dit, offline */
+.points ul { display: flex; justify-content: center; gap: 28px 56px; width: auto; padding: 24px 0 0; border: 0; border-radius: 0; background: none; box-shadow: none; }
+.points li { display: grid; justify-items: center; gap: 8px; width: 230px; padding: 0; text-align: center; background: none !important; box-shadow: none !important; border-radius: 0; }
+.points li + li::before { display: none; }
+.points li i { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; border: 1px solid var(--hair2); background: rgba(255, 255, 255, .03); }
+.points li:first-child i { background: rgba(255, 255, 255, .09); border-color: rgba(255, 255, 255, .2); }
+.points li svg, .points li:not(:first-child) svg { width: 21px; height: 21px; stroke: var(--t1); }
+.points li b, .points li:not(:first-child) b { font: 600 14.5px/1.3 var(--body); color: var(--t1); }
+.points li span { display: block; font-size: 13px; color: var(--t3); line-height: 1.4; } .points li span::before { content: none; }
+:root[data-theme-now="light"] .points li i { background: rgba(0, 0, 0, .03); } :root[data-theme-now="light"] .points li:first-child i { background: rgba(0, 0, 0, .07); }
+@media (max-width: 700px) { .points ul { gap: 22px; } .points li { width: 150px; } .points li span { display: block; } }
+/* Overskriften altid på to linjer (Marcus 4. nov): størrelsen følger tekstspaltens bredde, og hver linje brydes aldrig.
+   Anden linje i kursiv og en anelse lysere grå, så "før call" står som et svar. */
+@media (min-width: 600px) {
+  .hero-txt { container-type: inline-size; }
+  .hero h1 { font-size: clamp(26px, 7.4cqw, 46px) !important; white-space: nowrap; }
+}
+.hero h1 em { font-style: italic; font-weight: inherit; color: var(--t2); letter-spacing: -.035em; }
+.hero-txt { container-type: inline-size; } .hero h1 { font-size: clamp(24px, 7.4cqw, 46px) !important; white-space: nowrap; } /* også på telefon */
+/* Første skærm (Marcus 4. nov): heroen og punkterne fylder hele skærmen, så trinene ("Find the frame") først kommer, når man ruller */
+@media (min-width: 980px) and (min-height: 640px) {
+  .hero { min-height: calc(100svh - 170px); display: flex; flex-direction: column; justify-content: center; padding-top: 96px !important; padding-bottom: 8px !important; }
+  .points { min-height: 170px; display: flex; flex-direction: column; justify-content: flex-start; padding-top: 18px !important; }
+}
+@media (min-width: 980px) { .points ul { gap: 28px 24px; } .points li { width: 220px; } }
+/* Punkterne lidt højere op (Marcus 4. nov): heroen er lavere, og luften under punkterne holder trinene under skærmkanten */
+@media (min-width: 980px) and (min-height: 640px) { .hero { min-height: calc(100svh - 250px); } .points { min-height: 250px; padding-top: 4px !important; } }
+@media (min-width: 980px) { .points ul { gap: 28px 16px; } .points li { width: 205px; } } /* fem punkter på én række (Marcus 4. nov) */
+:root[data-theme-now="light"] .points ul { background: none; border: 0; } /* ingen grå kasse bag punkterne i lyst tema */
+@media (min-width: 980px) and (max-width: 1150px) and (min-height: 640px) { .hero { min-height: calc(100svh - 330px); } .points { min-height: 330px; } } /* to rækker punkter ved ca. 1024 px */
+/* Overskriften, variant 2 (Marcus 4. nov): anden linje uden kursiv, bare dæmpet grå */
+.hero h1 em { font-style: normal; color: var(--t3); letter-spacing: inherit; }
+/* Månedligt (Marcus 4. nov: "ser lidt sjov ud"): samme streg og mærkat som Gratis, så de fire priser står som én familie */
+.plan:not(.hot):not(.free) { border-top-color: transparent; }
+.plan:not(.hot):not(.free)::before { content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 1.5px; background: var(--t2); opacity: .7; }
+.plan:not(.hot):not(.free) .badge { color: var(--t1); border-color: var(--t2); }
+/* Urgency (Marcus 4. nov): et banner over priserne og slutdato-pillerne i massivt, varmt guld med mørk tekst (GafferGrids guld, ikke orange) */
+.offer { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px 10px; width: fit-content; margin: 0 auto 26px; padding: 7px 16px 7px 7px; border-radius: 999px;
+  background: rgba(241, 217, 168, .1); border: 1px solid rgba(241, 217, 168, .45); color: #f6e6c4; font: 500 14px var(--body); box-shadow: 0 0 40px -10px rgba(241, 217, 168, .35); }
+.offer b { font-weight: 650; color: #fff4dc; }
+.offer-tag { display: inline-flex; align-items: center; gap: 7px; padding: 3px 11px; border-radius: 999px; background: #efcf86; color: #1a1408; font: 700 11.5px var(--body); letter-spacing: .06em; text-transform: uppercase; }
+.offer-tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #1a1408; animation: pulse 1.6s ease-in-out infinite; }
+.plan .until { color: #1a1408; background: #efcf86; border-color: #efcf86; font-weight: 600; }
+.plan .until b { color: #1a1408; }
+.plan.hot::before { border-color: #efcf86; opacity: 1; }
+.plan.hot .badge { color: #1a1408; background: #efcf86; border-color: #efcf86; font-weight: 600; }
+:root[data-theme-now="light"] .offer { background: rgba(176, 138, 62, .1); border-color: rgba(176, 138, 62, .45); color: #5c4718; box-shadow: none; }
+:root[data-theme-now="light"] .offer b { color: #3d2f0e; }
+:root[data-theme-now="light"] .plan .until, :root[data-theme-now="light"] .plan.hot .badge, :root[data-theme-now="light"] .offer-tag { background: #d9ad55; border-color: #d9ad55; color: #1a1408; }
+:root[data-theme-now="light"] .plan.hot::before { border-color: #c79a43; }
+@media (prefers-reduced-motion: reduce) { .offer-tag::before { animation: none; } }
+.offer b { margin-left: -8px; }

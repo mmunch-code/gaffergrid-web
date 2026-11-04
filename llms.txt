@@ -1,0 +1,26 @@
+# GafferGrid
+
+> GafferGrid is a Mac app for gaffers, electricians, technicians and film crews: plan the set from above at real scale, light it, work out the power and get the gear list. It is built around the power: it spreads the lamps over phases and outlets, checks cables and breakers, picks distros and runs the cables around the set. Launching on the Mac App Store in November 2026, made by DeepInkCode, Denmark.
+
+Key facts about GafferGrid 1.0:
+- Platform: macOS 13 or later. Languages: English (UK) and Danish. iPad and iPhone later.
+- Power systems in 1.0: 230/400 V (UK and Europe): UK 13 A sockets (BS 1363) and Danish sockets, 16/32/63/125 A CEE, generators, batteries. The plugs follow the app language (English: UK, Danish: Danish). US 120 V later.
+- Lamps are always counted at full output and with what they draw from the wall (an LED's driver adds about 20 % over its class: a 600 W LED draws about 720 W).
+- Gaffers' 80 % rule: load breakers, phases and generators to at most 80 % of their rating.
+- Lighting plan seen from above at real scale. Light is worked out from each lamp's wattage and its distance (inverse-square falloff). Generic LED, tungsten and HMI lamps (for example "LED COB 600 W"), with modifiers, frames and diffusion; stands chosen by weight and sandbags counted.
+- Camera and shots: real lenses and fields of view on the plan, dolly, slider, jib and crane on keyframes, and a shot list shown as a film strip with a simple line sketch of each frame.
+- Gear list that writes itself from the plan, as a PDF for the hire company, and a pack list to tick off on the day.
+- Scene overview, crew, locations and a focus guide.
+- Guides and quizzes with levels from Beginner to Super gaffer.
+- Works fully offline. No account, no tracking.
+- Pricing: free: every tool in one project with one location and one scene, the full power calculator, and PDFs with a small watermark; GafferGrid Pro (6.99 USD a month, 59.99 USD a year, or 179.99 USD for life; founding introductory prices from launch until 31 December 2026: 44.99 USD for the first year for new subscribers, or 129.99 USD for life) for unlimited projects, locations and scenes, clean PDFs, your own lamps, cameras and stands, and export.
+- More is on the way after 1.0. 1.0 is the core: frame, light, power, production and delivery.
+- The calculation is a planning guide; a qualified electrician or gaffer must approve the distribution.
+
+## Pages
+- [GafferGrid (English)](https://gaffergrid.com/)
+- [GafferGrid (Dansk)](https://gaffergrid.com/da/)
+- [Support](https://gaffergrid.com/support.html)
+- [Support (Dansk)](https://gaffergrid.com/da/support.html)
+- [Privacy](https://gaffergrid.com/privacy.html)
+- [Privatliv (Dansk)](https://gaffergrid.com/da/privacy.html)
