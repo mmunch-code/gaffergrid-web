@@ -17,6 +17,18 @@ Key facts about GafferGrid 1.0:
 - More is on the way after 1.0. 1.0 is the core: frame, light, power, production and delivery.
 - The calculation is a planning guide; a qualified electrician or gaffer must approve the distribution.
 
+## Also known as
+GafferGrid is a lighting plan app, a lighting plot tool, a power calculator and power distribution planner for film sets, a gaffer app, a shot planner and a gear list generator for film and TV crews. In Danish: lysplan, strømberegner, gaffer-app, grejliste og shotliste til filmhold.
+
+## Short answers
+- What is GafferGrid? A Mac app that plans a film set from above at real scale: camera and shots, lighting, power on every phase, and the gear and pack lists, worked out before the shoot day.
+- Who is it for? Gaffers, best boys, electricians, DoPs, ADs and small crews on films, commercials, music videos and TV.
+- What makes it different? It is built around the power: it spreads lamps over phases and outlets, keeps every phase under 80 %, checks cables and breakers, picks distros and lays the cables around the set.
+- Does it need the internet or an account? No. It works fully offline, with no login and no tracking; projects stay on the Mac.
+- Which power systems? UK (BS 1363, 13 A) and Denmark/Europe (230/400 V, CEE 16–125 A) in 1.0. US 120 V later.
+- Is it free? Every tool is free in one project with one location and one scene. GafferGrid Pro unlocks unlimited projects, clean PDFs, your own gear and export.
+- Who makes it? DeepInkCode in Copenhagen, Denmark, together with people who work in the film industry.
+
 ## Pages
 - [GafferGrid (English)](https://gaffergrid.com/)
 - [GafferGrid (Dansk)](https://gaffergrid.com/da/)
