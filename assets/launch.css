@@ -1341,3 +1341,6 @@ main h2 { font-size: clamp(28px, 4.2vw, 40px) !important; }
 :root[data-theme-now="light"] .plan.hot::before { border-color: #c79a43; }
 @media (prefers-reduced-motion: reduce) { .offer-tag::before { animation: none; } }
 .offer b { margin-left: -8px; }
+
+/* Touch (iPhone, iPad): − og + ved kameraets højde ser ud som før, men trykområdet er 44 × 44 px (Apples anbefaling), Marcus 5. nov */
+@media (pointer: coarse) { .cam-hgt button { position: relative; } .cam-hgt button::after { content: ""; position: absolute; left: 50%; top: 50%; width: 44px; height: 44px; transform: translate(-50%, -50%); } }

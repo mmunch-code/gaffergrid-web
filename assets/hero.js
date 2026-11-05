@@ -14,8 +14,8 @@
   const DA = document.documentElement.lang.startsWith("da"), LOC = DA ? "da-DK" : "en-GB";
   const { ROOM, CAST, SHOTS, castSVG, chip, rad, deg } = G;
   const T = DA
-    ? { title: "Køkken nat · Scene 12", power: "Strøm", distro: "CEE 16 A · 3 faser", ok: "OK · alle faser under 80 %", wait: "Kablerne er ikke lagt", steps: ["Rum", "Personer", "Kamera", "Lys", "Strøm"], laying: "Kablerne lægges …", total: "I alt", play: "Afspil igen", nav: "Vis et trin i opbygningen", table: "bord", counter: "køkkenbord", mm: "mm" }
-    : { title: "Kitchen night · Scene 12", power: "Power", distro: "CEE 16 A · 3-phase", ok: "OK · every phase under 80%", wait: "No cables laid yet", steps: ["Room", "People", "Camera", "Light", "Power"], laying: "Laying the cables …", total: "Total", play: "Play again", nav: "Show a step of the build", table: "table", counter: "counter", mm: "mm" };
+    ? { title: "Køkken nat · Scene 12", power: "Strøm", distro: "CEE 16 A · 3 faser", ok: "OK · alle faser under 80 %", wait: "Kablerne er ikke lagt", steps: ["Scene", "Kamera", "Lys", "Strøm"], laying: "Kablerne lægges …", total: "I alt", play: "Afspil igen", nav: "Vis et trin i opbygningen", table: "bord", counter: "køkkenbord", mm: "mm" }
+    : { title: "Kitchen night · Scene 12", power: "Power", distro: "CEE 16 A · 3-phase", ok: "OK · every phase under 80%", wait: "No cables laid yet", steps: ["Scene", "Camera", "Light", "Power"], laying: "Laying the cables …", total: "Total", play: "Play again", nav: "Show a step of the build", table: "table", counter: "counter", mm: "mm" };
   const still = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
   const f1 = (n) => n.toLocaleString(LOC, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
   const ease = (t) => (t <= 0 ? 0 : t >= 1 ? 1 : t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
@@ -33,7 +33,7 @@
   const camAt = (t) => { const u = (t - PH.adj[0]) / SP, kz = ease((u - 150) / 1400), ka = ease((u - 800) / 1400);
     const f = ADJ_F[0] * Math.pow(B.f / ADJ_F[0], kz), lens = [...ADJ_F, B.f].reduce((m, x) => (Math.abs(Math.log(x / f)) < Math.abs(Math.log(m / f)) ? x : m));
     return { ...B, f: kz >= 1 ? B.f : f, lens, a: B.a + ADJ_A * (1 - ka), turning: ka > 0 && ka < 1 }; };
-  const STEPS = [0, PH.people[0], PH.cam[0], PH.light[0], PH.power[0]];
+  const STEPS = [0, PH.cam[0], PH.light[0], PH.power[0]]; // som appens faner: Scene (rum og personer), Kamera, Lys, Strøm (Marcus 5. nov)
   // Lys (Marcus 4. nov): billedet går først i sort, og så tændes lamperne én ad gangen (key, fill, baglys), hver med en blød fade
   // Marcus 4. nov: "endnu langsommere", og man skal nå at se Maya helt mørk (kun rummets svage lys), før key tændes
   const LIT_DARK = 700, LIT_SEE = 600, LIT_HOLD = 700, LIT_STEP = 1100, LIT_FADE = 1000, LIT_ON = LIT_DARK + LIT_SEE + LIT_HOLD;
