@@ -26,7 +26,9 @@
   // midten; Marcus 4. nov: man skal kunne se, at det er let og hurtigt). Lys holder derefter præcis samme frame (12B).
 // SP: tempoet (Marcus 4. nov: lidt langsommere gennem fanerne, siden en anelse hurtigere igen: 1,2); alle tider og forsinkelser ganges med det
   const SP = 1.2, PH = Object.fromEntries(Object.entries({ walls: [0, 1800], open: [1800, 1200], furn: [2600, 900], people: [3600, 2400], cam: [6200, 1700], adj: [7900, 2300], light: [10200, 5300], power: [15500, 2600] }).map(([k, v]) => [k, v.map((x) => x * SP)]));
-  const BUILT = 18100 * SP, HOLD = 3600, FADE = 800, TOTAL = BUILT + HOLD + FADE;
+  // Slutningen (Marcus 6. nov: overgangen fra Strøm til starten skal være smooth og clean): den færdige scene står, toner så
+  // blødt ud i ét (tegning og panel sammen), og først når alt er væk, samles vinduet igen i stilhed (REST), før rummet tegnes forfra.
+  const BUILT = 18100 * SP, HOLD = 3600, FADE = 1400, REST = 1100, TOTAL = BUILT + HOLD + FADE + REST;
   const ADJ_F = [24, 35], ADJ_A = -14; // brændvidderne før 12B's egen, og hvor langt kameraet står drejet, før det rettes ind
   // Glidende (Marcus 4. nov: "ikke hakkende"): brændvidden zoomer jævnt fra 24 mm til 12B's egen (log-skala, som en zoom), og
   // drejningen starter halvvejs i zoomet og glider ud. Linserækken markerer den nærmeste brændvidde.
@@ -127,7 +129,7 @@
   // ---------- et billede til tiden t ----------
   let T0 = 0, raf = 0, live = false, pausedAt = 0, tNow = 0, clayAsked = false;
   function render(t) {
-    tNow = t; const L = lamps(Math.min(t, BUILT)), P = phases(L), fade = t > BUILT + HOLD ? 1 - (t - BUILT - HOLD) / FADE : 1;
+    tNow = t; const L = lamps(Math.min(t, BUILT)), P = phases(L), fade = 1 - ease((t - BUILT - HOLD) / FADE), rest = t >= BUILT + HOLD + FADE;
     dyn.innerHTML = planAt(Math.min(t, BUILT), L, P); dyn.setAttribute("opacity", fade.toFixed(3));
     const ca = p(t, "cam", 500), li = p(t, "light", 700), pw = p(t, "power", 600);
     const C = camAt(Math.min(t, BUILT)); if (ca > 0) drawLine(C);
@@ -139,17 +141,19 @@
     [0, 1, 2, 3].forEach((j) => { if (tb >= layerAt(j) - 250 * SP && !(rendered.lit && rendered.lit[j])) drawLit(L, j);
       vLits[j].style.opacity = (rendered.lit && rendered.lit[j] ? kLayer(tb, j) * fade : 0).toFixed(3); });
     view.style.setProperty("--v", (Math.min(1, ca) * fade).toFixed(3));
-    win.classList.toggle("lit", dark > 0); view.style.setProperty("--dark", dark.toFixed(3));
+    view.style.opacity = t > BUILT + HOLD ? fade.toFixed(3) : ""; // hele billedet/strøm-panelet toner ud sammen med tegningen
+    win.classList.toggle("lit", dark > 0 && !rest); view.style.setProperty("--dark", (rest ? 0 : dark).toFixed(3));
     tag.textContent = dark > 0.5 && G.lys ? `${B.c} · ${G.lys.name("three")} · ${G.lys.cam().f} ${T.mm}` : ca > 0 ? `${B.c} · ${Math.round(C.f)} ${T.mm}` : "";
     // Vinduet deles, når kameraet sættes (tegningen glider til venstre, billedet kommer ind), og samles igen, når det begynder forfra
-    win.classList.toggle("split", ca > 0 && fade > 0.4);
+    // (først i pausen efter udtoningen, så intet glider eller skifter, mens det ses)
+    win.classList.toggle("split", ca > 0 && !rest);
     // Strøm: billedet bliver til strøm-oversigten (som appens strøm-panel): status, tavlen, L1–L3 (A af 16 A, 80 %-mærket) og i alt kW
-    win.classList.toggle("pw", pw > 0.05);
+    win.classList.toggle("pw", pw > 0.05 && !rest);
     const k = Math.max(0, Math.min(1, (pw - 0.3) / 0.7));
     phEls.forEach((el, i) => { const a = P.amp[i] * k; el.querySelector(".ph-bar i").style.width = `${Math.min(100, (a / 16) * 100).toFixed(1)}%`; el.querySelector(".ph-a").textContent = `${f1(a)} / 16 A`; });
-    const ok = pw >= 1; okEl.querySelector("b").textContent = ok ? T.ok : T.laying; okEl.classList.toggle("on", ok); win.classList.toggle("pw-good", ok); // ikke "pw-ok": den klasse findes i strøm-demoen
+    const ok = pw >= 1; okEl.querySelector("b").textContent = ok ? T.ok : T.laying; okEl.classList.toggle("on", ok); win.classList.toggle("pw-good", ok && !rest); // ikke "pw-ok": den klasse findes i strøm-demoen
     totEl.textContent = `${T.total} ${f1((P.amp.reduce((a, b) => a + b, 0) * 230 * k) / 1000)} kW`;
-    const st = STEPS.reduce((k, s0, i) => (Math.min(t, BUILT) >= s0 ? i : k), 0); // t er altid inden for det valgte trin, når man står stille
+    const st = rest ? 0 : STEPS.reduce((k, s0, i) => (Math.min(t, BUILT) >= s0 ? i : k), 0); // t er altid inden for det valgte trin, når man står stille
     stepBtns.forEach((b, i) => b.setAttribute("aria-pressed", String(i === st)));
   }
   function loop(now) {
