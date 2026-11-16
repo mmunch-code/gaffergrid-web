@@ -1392,3 +1392,12 @@ main h2 { font-size: clamp(28px, 4.2vw, 40px) !important; }
   .foot .wrap { justify-content: center; text-align: center; row-gap: 14px; }
   .foot nav { justify-content: center; margin-left: 0; gap: 6px 18px; }
 }
+/* Telefon: strammere afstande mellem sektionerne (Marcus 16. nov), samme rytme hele vejen ned */
+@media (max-width: 760px) {
+  .deck-on .journey, .deck-on .journey.pinned { padding-top: 40px; }
+  .sec, .found, #faq { padding-top: 56px; }
+  .sec .head { margin-bottom: 32px; }
+  .end { padding-top: 72px; }
+  .foot { margin-top: 64px; }
+}
+@media (max-width: 760px) { .found { padding-top: 28px; } } /* Næste-bjælken over priserne giver allerede luft */
