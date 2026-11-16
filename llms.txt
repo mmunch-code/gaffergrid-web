@@ -27,7 +27,7 @@ GafferGrid is a lighting plan app, a lighting plot tool, a power calculator and 
 - Does it need the internet or an account? No. It works fully offline, with no login and no tracking; projects stay on the Mac.
 - Which power systems? UK (BS 1363, 13 A) and Denmark/Europe (230/400 V, CEE 16–125 A) in 1.0. US 120 V later.
 - Is it free? Every tool is free in one project with one location and one scene. GafferGrid Pro unlocks unlimited projects, clean PDFs, your own gear and saving projects as files.
-- Who makes it? DeepInkCode in Copenhagen, Denmark, together with people who work in the film industry.
+- Who makes it? DeepInkCode in Copenhagen, Denmark: film people who wanted a better way to plan light and power.
 
 ## Pages
 - [GafferGrid (English)](https://gaffergrid.com/)
