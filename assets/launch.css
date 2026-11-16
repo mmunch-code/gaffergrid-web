@@ -614,6 +614,33 @@ section[tabindex="-1"]:focus, main[tabindex="-1"]:focus { outline: none; }
 .pp-bar { display: block; height: 1.5cqw; margin: .5cqw 0 1.6cqw; border-radius: 1cqw; background: #ececef; overflow: hidden; } .pp-bar i { display: block; height: 100%; background: #17181b; }
 .pp-shot { display: grid; grid-template-columns: 44cqw minmax(0, 1fr); gap: 3.5cqw; align-items: center; padding: 2.4cqw 0; border-bottom: 1px solid #ececef; }
 .pp-shot svg { display: block; width: 100%; aspect-ratio: 16 / 9; border-radius: 1.2cqw; }
+/* Shotlistens stregbilleder er sort på hvidt som i appens udskrift (Marcus 16. nov); kamera-demoen ovenfor er stadig en mørk monitor */
+.pp-shot .camview.cv-line { background: #fff; outline: 1px solid #d8d8dc; outline-offset: -1px; }
+.pp-shot .camview.cv-line .cv-l-ceil, .pp-shot .camview.cv-line .cv-l-sky, .pp-shot .camview.cv-line .cv-l-floor, .pp-shot .camview.cv-line .cv-l-wall { fill: #fff; }
+.pp-shot .camview.cv-line .cv-l-floorline { stroke: rgba(0,0,0,.3); }
+.pp-shot .camview.cv-line .cv-l-ceilline, .pp-shot .camview.cv-line .cv-l-hz { stroke: rgba(0,0,0,.2); }
+.pp-shot .camview.cv-line .cv-l-hz { stroke: rgba(0,0,0,.28); }
+.pp-shot .camview.cv-line .cv-l-corner { stroke: rgba(0,0,0,.16); }
+.pp-shot .camview.cv-line .cv-l-door { fill: #fafafa; stroke: rgba(0,0,0,.4); }
+.pp-shot .camview.cv-line .cv-l-door.open { fill: #f0f0f2; }
+.pp-shot .camview.cv-line .cv-l-window { fill: #f6f7f9; stroke: rgba(0,0,0,.45); }
+.pp-shot .camview.cv-line .cv-l-box { fill: #fff; stroke: rgba(0,0,0,.7); }
+.pp-shot .camview.cv-line .cv-l-box.top { fill: #fff; stroke: rgba(0,0,0,.8); }
+.pp-shot .camview.cv-line .cv-l-box.lp-shade { fill: #f2f2f4; } .pp-shot .camview.cv-line .cv-l-box.lp-screen { fill: #e6e6ea; }
+.pp-shot .camview.cv-line .cv-l-stand { stroke: rgba(0,0,0,.6); }
+.pp-shot .camview.cv-line .cv-l-flag { fill: #e8e8ec; stroke: rgba(0,0,0,.6); }
+.pp-shot .camview.cv-line .cv-l-fig, .pp-shot .camview.cv-line .cv-l-body { fill: #fff; }
+.pp-shot .camview.cv-line .cv-l-fig { stroke: #111; }
+.pp-shot .camview.cv-line .cv-l-edge, .pp-shot .camview.cv-line .cv-l-nose { stroke: #111; }
+.pp-shot .camview.cv-line .cv-l-eye { fill: #111; }
+.pp-shot .camview.cv-line .cv-name { fill: #55585e; }
+.pp-shot .camview.cv-line .cv-l-thirds line { stroke: rgba(0,0,0,.1); }
+.pp-shot .camview.cv-line .cv-l-sun { stroke: rgba(125,117,101,.8); }
+.pp-shot .camview.cv-line .cv-l-rig, .pp-shot .camview.cv-line .cv-l-rig.top { stroke: rgba(0,0,0,.4); }
+.pp-shot .camview.cv-line .cv-grip .cv-l-rig, .pp-shot .camview.cv-line path.cv-l-rig.cv-grip { stroke: rgba(0,0,0,.55); }
+.pp-shot .camview.cv-line .lp-line { stroke: rgba(0,0,0,.6); }
+.pp-shot .camview.cv-line .lp-dot { fill: rgba(0,0,0,.7); } .pp-shot .camview.cv-line .lp-dot.on { fill: #b4a386; }
+.pp-shot .camview.cv-line .cv-lamp.cv-l-rig.cv-lamp-face { fill: rgba(180,163,134,.2); stroke: rgba(120,105,80,.75); }
 .pp-shot b { display: block; font-size: 5.2cqw; } .pp-shot small { display: block; font-size: 3.5cqw; color: #6b6f76; margin-top: .6cqw; }
 .pp-sc { display: grid; grid-template-columns: 8cqw minmax(0, 1fr); gap: 1cqw; padding: 2.6cqw 0; border-bottom: 1px solid #ececef; }
 .pp-sc b { font-size: 5cqw; } .pp-sc > span > span { display: block; font-size: 3.8cqw; font-weight: 600; line-height: 1.25; } .pp-sc small { display: block; font-size: 3.4cqw; color: #6b6f76; margin-top: .8cqw; }
