@@ -13,7 +13,7 @@
     frame: "Kamerabilledet som stregskitse", cam: (c) => `Kamera ${c}. Piletaster flytter, Shift og venstre/højre drejer.`, strip: "Filmstrimmel med shots", add: "Tilføj kamera", addA: "Tilføj et kamera og et shot", look: matchMedia("(pointer: coarse)").matches ? "Træk i billedet" : "Træk i billedet · rul for zoom", hgt: "Højde", up: "Højere", down: "Lavere",
   } : {
     table: "table", counter: "counter", sit: "seated", size: "Size", dist: (n) => `distance to ${n}`, inF: "In frame",
-    none: "Nobody. It's an insert.", nobody: "Nobody", hint: "Drag the camera · turn it by the dot", lens: "Focal length",
+    none: "Nobody. It's an insert.", nobody: "Nobody", hint: "Drag the camera · use the dot to turn it", lens: "Focal length",
     plan: "An overhead plan of a 4.4 by 3.6 m kitchen with a table, Maya seated, Leo in the doorway and three cameras. Drag the selected camera, or use the arrow keys; Shift with left or right turns it.",
     frame: "The camera view as a line sketch", cam: (c) => `Camera ${c}. Arrow keys move it, Shift with left or right turns it.`, strip: "Film strip with the shots", add: "Add camera", addA: "Add a camera and a shot", look: matchMedia("(pointer: coarse)").matches ? "Drag the frame" : "Drag the frame · scroll to zoom", hgt: "Height", up: "Higher", down: "Lower",
   };

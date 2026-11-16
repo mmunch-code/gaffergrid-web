@@ -30,13 +30,13 @@
     key: "Key", fill: "Fill", back: "Back light", prac: "Pendant", onAnna: "on Maya", tstop: "EI 800 · 1/50", lampFace: "lamp to face",
     left: "Left", right: "Right", side: "Key side", reset: "Reset", tooMany: "Now try one lamp too many:", dragL: "Drag the key, fill and back light",
     planL: "An overhead plan of the kitchen with the key, fill and back light aimed at Maya. Drag the lamps, or use the arrow keys.", lampA: (r) => `${r}. Arrow keys move it.`, ratio: "contrast", dim: "Dimmer", fk: { led: "Direct", bounce: "Bounce", neg: "Negative" }, fn: { into: "into bounce", neg: "Floppy 1×1 m" }, stop: "stops", toFace: (r) => `${r} to face`,
-    lay: "Lay cables", relay: "Lay them again", notYet: "No cables laid yet", ok: "OK · every phase under 80%", over: (p) => `${p} is over 80% · use 32 A`,
+    lay: "Lay cables", relay: "Re-lay the cables", notYet: "No cables laid yet", ok: "OK · every phase under 80%", over: (p) => `${p} is over 80% · use 32 A`,
     total: "in total", most: (p) => `most on ${p}`, free: "free before 80%", add: "Add", distro: "16 A CEE · 3-phase", hall: "hall",
     planP: "An overhead plan of the kitchen with the lamps and the distro in the hall. Press Lay cables.",
     packed: (a, b) => `${a} of ${b} packed`, cstand: "C-stand", combo: "Combo stand", bag: "Sandbag 12 kg", cable: (n) => `Cable 16 A, 10 m`, distroL: "CEE 16 A distro, 3-phase",
     cam: "Camera, 18–85 mm", dolly: "Slider 1 m", tape: "Gaffer tape", kit: "From the Kitchen night kit",
     exp: "Export it all", expd: "Ready", pdf: "PDF",
-    shotsH: "Shot list · scene 12", dayH: "The day", call: "Call", rig: "Light and camera up", lunch: "Lunch", wrap: "Wrap", next13: "Scene 13 · Stairwell", noShots: "No shots yet", min: "min", d0: "Gear list", d1: "Pack list", d2: "Shot list", d3: "Scene overview", scene12: "Scene 12 · Kitchen night", film: "3 scenes · 2 locations", gLight: "Light", gGrip: "Grip", gPower: "Power",
+    shotsH: "Shot list · scene 12", dayH: "The day", call: "Call", rig: "Lighting and camera rig", lunch: "Lunch", wrap: "Wrap", next13: "Scene 13 · Stairwell", noShots: "No shots yet", min: "min", d0: "Gear list", d1: "Pack list", d2: "Shot list", d3: "Scene overview", scene12: "Scene 12 · Kitchen night", film: "3 scenes · 2 locations", gLight: "Light", gGrip: "Grip", gPower: "Power",
   };
   const ANNA = CAST.Maya, FACE_H = 1.2, LAMP_H = 2.0, CD = 3200;
   // Scenens lamper (delt mellem lys, strøm og pakkeliste). Key flyttes i trin 2; tilføjede lamper kommer fra trin 3.
