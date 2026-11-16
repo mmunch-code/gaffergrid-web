@@ -24,7 +24,8 @@
   // ---------- App Store-knapperne: siden er bygget med "kommer"-udgaven; med STORE bliver de rigtige links ----------
   if (STORE) {
     $$("[data-store]").forEach((el) => { // 4. nov: knappen er allerede et link; kun adressen og teksten til skærmlæsere skifter
-      el.href = STORE; el.rel = "noopener"; el.setAttribute("aria-label", `${el.dataset.pre} Mac App Store`);
+      el.href = STORE; el.rel = "noopener"; el.removeAttribute("aria-disabled"); el.setAttribute("aria-label", `${el.dataset.pre} Mac App Store`);
+      const b = el.querySelector("[data-store-name]"); if (b) b.textContent = b.dataset.storeName;
     });
     $$("[data-store-touch]").forEach((el) => el.remove());
   }
@@ -113,10 +114,13 @@
   }
 })();
 
-// Founding-prisens nedtælling (Marcus 4. nov): "Slutter 31. dec. 2026 · 57 dage tilbage". Efter datoen står kun slutdatoen.
+// Founding-prisens nedtælling (Marcus 4. nov): "Slutter 31. dec. 2026 · 57 dage tilbage".
+// 15. nov: efter datoen skjules tilbuddet og slutdatoerne, så siden ikke reklamerer med et udløbet tilbud.
+// (Priserne og teksterne om founding skal stadig rettes i tools/forside.mjs 1. jan, se launch-planen.)
 (() => {
   document.querySelectorAll("[data-until]").forEach((el) => {
     const end = new Date(el.dataset.until + "T23:59:59"), d = Math.ceil((end - Date.now()) / 864e5);
+    if (d <= 0) { el.hidden = true; return; }
     if (d > 0 && d <= 400) { const b = document.createElement("b"); b.textContent = ` · ${d} ${d === 1 ? el.dataset.left1 : el.dataset.left}`; el.append(b); }
   });
 })();

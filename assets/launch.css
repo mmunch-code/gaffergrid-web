@@ -1344,3 +1344,12 @@ main h2 { font-size: clamp(28px, 4.2vw, 40px) !important; }
 
 /* Touch (iPhone, iPad): − og + ved kameraets højde ser ud som før, men trykområdet er 44 × 44 px (Apples anbefaling), Marcus 5. nov */
 @media (pointer: coarse) { .cam-hgt button { position: relative; } .cam-hgt button::after { content: ""; position: absolute; left: 50%; top: 50%; width: 44px; height: 44px; transform: translate(-50%, -50%); } }
+
+/* ---------- 15. nov (site/anbefalinger): gennemgangen ---------- */
+/* Hero-noten kunne ikke læses godt nok (kontrast under 4,5:1) */
+.hero-note { color: var(--t2); }
+/* Før launch er App Store-knappen ikke et link: ingen hånd og ingen hover, så den ikke lover et klik */
+.store:not([href]) { cursor: default; }
+.store.simple:not([href]):hover, .store.simple:not([href]):active { background: var(--hi); transform: none; }
+/* Trykflader på mindst 44 px på touch */
+@media (pointer: coarse) { .store-touch, .try-link { display: inline-flex; align-items: center; min-height: 44px; } }
