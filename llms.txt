@@ -10,7 +10,6 @@ Key facts about GafferGrid 1.0:
 - Lighting plan seen from above at real scale. Light is worked out from each lamp's wattage and its distance (inverse-square falloff). Generic LED, tungsten and HMI lamps (for example "LED COB 600 W"), with modifiers, frames and diffusion; stands chosen by weight and sandbags counted.
 - Camera and shots: real lenses and fields of view on the plan, dolly, slider, jib and crane on keyframes, and a shot list shown as a film strip with a simple line sketch of each frame.
 - Gear list that writes itself from the plan, as a PDF for the hire company, and a pack list to tick off on the day.
-- Room scans: a LiDAR or 3D scan (USDZ, GLB, OBJ, DAE, DXF, RoomPlan JSON) from apps like RoomPlan, Polycam or Scaniverse becomes walls, doors and windows on the plan.
 - Scene overview, locations and a focus guide.
 - A guided tour and a glossary of set terms, with tips from Gaff, the app's gaffer.
 - Works fully offline. No account, no tracking.
