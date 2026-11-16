@@ -121,7 +121,7 @@
   document.querySelectorAll("[data-until]").forEach((el) => {
     const end = new Date(el.dataset.until + "T23:59:59"), d = Math.ceil((end - Date.now()) / 864e5);
     if (d <= 0) { el.hidden = true; return; }
-    if (d > 0 && d <= 400) { const b = document.createElement("b"); b.textContent = ` · ${d} ${d === 1 ? el.dataset.left1 : el.dataset.left}`; el.append(b); }
+    if (d > 0 && d <= 400) { const sep = document.createElement("span"); sep.className = "until-sep"; sep.textContent = " · "; const b = document.createElement("b"); b.textContent = `${d} ${d === 1 ? el.dataset.left1 : el.dataset.left}`; el.append(sep, b); }
   });
 })();
 
