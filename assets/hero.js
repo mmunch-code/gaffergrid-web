@@ -2,7 +2,7 @@
 //   1 tomt gitter → væggene tegnes (rummet med mål)   2 døren, vinduet, bordet og køkkenbordet kommer på   3 Maya (sidder) og Leo i døren
 //   4 kameraet sættes → billedfeltet, og vinduet deles: tegningen til venstre, appens stregbillede til højre (før fylder tegningen det hele)   5 key, fill og baglys → strålerne på tegningen, og til højre
 //   appens lys-ler tæt på Maya (lamperne ses ikke i billedet)   6 tavlen i gangen, kablerne langs væggene, og til højre strøm-oversigten:
-//   L1–L3 fyldes op til OK
+//   L1–L3 fyldes op til "Alt har strøm" (appens ord; 16. nov: ikke "OK" om en fordeling)
 //   7 den færdige scene står et par sekunder, toner ud og begynder forfra.
 // Alt er en funktion af tiden t (ms), så man kan hoppe: trinnene under vinduet (Rum · Personer · Kamera · Lys · Strøm) viser, hvor
 // man er, og hopper dertil. Tegningen er sitets egne plan-dele i rejsens mål; billederne er appens (window.GGApp, hentet af kamera.js,
@@ -14,8 +14,8 @@
   const DA = document.documentElement.lang.startsWith("da"), LOC = DA ? "da-DK" : "en-GB";
   const { ROOM, CAST, SHOTS, castSVG, chip, rad, deg } = G;
   const T = DA
-    ? { title: "Køkken nat · Scene 12", power: "Strøm", distro: "CEE 16 A · 3 faser", ok: "OK · alle faser under 80 %", wait: "Kablerne er ikke lagt", steps: ["Scene", "Kamera", "Lys", "Strøm"], laying: "Kablerne lægges …", total: "I alt", play: "Afspil igen", nav: "Vis et trin i opbygningen", table: "bord", counter: "køkkenbord", mm: "mm" }
-    : { title: "Kitchen night · Scene 12", power: "Power", distro: "CEE 16 A · 3-phase", ok: "OK · every phase under 80%", wait: "No cables laid yet", steps: ["Scene", "Camera", "Light", "Power"], laying: "Laying the cables …", total: "Total", play: "Play again", nav: "Show a step of the build", table: "table", counter: "counter", mm: "mm" };
+    ? { title: "Køkken nat · Scene 12", power: "Strøm", distro: "CEE 16 A · 3 faser", ok: "Alt har strøm · alle faser under 80 %", wait: "Kablerne er ikke lagt", steps: ["Scene", "Kamera", "Lys", "Strøm"], laying: "Kablerne lægges …", total: "I alt", play: "Afspil igen", nav: "Vis et trin i opbygningen", table: "bord", counter: "køkkenbord", mm: "mm" }
+    : { title: "Kitchen night · Scene 12", power: "Power", distro: "CEE 16 A · 3-phase", ok: "Everything has power · every phase under 80%", wait: "No cables laid yet", steps: ["Scene", "Camera", "Light", "Power"], laying: "Laying the cables …", total: "Total", play: "Play again", nav: "Show a step of the build", table: "table", counter: "counter", mm: "mm" };
   const still = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
   const f1 = (n) => n.toLocaleString(LOC, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
   const ease = (t) => (t <= 0 ? 0 : t >= 1 ? 1 : t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);

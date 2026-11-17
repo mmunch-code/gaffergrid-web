@@ -5,7 +5,7 @@
 //   3 Strøm      – de samme lamper (key fra trin 2) på tegningen. "Læg kabler" lægger kablerne langs væggene fra tavlen
 //                  i gangen ud til lamperne én ad gangen, og L1–L3 fyldes op (fuld styrke ved 230 V, største lampe først på
 //                  den mindst belastede fase, grænse 80 % af 16 A = 12,8 A).
-//   4 Produktion – scenerne fra manuskriptet og en pakkeliste, der bygges af lamperne og kablerne, og som kan vinges af.
+//   4 Produktion – shotlisten, scenerne og en pakkeliste, der bygges af lamperne og kablerne, og som kan vinges af.
 //   5 Levering   – dokumenterne, der kan eksporteres (kun det, der er med i 1.0).
 // Ingen biblioteker. Med "reducér bevægelse" springes animationerne over; alt kan stadig trækkes og trykkes.
 (() => {
@@ -19,24 +19,24 @@
     key: "Key", fill: "Fill", back: "Baglys", prac: "Pendel", onAnna: "på Maya", tstop: "EI 800 · 1/50", lampFace: "lampe til ansigt",
     left: "Venstre", right: "Højre", side: "Key-side", reset: "Nulstil", tooMany: "Prøv en lampe for meget:", dragL: "Træk i key, fill og baglys",
     planL: "Tegning oppefra af køkkenet med key, fill og baglys rettet mod Maya. Træk lamperne, eller brug piletasterne.", lampA: (r) => `${r}. Piletaster flytter den.`, ratio: "kontrast", dim: "Dimmer", fk: { led: "Direkte", bounce: "Bounce", neg: "Negativ" }, fn: { into: "i bounce", neg: "Floppy 1×1 m" }, stop: "stop", toFace: (r) => `${r} til ansigt`,
-    lay: "Læg kabler", relay: "Læg kablerne igen", notYet: "Kablerne er ikke lagt endnu", ok: "OK · alle faser under 80 %", over: (p) => `${p} er over 80 % · brug 32 A`,
+    lay: "Læg kabler", relay: "Læg kablerne igen", notYet: "Kablerne er ikke lagt endnu", ok: "Alt har strøm · alle faser under 80 %", over: (p) => `${p} er over 80 % · brug 32 A`,
     total: "i alt", most: (p) => `mest på ${p}`, free: "fri før 80 %", add: "Tilføj", distro: "16 A CEE · 3 faser", hall: "gang",
     planP: "Tegning oppefra af køkkenet med lamperne og tavlen i gangen. Tryk Læg kabler.",
     packed: (a, b) => `${a} af ${b} pakket`, cstand: "C-stand", combo: "Combo-stativ", bag: "Sandsæk 12 kg", cable: (n) => `Kabel 16 A, 10 m`, distroL: "CEE 16 A-tavle, 3 faser",
-    cam: "Kamera, 18–85 mm", dolly: "Slider 1 m", tape: "Gaffertape", kit: "Fra pakken Køkken nat",
+    cam: "Kamera, 18–85 mm", dolly: "Slider 1 m", tape: "Gaffertape", kit: "Bygget ud fra lamperne og kablerne i scene 12",
     exp: "Eksportér det hele", expd: "Klar", pdf: "PDF",
-    shotsH: "Shotliste · scene 12", dayH: "Dagen", call: "Call", rig: "Lys og kamera op", lunch: "Frokost", wrap: "Wrap", next13: "Scene 13 · Opgangen", noShots: "Ingen shots endnu", min: "min", d0: "Grejliste", d1: "Pakkeliste", d2: "Shotliste", d3: "Sceneoversigt", scene12: "Scene 12 · Køkken nat", film: "3 scener · 2 locations", gLight: "Lys", gGrip: "Grip", gPower: "Strøm",
+    shotsH: "Shotliste · scene 12", dayH: "Scener", call: "Call", rig: "Lys og kamera op", lunch: "Frokost", wrap: "Wrap", next13: "Scene 13 · Opgangen", noShots: "Ingen shots endnu", min: "min", d0: "Grejliste", d1: "Pakkeliste", d2: "Shotliste", d3: "Sceneoversigt", scene12: "Scene 12 · Køkken nat", film: "3 scener · 2 locations", gLight: "Lys", gGrip: "Grip", gPower: "Strøm",
   } : {
     key: "Key", fill: "Fill", back: "Back light", prac: "Pendant", onAnna: "on Maya", tstop: "EI 800 · 1/50", lampFace: "lamp to face",
     left: "Left", right: "Right", side: "Key side", reset: "Reset", tooMany: "Now try one lamp too many:", dragL: "Drag the key, fill and back light",
     planL: "An overhead plan of the kitchen with the key, fill and back light aimed at Maya. Drag the lamps, or use the arrow keys.", lampA: (r) => `${r}. Arrow keys move it.`, ratio: "contrast", dim: "Dimmer", fk: { led: "Direct", bounce: "Bounce", neg: "Negative" }, fn: { into: "into bounce", neg: "Floppy 1×1 m" }, stop: "stops", toFace: (r) => `${r} to face`,
-    lay: "Lay cables", relay: "Re-lay the cables", notYet: "No cables laid yet", ok: "OK · every phase under 80%", over: (p) => `${p} is over 80% · use 32 A`,
+    lay: "Run cables", relay: "Run the cables again", notYet: "No cables laid yet", ok: "Everything has power · every phase under 80%", over: (p) => `${p} is over 80% · use 32 A`,
     total: "in total", most: (p) => `most on ${p}`, free: "free before 80%", add: "Add", distro: "16 A CEE · 3-phase", hall: "hall",
-    planP: "An overhead plan of the kitchen with the lamps and the distro in the hall. Press Lay cables.",
+    planP: "An overhead plan of the kitchen with the lamps and the distro in the hall. Press Run cables.",
     packed: (a, b) => `${a} of ${b} packed`, cstand: "C-stand", combo: "Combo stand", bag: "Sandbag 12 kg", cable: (n) => `Cable 16 A, 10 m`, distroL: "CEE 16 A distro, 3-phase",
-    cam: "Camera, 18–85 mm", dolly: "Slider 1 m", tape: "Gaffer tape", kit: "From the Kitchen night kit",
+    cam: "Camera, 18–85 mm", dolly: "Slider 1 m", tape: "Gaffer tape", kit: "Built from the lamps and cables in scene 12",
     exp: "Export it all", expd: "Ready", pdf: "PDF",
-    shotsH: "Shot list · scene 12", dayH: "The day", call: "Call", rig: "Lighting and camera rig", lunch: "Lunch", wrap: "Wrap", next13: "Scene 13 · Stairwell", noShots: "No shots yet", min: "min", d0: "Gear list", d1: "Pack list", d2: "Shot list", d3: "Scene overview", scene12: "Scene 12 · Kitchen night", film: "3 scenes · 2 locations", gLight: "Light", gGrip: "Grip", gPower: "Power",
+    shotsH: "Shot list · scene 12", dayH: "Scenes", call: "Call", rig: "Lighting and camera rig", lunch: "Lunch", wrap: "Wrap", next13: "Scene 13 · Stairwell", noShots: "No shots yet", min: "min", d0: "Gear list", d1: "Packing list", d2: "Shot list", d3: "Scene overview", scene12: "Scene 12 · Kitchen night", film: "3 scenes · 2 locations", gLight: "Light", gGrip: "Grip", gPower: "Power",
   };
   const ANNA = CAST.Maya, FACE_H = 1.2, LAMP_H = 2.0, CD = 3200;
   // Scenens lamper (delt mellem lys, strøm og pakkeliste). Key flyttes i trin 2; tilføjede lamper kommer fra trin 3.
@@ -497,19 +497,16 @@
   }
 
 
-  // ---------- 4. Produktion: dine shots og dagen (4. nov) ----------
-  // Shotlisten er shotsene fra trin 1 (G.live()), med stregbillede, størrelse, brændvidde og hvem der er i billedet. Tidsplanen:
-  // call 07:30, lys og kamera op 60 min, så ét slot pr. shot (første 45 min, de næste 35 min, fordi lyset kun justeres),
-  // frokost og scene 13. Tegnes igen, når man kommer til trinnet eller tilføjer et kamera.
+  // ---------- 4. Produktion: dine shots og scenerne (4. nov; 16. nov: tidsplanen "Dagen" er væk, optageplanen er ikke i 1.0) ----------
+  // Shotlisten er shotsene fra trin 1 (G.live()), med stregbillede, størrelse, brændvidde og hvem der er i billedet. Under den
+  // projektets scener (de samme som Sceneoversigt i Levering), hvor scene 12 tæller dine shots. Tegnes igen, når man kommer til
+  // trinnet eller tilføjer et kamera.
   function prodShots(host) {
-    const hm = (m) => `${String(Math.floor(m / 60)).padStart(2, "0")}:${String(m % 60).padStart(2, "0")}`;
+    const scenes = (() => { try { return JSON.parse(document.querySelector("[data-deliver]")?.dataset.scenes || "[]"); } catch (e) { return []; } })();
     function render() {
       const shots = G.live ? G.live() : G.SHOTS;
       const cards = shots.map((sh) => { const a = G.analyze(sh); return `<li class="ps-card"><svg viewBox="0 0 160 90" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${G.frameSVG(sh, { labels: false, w: 240 })}</svg><span class="cap"><b>${sh.c}</b><em>${G.sizeLabel(a)}</em><i>${sh.f} mm</i></span><span class="who">${esc(a.inF.map((o) => o.n).join(", ") || T.noShots)}</span></li>`; }).join("");
-      let t = 7 * 60 + 30; const rows = [[hm(t), T.call, ""]]; t += 30;
-      rows.push([hm(t), T.rig, `60 ${T.min}`]); t += 60;
-      shots.forEach((sh, i) => { const d = i ? 35 : 45; rows.push([hm(t), `${sh.c} · ${G.sizeLabel(G.analyze(sh))} · ${sh.f} mm`, `${d} ${T.min}`, true]); t += d; });
-      t = Math.max(t, 11 * 60 + 30); rows.push([hm(t), T.lunch, `30 ${T.min}`]); t += 30; rows.push([hm(t), T.next13, ""]);
+      const n = shots.length, rows = scenes.map(([no, sl, who, sh]) => (no === "12" ? [no, sl, `${n} ${n === 1 ? "shot" : "shots"}`, true] : [no, sl, sh]));
       host.innerHTML = `<h3>${T.shotsH}</h3><ol class="ps">${cards}</ol><h3>${T.dayH}</h3><ol class="day">${rows.map(([tm, w, d, sh]) => `<li${sh ? ' class="sh"' : ""}><b>${tm}</b><span>${esc(w)}</span><i>${d}</i></li>`).join("")}</ol>`;
     }
     document.addEventListener("gg-shots", render);

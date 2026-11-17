@@ -7,13 +7,13 @@ Key facts about GafferGrid 1.0:
 - Lamps are always counted at full output and with what they draw from the wall (an LED's driver adds about 20 % over its class: a 600 W LED draws about 720 W).
 - Gaffers' 80 % rule: load breakers, phases and generators to at most 80 % of their rating.
 - Lighting plan seen from above at real scale. Light is worked out from each lamp's wattage and its distance (inverse-square falloff). Generic LED, tungsten and HMI lamps (for example "LED COB 600 W"), with modifiers, frames and diffusion; stands chosen by weight and sandbags counted.
-- Camera and shots: real lenses and fields of view on the plan, dolly, slider, jib and crane on keyframes, and a shot list shown as a film strip with a simple line sketch of each frame.
-- Gear list that writes itself from the plan, as a PDF for the hire company, and a pack list to tick off on the day.
+- Camera and shots: focal length and sensor size with the field of view on the plan, dolly, slider, jib and crane on keyframes, and a shot list shown as a film strip with a simple line sketch of each frame.
+- Gear list that writes itself from the plan, as a PDF for the hire company, and a packing list to tick off on the day.
 - Scene overview, locations and a focus guide.
 - A guided tour and a glossary of set terms, with tips from Gaff, the app's gaffer.
 - Works fully offline. No account, no tracking.
-- Pricing: free: every tool in one project with one location and one scene, the full power calculator, and PDFs with a small watermark; GafferGrid Pro (6.99 USD a month, 59.99 USD a year, or 179.99 USD for life; founding introductory prices from launch until 31 December 2026: 44.99 USD for the first year for new subscribers, or 129.99 USD for life) for unlimited projects, locations and scenes, clean PDFs, your own lamps, cameras and stands, and saving and sharing projects as files.
-- The calculation is a planning guide; a qualified electrician or gaffer must approve the distribution.
+- Pricing: free: every tool in one project with one location and one scene, the full power calculator, and PDFs with a small watermark; GafferGrid Pro (6.99 USD a month, 59.99 USD a year, or 179.99 USD for life; founding introductory prices from launch until 31 December 2026: 44.99 USD for the first year for new subscribers, or 129.99 USD for life) for unlimited projects, locations and scenes, clean PDFs, and your own lamps, cameras, stands, frames and distros. Export as file and Export all projects are free.
+- The power calculation is a planning tool, not an approval; a qualified person (gaffer or electrician) must approve the distribution on site under local regulations.
 
 ## Also known as
 GafferGrid is a lighting plan app, a lighting plot tool, a power calculator and power distribution planner for film sets, a gaffer app, a shot planner and a gear list generator for film and TV crews. In Danish: lysplan, strømberegner, gaffer-app, grejliste og shotliste til filmhold.
@@ -23,7 +23,7 @@ GafferGrid is a lighting plan app, a lighting plot tool, a power calculator and 
 - Who is it for? Gaffers, best boys, electricians, DoPs, ADs and small crews on films, commercials, music videos and TV.
 - What makes it different? It is built around the power: it spreads lamps over phases and outlets, keeps every phase under 80 %, checks cables and breakers, picks distros and lays the cables around the set.
 - Does it need the internet or an account? No. It works fully offline, with no login and no tracking; projects stay on the Mac.
-- Is it free? Every tool is free in one project with one location and one scene. GafferGrid Pro unlocks unlimited projects, clean PDFs, your own gear and saving projects as files.
+- Is it free? Every tool is free in one project with one location and one scene. GafferGrid Pro unlocks unlimited projects, clean PDFs and your own gear. Exporting projects as files is free.
 - Who makes it? DeepInkCode in Copenhagen, Denmark: film people who wanted a better way to plan light and power.
 
 ## Pages
