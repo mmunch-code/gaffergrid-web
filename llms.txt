@@ -1,6 +1,6 @@
 # GafferGrid
 
-> GafferGrid is a previz and planning app for the Mac, for DoPs, gaffers, electricians and film crews: plan the set from above at real scale, light it, work out the power and get the gear list. It is built around the power: it spreads the lamps over phases and outlets, checks cables and breakers, picks distros and runs the cables around the set. Launching on the Mac App Store in November 2026, made by DeepInkCode, Denmark.
+> GafferGrid is a previz and planning app for the Mac, for DoPs, gaffers, electricians and film crews: plan the set from above at real scale, light it, work out the power and get the gear list. It is built around the power: it spreads the lamps over phases and outlets, checks cables and breakers, picks distros and runs the cables around the set. Out now on the Mac App Store (https://apps.apple.com/app/gaffergrid-film-set-planner/id6824168173), made by DeepInkCode, Denmark.
 
 Key facts about GafferGrid 1.0:
 - Platform: macOS 13 or later. Languages: English (UK) and Danish.
